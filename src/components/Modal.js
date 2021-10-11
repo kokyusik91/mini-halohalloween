@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const Modal = () => {
+const Modal = (props) => {
+  const {} = props;
+  return <div></div>;
+};
 
-  return(
-    
-  )
-}
+export default Modal;
