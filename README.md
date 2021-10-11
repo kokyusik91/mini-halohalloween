@@ -47,17 +47,31 @@ Front-end 3인, Back-end 3인
 2. 페이지 나누기.
 3. 최소 단위 컴포넌트부터 뷰 만들기.
 
-- (Container.js, Grid.js, index.js, Input.js, Label.js, Textarea.js, Upload.js)
+- Container.js
+- Grid.js
+- index.js
+- Input.js
+- Label.js
+- Textarea.js
+- Upload.js
 
 4. **Node server 와 front 통신완료!!**
 5. redux 라이브러리 install
 
-- (redux, react-redux, redux-thunk, redux-logger, history@4.10.1, connected-react-router@6.8.0, immer, redux-actions)
+- redux
+- react-redux
+- redux-thunk
+- redux-logger
+- history@4.10.1
+- connected-react-router@6.8.0
+- immer
+- redux-actions
 
 6. redux module 만들어 놓기
 
-- (user.js, post.js)
+- user.js
+- post.js
 
 7. 스토어 만들기
 
-- (configureStore.js)
+- configureStore.js
