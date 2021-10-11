@@ -18,12 +18,12 @@
 *::after {
   margin: 0;
   padding: 0;
+  font-family: "IM_Hyemin-Bold";
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: "IM_Hyemin-Bold";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
