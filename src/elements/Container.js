@@ -2,15 +2,21 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = (props) => {
+  const { margin, children } = props;
+  const styles = {
+    margin: margin,
+  };
   return (
     <>
-      <ContainerWrap>{props.children}</ContainerWrap>
+      <ContainerWrap {...styles}>{children}</ContainerWrap>
     </>
   );
 };
-
+Container.defaultProps = {
+  margin: "0 auto",
+};
 const ContainerWrap = styled.div`
   width: 1080px;
-  margin: 0 auto;
+  ${(props) => (props.margin ? `margin:${props.margin}` : "0 auto")};
 `;
 export default Container;
