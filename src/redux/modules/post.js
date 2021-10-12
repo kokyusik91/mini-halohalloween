@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
+import { apis } from '../shared/axios';
 
 //action type
 const SET_POST = 'SET_POST';
@@ -13,23 +14,34 @@ const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
 const updatePost = createAction(UPDATE_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
 
+// 기본형식
+// {
+//   postingID: '',
+//   postingTitle: '',
+//   postingAuthor: '',
+//   postingComment: '',
+//   postingDate: '',
+//   postingComment: '',
+// },
+
 //initialState
 const initialState = {
-  post_list: [
-    {
-      postingID: '',
-      postingTitle: '',
-      postingAuthor: '',
-      postingComment: '',
-      postingDate: '',
-      postingComment: '',
-    },
-  ],
-  user_info: {
-    userId: '',
-    userNickname: '',
-    uuid: '',
-  },
+  post_list: [],
+};
+
+//middleware
+const setPostFB = () => {
+  return async function (dispatch, getState) {
+    // axios 부분
+    // apis
+    //   .getPost()
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+  };
 };
 
 // reducer

@@ -1,24 +1,9 @@
 import React from "react";
 import { Grid, Container, CardGrid } from "../elements";
-import Spinner from "../shared/Spinner";
-import { apis } from "../shared/axios";
 
 const Main = (props) => {
-  React.useEffect(() => {
-    const load = async () => {
-      try {
-        const res = await apis.get();
-        console.log("res ============ ", res);
-      } catch (e) {
-        console.log(e);
-      }
-    };
-    load();
-    console.log(window.sessionStorage.getItem("token"));
-  }, []);
   return (
     <>
-      {/* <Spinner /> */}
       <Grid height="450px" bg="#000">
         <Container>
           <p

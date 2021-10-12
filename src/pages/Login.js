@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Grid, Label } from "../elements";
+import { Grid, Label, Input } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Spinner from "../shared/Spinner";
@@ -59,12 +59,7 @@ const Login = (props) => {
     </>
   );
 };
-const Input = styled.input`
-  display: block;
-  width: 100%;
-  margin-top: 3px;
-  padding: 8px;
-`;
+
 const Button = styled.button`
   width: 100%;
   padding: 13px 0;
