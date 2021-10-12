@@ -9,13 +9,16 @@ import {
   Button,
   Image,
 } from '../elements/index';
+import moment from 'moment';
+import axios from 'axios';
 
 const Modal = (props) => {
-  // 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
+  // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
   const modaloff = () => {
     props._setModal(false);
   };
-  // 인풋창 2개 한번에 관리
+
+  // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
     title: '',
     content: '',
@@ -24,12 +27,52 @@ const Modal = (props) => {
   // 비구조화 할당으로 값 추출
   const { title, content } = inputs;
 
+  // onchange 함수에서 e.target에 있는 value,name을 가져온다.
+  // ...inputs으로 기존 객체를 복사하고, key가 name인 value값을 대치해준다.
   const onChange = (e) => {
     const { value, name } = e.target;
     setInputs({
       ...inputs,
       [name]: value,
     });
+  };
+  // moment사용하여
+  const postingDate = moment().format('YYYY-MM-DD');
+  // console.log(postingDate);
+  // 토큰 가져오기
+  // console.log(sessionStorage.getItem('token'));
+
+  // 클릭했을때 axios를 사용하여 posting data를 보낸다.
+  const submitPost = () => {
+    // 서버로 보낼 posting 데이터
+    // if (inputs.title == '' || inputs.content == '') {
+    //   alert('빈칸을 입력해주세요!');
+    //   return;
+    // }
+    const post_info = {
+      postingTitle: inputs.title,
+      postingComment: inputs.content,
+      postingDate: postingDate,
+    };
+
+    // axios사용하여 POST요청
+    axios({
+      url: '/post/posting',
+      method: 'POST',
+      headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
+      data: {
+        postingTitle: post_info.postingTitle,
+        postingComment: post_info.postingComment,
+        postingDate: post_info.postingDate,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        alert('포스팅 성공!');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -66,7 +109,9 @@ const Modal = (props) => {
             <Upload />
           </Grid>
           <Grid>
-            <Button margin='10px 0 0 0'>글올리기</Button>
+            <Button margin='10px 0 0 0' _onClick={submitPost}>
+              글올리기
+            </Button>
             <Button margin='10px 0 0 0' _onClick={modaloff}>
               취소
             </Button>
@@ -91,3 +136,12 @@ const ModalParent = styled.div`
 `;
 
 export default Modal;
+
+// apis
+//       .getPost()
+//       .then((response) => {
+//         console.log(response.data);
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });

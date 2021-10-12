@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Textarea = (props) => {
-  const { placeholder, _onChange, margin } = props;
+  const { placeholder, _onChange, margin, name, value } = props;
 
   const styles = {
     margin: margin,
@@ -11,9 +11,11 @@ const Textarea = (props) => {
   return (
     <React.Fragment>
       <ElTextarea
+        name={name}
         placeholder={placeholder}
         row={20}
         onChange={_onChange}
+        value={value}
         {...styles}
       />
     </React.Fragment>
