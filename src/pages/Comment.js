@@ -1,6 +1,7 @@
-import react from "React";
+import React from "react";
 import CommentWrite from "../components/CommentWrite";
 import CommentCard from "../components/CommentCard";
+import comment from "../redux/modules/comment";
 
 const Comment = () => {
   return (
