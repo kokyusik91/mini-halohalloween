@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { apis } from "../shared/axios";
+// import { apis } from "../shared/axios";
 
 //action type
 const SET_POST = "SET_POST";
@@ -47,7 +47,10 @@ const setPostFB = () => {
 // reducer
 export default handleActions(
   {
-    [SET_POST]: (state, action) => produce(state, (draft) => {}),
+    [SET_POST]: (state, action) => produce(state, (draft) => {
+      //let data ={[post_id]: comment_list,...}
+      draft.list[action.payload.post_id] = action.payload.comment_list;
+    }),
     [ADD_POST]: (state, action) => produce(state, (draft) => {}),
     [UPDATE_POST]: (state, action) => produce(state, (draft) => {}),
     [DELETE_POST]: (state, action) => produce(state, (draft) => {}),

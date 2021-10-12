@@ -81,5 +81,10 @@ Front-end 3인, Back-end 3인
 1. 백엔드와 Data schema 정리
 2. 최소 단위 컴포넌트 추가 : Image.js,
 3. 최소 단위 컴포넌트 수정 : 모든 최소단위 컴포넌트 조금씩 수정
-4. Axios 모듈 수정
+4. Axios 모듈 좀 더 쓰기 편하게 수정!
 5. Postlist.js(page) 추가, Post.js(components) 추가, Modal.js(components) 추가,
+6. Modal on/off State로 관리!! (Context API로 개선요망!)
+7. Axios 사용하여 Posting 완료! (데이터베이스에 제목,게시글,유저닉네임,포스팅시간 올라가는것 확인!)
+8. 서버와 클라이언트 회원가입, 로그인 완료! (현재 세션스토리지에 토큰저장됨)
+9. addPost 리덕스 연결
+10. Spinner 추가!

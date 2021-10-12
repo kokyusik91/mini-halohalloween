@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 // import styled from 'styled-components';
 import { Grid, Container } from '../elements';
 import Modal from '../components/Modal';
+import { useSelector } from 'react-redux';
 
 const Postlist = (props) => {
+  const post_data = useSelector((state) => state.post.post_list);
+  console.log('useSelector', post_data);
   // 모달 State
   const [modal, setModal] = useState(false);
   // 모달on/off 함수

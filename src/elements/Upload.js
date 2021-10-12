@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import Label from './Label';
 
 const Upload = (props) => {
   const { type, color, backgroundColor } = props;
