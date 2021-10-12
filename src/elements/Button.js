@@ -56,7 +56,6 @@ const WhiteButton = styled.button`
   text-align: center;
   border: 2px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
-  border: solid red 1px;
 `;
 
 export default Button;
