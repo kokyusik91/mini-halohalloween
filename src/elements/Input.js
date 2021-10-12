@@ -1,7 +1,7 @@
 /* eslint-disable */
 
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Input = (props) => {
   // const {placeholder, type, _onChange, width} = props
@@ -24,16 +24,16 @@ const Input = (props) => {
 };
 
 Input.defaultProps = {
-  placeholder: '텍스트를 입력해주세요',
-  type: 'text',
+  placeholder: "텍스트를 입력해주세요",
+  type: "text",
   _onChange: () => {},
   margin: false,
-  width: '100%',
+  width: "100%",
 };
 
 const InputForm = styled.input`
   width: ${(props) => props.width};
-  ${(props) => (props.margin ? `margin: ${props.margin};` : '')};
+  ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   padding: 12px 4px;
   border: none;
   border: 1px solid #243443;

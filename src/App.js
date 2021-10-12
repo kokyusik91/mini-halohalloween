@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+
 function App() {
   return (
     <BrowserRouter>

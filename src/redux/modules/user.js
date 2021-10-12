@@ -1,10 +1,10 @@
-import { createAction, handleActions } from 'redux-actions';
-import { produce } from 'immer';
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
 
 //action type
-const LOG_IN = 'LOG_IN';
-const LOG_OUT = 'LOG_OUT';
-const GET_USER = 'GET_USER';
+const LOG_IN = "LOG_IN";
+const LOG_OUT = "LOG_OUT";
+const GET_USER = "GET_USER";
 
 //action creator
 const logIn = createAction(LOG_IN, (user) => ({ user }));
