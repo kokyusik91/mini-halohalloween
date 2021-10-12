@@ -1,9 +1,23 @@
 import React from "react";
 import { Grid, Container } from "../elements";
+import Spinner from "../shared/Spinner";
+import { apis } from "../shared/axios";
 
 const Main = (props) => {
+  React.useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await apis.get();
+        console.log("res ============ ", res);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    load();
+  }, []);
   return (
     <>
+      {/* <Spinner /> */}
       <Grid height="450px" bg="#000">
         <Container>
           <p
