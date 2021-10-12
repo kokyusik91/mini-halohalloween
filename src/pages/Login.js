@@ -9,13 +9,15 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
   const [state, setState] = React.useState({ userEmail: "", userPassword: "" });
+
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
-    console.log("state = ", state);
   };
+
   const onClick = () => {
     dispatch(userActions.loginFB(state));
   };
+
   return (
     <>
       {is_loading && <Spinner />}

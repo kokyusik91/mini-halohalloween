@@ -1,12 +1,14 @@
 import React from "react";
-import { Grid, Container, Button } from "../elements";
-import Spinner from "../shared/Spinner";
-import { apis } from "../shared/axios";
-
+import { Grid, Container } from "../elements";
+import { useSelector } from "react-redux";
 const Main = (props) => {
+  const is_login = useSelector((state) => state.user.user);
+  console.log("main is_login === ", is_login);
+  React.useEffect(() => {
+    console.log("useEffect main ::::::::::::: ");
+  }, []);
   return (
     <>
-      {/* <Spinner /> */}
       <Grid height="450px" bg="#000">
         <Container>
           <p

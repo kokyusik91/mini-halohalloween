@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Container } from "../elements";
+import { Grid, Container, Button } from "../elements";
 
 const Hedaer = (props) => {
   return (
@@ -10,13 +10,13 @@ const Hedaer = (props) => {
             <a>halohalloween</a>
           </h1>
           <Grid is_flex flex margin="0 0 0 20px">
-            <button>할로윈소개</button>
-            <button>포스팅</button>
-            <button>Contact us</button>
+            <Button>할로윈소개</Button>
+            <Button>포스팅</Button>
+            <Button>Contact us</Button>
           </Grid>
           <Grid>
-            <button>로그인</button>
-            <button>로그아웃</button>
+            <Button>로그인</Button>
+            <Button>로그아웃</Button>
           </Grid>
         </Grid>
       </Container>
