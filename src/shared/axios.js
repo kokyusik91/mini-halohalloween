@@ -18,16 +18,16 @@ export const apis = {
   // 게시물 불러오기
   // getPost: () => instance.get(),
   // // 게시물 작성하기
-  // createPost: (contents) => instance.post("/posts", contents),
-  // // 게시물 수정하기
-  // editPost: (id, content) => instance.put(`/posts/${id}`, content),
+  // createPost: (contents) => instance.post("/user/register", contents),
+  // 게시물 수정하기
+  // editPost: (content) => instance.put(`/user/register`, content),
   // // 게시물 삭제하기
   // delPost: (id) => instance.delete(`/posts/${id}`),
 
   // 모듈화 작업
-  get: (url = "") => instance.get(`/${url}`),
-  create: (url = "", contents = {}) => instance.post(`/${url}`, contents),
-  update: (url = "", id = "", contents = {}) =>
+  get: (url = "/") => instance.get(`/${url}`),
+  create: (url = "/", contents = {}) => instance.post(`${url}`, contents),
+  update: (url = "/", id = "", contents = {}) =>
     instance.put(`/${url}:${id}`, contents),
   delete: (url = "", id = "") => instance.delete(`/${url}/${id}`),
 };
