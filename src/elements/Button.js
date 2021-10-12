@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Button = (props) => {
   const { text, _onClick, children, margin, width, border, is_white } = props;
@@ -27,9 +27,9 @@ const Button = (props) => {
 Button.defaultProps = {
   children: null,
   _onClick: () => {},
-  width: "100%",
+  width: '100%',
   bg: true,
-  color: "black",
+  color: 'black',
   margin: 0,
   border: true,
   is_white: false,
@@ -44,7 +44,8 @@ const BlueButton = styled.button`
   box-sizing: border-box;
   text-align: center;
   border: none;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
+  cursor: pointer;
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')}
 `;
 
 const WhiteButton = styled.button`
@@ -55,7 +56,7 @@ const WhiteButton = styled.button`
   box-sizing: border-box;
   text-align: center;
   border: 2px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
   border: solid red 1px;
 `;
 

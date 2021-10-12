@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Grid, Label, Input, Textarea, Upload } from '../elements/index';
+import {
+  Grid,
+  Label,
+  Input,
+  Textarea,
+  Upload,
+  Button,
+  Image,
+} from '../elements/index';
 
 const Modal = (props) => {
+  const [modal, setModal] = useState(true);
+  const modaloff = () => {
+    props._setModal(false);
+  };
+
   return (
     <>
       <ModalParent>
-        <Grid
-          width='30vw'
-          height='60vh'
-          margin='20vh auto'
-          padding='40px 50px'
-          bg='#f1f3f5'
-        >
+        <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
           글을 써주세요!
           <Grid margin='20px 0 0 0'>
-            <Input type='file' placeholder='업로드' />
+            <Image src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif' />
           </Grid>
           <Grid margin='20px 0 0 0'>
             <Label margin=''>제목</Label>
@@ -25,9 +32,14 @@ const Modal = (props) => {
             <Label margin=''>게시글</Label>
             <Textarea placeholder='게시글을 작성해주세요!' />
           </Grid>
-          <Grid margin='20px 0 0 0'>
-            <button>글올리기</button>
-            <button>취소</button>
+          <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
+            <Upload />
+          </Grid>
+          <Grid>
+            <Button margin='10px 0 0 0'>글올리기</Button>
+            <Button margin='10px 0 0 0' _onClick={modaloff}>
+              취소
+            </Button>
           </Grid>
         </Grid>
       </ModalParent>
@@ -42,6 +54,9 @@ const ModalParent = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 999;
 `;
 

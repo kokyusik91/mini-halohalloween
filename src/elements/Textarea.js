@@ -12,7 +12,7 @@ const Textarea = (props) => {
     <React.Fragment>
       <ElTextarea
         placeholder={placeholder}
-        row={10}
+        row={20}
         onChange={_onChange}
         {...styles}
       />
@@ -33,6 +33,7 @@ const ElTextarea = styled.textarea`
   border: none;
   border: 1px solid #243443;
   box-sizing: border-box;
+  resize: none;
 `;
 
 export default Textarea;
