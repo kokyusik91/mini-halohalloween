@@ -4,19 +4,22 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = (props) => {
-  const { placeholder, type, _onChange, width, margin } = props;
+  console.log(props);
+  const { placeholder, type, _onChange, width, margin, display, flex } = props;
 
   const styles = {
+    display: display,
     width: width,
     margin: margin,
+    flex: flex,
   };
 
   return (
     <React.Fragment>
       <InputForm
-        type={props.type}
-        placeholder={props.placeholder}
-        onChange={props._onChange}
+        type={type}
+        placeholder={placeholder}
+        onChange={_onChange}
         {...styles}
       />
     </React.Fragment>
