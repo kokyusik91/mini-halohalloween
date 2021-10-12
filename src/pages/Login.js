@@ -11,6 +11,7 @@ const Login = (props) => {
   const [state, setState] = React.useState({ userEmail: "", userPassword: "" });
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
+    console.log("state = ", state);
   };
   const onClick = () => {
     dispatch(userActions.loginFB(state));
@@ -31,7 +32,7 @@ const Login = (props) => {
           <Input
             name="userEmail"
             value={state.userEmail}
-            onChange={onChange}
+            _onChange={onChange}
             placeholder="이메일 주소를 입력해주세요."
           />
         </Grid>
@@ -40,7 +41,7 @@ const Login = (props) => {
           <Input
             name="userPassword"
             value={state.userPassword}
-            onChange={onChange}
+            _onChange={onChange}
             type="password"
             placeholder="비밀번호를 입력해주세요."
           />

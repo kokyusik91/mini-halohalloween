@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Container, CardGrid } from "../elements";
+import { Grid, Container } from "../elements";
 
 const Main = (props) => {
   return (
@@ -18,10 +18,10 @@ const Main = (props) => {
           <h1>포스팅 키워드</h1>
         </Grid>
         <Grid is_flex justify="space-between">
-          <CardGrid>1123</CardGrid>
-          <CardGrid>2123</CardGrid>
-          <CardGrid>3</CardGrid>
-          <CardGrid>4</CardGrid>
+          <Grid type="card">1</Grid>
+          <Grid type="card">2</Grid>
+          <Grid type="card">3</Grid>
+          <Grid type="card">4</Grid>
         </Grid>
       </Container>
     </>

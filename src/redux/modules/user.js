@@ -26,9 +26,13 @@ const initialState = {
 export const signupFB = (user) => {
   return async (dispatch, getState, { history }) => {
     try {
+      dispatch(isloading(true));
       const res = await apis.create("/user/register", user);
       console.log("회원가입 서버연동 성공 === ", res.data.Message);
+      alert(res.data.Message);
+      dispatch(isloading(false));
     } catch (e) {
+      dispatch(isloading(false));
       console.log("error :::::: ", e);
     }
   };
@@ -42,9 +46,13 @@ export const loginFB = (user) => {
       if (res.data.token) {
         window.sessionStorage.setItem("token", `${res.data.token}`);
       }
-      history.push(`/`);
+      history.push("/");
       dispatch(isloading(false));
-    } catch (e) {}
+    } catch (e) {
+      dispatch(isloading(false));
+      alert(e);
+      console.log("error === ", e);
+    }
   };
 };
 
@@ -65,6 +73,7 @@ export default handleActions(
 const actionCreators = {
   logIn,
   loginFB,
+  signupFB,
   getUser,
   logOut,
 };
