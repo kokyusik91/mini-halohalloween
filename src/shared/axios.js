@@ -5,10 +5,12 @@ const instance = axios.create({
   baseURL: "http://3.36.130.184/",
   headers: {
     "content-type": "application/json;charset=UTF-8",
+    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
     accept: "application/json",
   },
 });
 
+// headers : {'Authorization': `Bearer ${sessionStorage.getItem('token')}`}
 export const apis = {
   // baseURL을 미리 지정해줬기 때문에 함수의 첫 번째 인자에 들어가는 url은
   // http://localhost:4000/ + 내가 작성한 url 즉 예시로

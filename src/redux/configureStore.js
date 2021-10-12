@@ -6,7 +6,7 @@ import { connectRouter } from "connected-react-router";
 import User from "./modules/user";
 
 // 이제 history 리덕스에서 사용가능
-export const history = createBrowserHistory();
+export const history = createBrowserHistory({ forceRefresh: true });
 
 const rootReducer = combineReducers({
   user: User,

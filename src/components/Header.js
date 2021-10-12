@@ -1,18 +1,11 @@
 import React from "react";
 import { history } from "../redux/configureStore";
-import { Route, Link } from "react-router-dom";
-import Login from "../pages/Login";
 import { Grid, Container, Button } from "../elements";
 
 const Hedaer = (props) => {
-  const pathname = history.location.pathname;
-  if (pathname === "/login" || pathname === "/signup") {
-    return;
-  }
-  console.log("header = history ", history);
-  const onLogin = () => {
-    console.log("click");
-    history.push("/login");
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    alert("로그아웃 되었습니다.");
   };
   return (
     <Grid width="100%" padding="25px 0" bg="hsl(346deg 33% 33%)">
@@ -27,11 +20,15 @@ const Hedaer = (props) => {
             <Button padding="0px 20px">Contact us</Button>
           </Grid>
           <Grid>
-            <Button padding="0px 20px" _onClick={onLogin}>
+            <Button padding="0px 20px" _onClick={() => history.push("/login")}>
               로그인
             </Button>
-            <Button padding="0px 20px">회원가입</Button>
-            <Button padding="0 0 0 20px">로그아웃</Button>
+            <Button padding="0px 20px" _onClick={() => history.push("/signup")}>
+              회원가입
+            </Button>
+            <Button padding="0 0 0 20px" _onClick={logout}>
+              로그아웃
+            </Button>
           </Grid>
         </Grid>
       </Container>

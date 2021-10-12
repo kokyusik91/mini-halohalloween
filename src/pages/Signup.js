@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Label, Input, Button } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { emailCheck, passwordCheck } from "../shared/regExp";
 import Spinner from "../shared/Spinner";
 
 const Signup = (props) => {
@@ -18,13 +19,36 @@ const Signup = (props) => {
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
-
   const onClick = () => {
+    if (
+      state.userEmail === "" ||
+      state.userNickname === "" ||
+      state.userPassword === "" ||
+      state.passwordCheck === ""
+    ) {
+      alert("내용을 모두 입력해주세요");
+      return;
+    }
+    if (!emailCheck(state.userEmail)) {
+      alert("이메일 형식이 아닙니다. 다시 확인해주세요");
+      return;
+    }
+    if (!passwordCheck(state.userPassword)) {
+      alert("비밀번호는 영문 숫자 조합 6자리 이상으로 입력해주세요");
+      return;
+    }
     if (state.userPassword !== state.passwordCheck) {
       alert("비밀번호가 다릅니다. 다시 확인해주세요");
-      return null;
+      return;
     }
-    dispatch(userActions.signupFB(state));
+    if (
+      state.userEmail !== "" &&
+      state.userNickname !== "" &&
+      state.userPassword !== "" &&
+      state.passwordCheck !== ""
+    ) {
+      dispatch(userActions.signupFB(state));
+    }
   };
 
   return (
@@ -84,7 +108,7 @@ const Signup = (props) => {
           </Button>
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button>메인으로가기</Button>
+          <Button type="white">메인으로가기</Button>
         </Grid>
       </Grid>
     </>

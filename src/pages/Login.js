@@ -1,8 +1,9 @@
 import React from "react";
-import styled from "styled-components";
-import { Grid, Label, Input } from "../elements";
+import { Grid, Label, Input, Button } from "../elements";
+import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+// import { emailCheck, passwordCheck } from "../shared/regExp";
 import Spinner from "../shared/Spinner";
 
 const Login = (props) => {
@@ -15,7 +16,22 @@ const Login = (props) => {
   };
 
   const onClick = () => {
-    dispatch(userActions.loginFB(state));
+    if (state.userEmail === "" || state.userPassword === "") {
+      alert("내용을 모두 입력해주세요");
+      return;
+    }
+    // #### 이메일 비밀번호 정규표현식. 추후 배포할때 주석 해제 예정입니다!
+    // if (!emailCheck(state.userEmail)) {
+    //   alert("이메일 형식이 아닙니다. 다시 확인해주세요");
+    //   return;
+    // }
+    // if (!passwordCheck(state.userPassword)) {
+    //   alert("비밀번호는 영문 숫자 조합 6자리 이상입니다.");
+    //   return;
+    // }
+    if (state.userEmail !== "" && state.userPassword !== "") {
+      dispatch(userActions.loginFB(state));
+    }
   };
 
   return (
@@ -49,12 +65,12 @@ const Login = (props) => {
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button onClick={onClick}>로그인</Button>
+          <Button type="blue" _onClick={onClick}>
+            로그인
+          </Button>
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button
-            style={{ backgroundColor: "#fff", color: "hsl(209deg 30% 20%)" }}
-          >
+          <Button type="white" _onClick={() => history.push("/signup")}>
             회원가입
           </Button>
         </Grid>
@@ -62,13 +78,5 @@ const Login = (props) => {
     </>
   );
 };
-
-const Button = styled.button`
-  width: 100%;
-  padding: 13px 0;
-  color: #fff;
-  background-color: hsl(209deg 30% 20%);
-  border: 1px solid hsl(209deg 30% 20%);
-`;
 
 export default Login;
