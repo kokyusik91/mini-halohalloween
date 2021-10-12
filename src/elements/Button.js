@@ -43,7 +43,7 @@ const BlueButton = styled.button`
   padding: 12px 0px;
   box-sizing: border-box;
   text-align: center;
-  border: none;
+  border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
 `;
 
@@ -54,7 +54,7 @@ const WhiteButton = styled.button`
   padding: 12px 0px;
   box-sizing: border-box;
   text-align: center;
-  border: 2px solid #243443;
+  border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
 `;
 
