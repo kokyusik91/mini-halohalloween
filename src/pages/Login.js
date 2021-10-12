@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import { Grid, Label, Input } from '../elements';
+=======
+import React from "react";
+import styled from "styled-components";
+import { Grid, Label } from "../elements";
+
+>>>>>>> 10f5c273372e86cfdc73596eac470ffb2789aedf
 const Login = (props) => {
   return (
     <Grid
