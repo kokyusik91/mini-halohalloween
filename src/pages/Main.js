@@ -4,7 +4,6 @@ import Spinner from "../shared/Spinner";
 import { apis } from "../shared/axios";
 
 const Main = (props) => {
-
   React.useEffect(() => {
     const load = async () => {
       try {
@@ -19,7 +18,6 @@ const Main = (props) => {
 
   return (
     <>
-      <Button is_white>회원가입</Button>
       {/* <Spinner /> */}
       <Grid height="450px" bg="#000">
         <Container>
