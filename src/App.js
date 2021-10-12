@@ -3,7 +3,7 @@ import { history } from "./redux/configureStore";
 import { Route } from "react-router-dom";
 import Hedaer from "./components/Header";
 import Footer from "./components/Footer";
-import Comment from "./components/Comment";
+import CommentList from "./pages/CommentList";
 import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
@@ -23,7 +23,7 @@ function App() {
           <Hedaer />
           <Route path="/" exact component={Main} />
           <Route path="/postlist" exact component={Postlist} />
-          <Route path="/comment" component={Comment} />
+          <Route path="/commentlist" component={CommentList} />
           <Footer />
         </>
       )}
