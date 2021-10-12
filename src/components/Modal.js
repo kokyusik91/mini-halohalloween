@@ -15,6 +15,22 @@ const Modal = (props) => {
   const modaloff = () => {
     props._setModal(false);
   };
+  // 인풋창 2개 한번에 관리
+  const [inputs, setInputs] = useState({
+    title: '',
+    content: '',
+  });
+
+  // 비구조화 할당으로 값 추출
+  const { title, content } = inputs;
+
+  const onChange = (e) => {
+    const { value, name } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
 
   return (
     <>
@@ -22,15 +38,29 @@ const Modal = (props) => {
         <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
           글을 써주세요!
           <Grid margin='20px 0 0 0'>
-            <Image src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif' />
+            <Image
+              width='50%'
+              src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
+            />
           </Grid>
           <Grid margin='20px 0 0 0'>
             <Label margin=''>제목</Label>
-            <Input type='text' placeholder='제목을 입력해주세요!' />
+            <Input
+              name='title'
+              type='text'
+              placeholder='제목을 입력해주세요!'
+              _onChange={onChange}
+              value={title}
+            />
           </Grid>
           <Grid margin='20px 0 0 0'>
             <Label margin=''>게시글</Label>
-            <Textarea placeholder='게시글을 작성해주세요!' />
+            <Textarea
+              name='content'
+              placeholder='게시글을 작성해주세요!'
+              _onChange={onChange}
+              value={content}
+            />
           </Grid>
           <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
             <Upload />
