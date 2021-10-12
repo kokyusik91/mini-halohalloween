@@ -1,15 +1,12 @@
 import React from "react";
 import { Grid, Container, Button } from "../elements";
 import Spinner from "../shared/Spinner";
-import Comment from "../components/Comment";
-import CommentList from "../pages/CommentList";
 import { apis } from "../shared/axios";
 
 const Main = (props) => {
   return (
     <>
       {/* <Spinner /> */}
-      <CommentList />
       <Grid height="450px" bg="#000">
         <Container>
           <p
