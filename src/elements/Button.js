@@ -70,6 +70,9 @@ const WhiteButton = styled.button`
   text-align: center;
   border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const BlueButton = styled.button`
@@ -81,7 +84,10 @@ const BlueButton = styled.button`
   text-align: center;
   cursor: pointer;
   border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const DefaultButton = styled.button`
@@ -94,6 +100,9 @@ const DefaultButton = styled.button`
   ${(props) => props.textAlign && `text-align: ${props.textAlign}`};
   ${(props) => props.border && `border: ${props.border}`};
   ${(props) => props.bg && `background-color: ${props.bg}`};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Button;
