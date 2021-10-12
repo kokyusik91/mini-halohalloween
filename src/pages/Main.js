@@ -9,8 +9,6 @@ const Main = (props) => {
   }, []);
   return (
     <>
-      {/* <Spinner /> */}
-      {/* <CommentList /> */}
       <Grid height="450px" bg="#000">
         <Container>
           <p
