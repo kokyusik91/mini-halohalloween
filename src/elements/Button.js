@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { _onClick, children, margin, width, border, is_white } = props;
+  const { text, _onClick, children, margin, width, border, is_white } = props;
 
   if (is_white) {
     const styles = {
@@ -13,7 +13,7 @@ const Button = (props) => {
 
     return (
       <WhiteButton {...styles} onClick={_onClick}>
-        {children}
+        {text ? text : children}
       </WhiteButton>
     );
   } else {
@@ -25,7 +25,7 @@ const Button = (props) => {
 
     return (
       <BlueButton {...styles} onClick={_onClick}>
-        {children}
+        {text ? text : children}
       </BlueButton>
     );
   }
