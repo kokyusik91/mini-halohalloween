@@ -1,13 +1,15 @@
 import React from "react";
-import { Grid, Input, Button } from "../elements";
+import CommentWrite from "../components/CommentWrite";
+import CommentCard from "../components/CommentCard";
+import comment from "../redux/modules/comment";
 
 const Comment = () => {
   return (
     <React.Fragment>
-      <Grid>
-        <Input width="100%" ></Input>
-        <Button>등록</Button>
-      </Grid>
+      <CommentWrite />
+      {comment.map((c, i) => {
+        return <CommentCard key={c.id} />;
+      })}
     </React.Fragment>
   );
 };

@@ -1,7 +1,12 @@
 import React from "react";
 import { Grid, Container } from "../elements";
-
+import { useSelector } from "react-redux";
 const Main = (props) => {
+  const is_login = useSelector((state) => state.user.user);
+  console.log("main is_login === ", is_login);
+  React.useEffect(() => {
+    console.log("useEffect main ::::::::::::: ");
+  }, []);
   return (
     <>
       <Grid height="450px" bg="#000">

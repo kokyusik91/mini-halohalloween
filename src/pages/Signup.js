@@ -1,21 +1,24 @@
 import React from "react";
-import styled from "styled-components";
-import { Grid, Label, Input } from "../elements";
+import { Grid, Label, Input, Button } from "../elements";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import Spinner from "../shared/Spinner";
+
 const Signup = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
+
   const [state, setState] = React.useState({
     userEmail: "",
     userNickname: "",
     userPassword: "",
     passwordCheck: "",
   });
+
   const onChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
+
   const onClick = () => {
     if (state.userPassword !== state.passwordCheck) {
       alert("비밀번호가 다릅니다. 다시 확인해주세요");
@@ -76,33 +79,16 @@ const Signup = (props) => {
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button onClick={onClick}>회원가입</Button>
+          <Button type="blue" _onClick={onClick}>
+            회원가입
+          </Button>
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button
-            style={{ backgroundColor: "#fff", color: "hsl(209deg 30% 20%)" }}
-          >
-            메인으로가기
-          </Button>
+          <Button>메인으로가기</Button>
         </Grid>
       </Grid>
     </>
   );
 };
-
-// const Input = styled.input`
-//   display: block;
-//   width: 100%;
-//   margin-top: 3px;
-//   padding: 8px;
-// `;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 13px 0;
-  color: #fff;
-  background-color: hsl(209deg 30% 20%);
-  border: 1px solid hsl(209deg 30% 20%);
-`;
 
 export default Signup;

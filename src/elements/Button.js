@@ -1,52 +1,65 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+
+//기본: 남색버튼, is_white: 하얀색버튼
 
 const Button = (props) => {
-  const { text, _onClick, children, margin, width, border, is_white } = props;
+  const {
+    type,
+    width,
+    margin,
+    padding,
+    fontSize,
+    border,
+    bg,
+    textAlign,
+    _onClick,
+    children,
+  } = props;
   const styles = {
+    type: type,
     width: width,
-    border: border,
     margin: margin,
+    padding: padding,
+    fontSize: fontSize,
+    textAlign: textAlign,
+    bg: bg,
+    border: border,
   };
 
-  if (is_white) {
+  if (type === "white") {
     return (
       <WhiteButton {...styles} onClick={_onClick}>
         {children}
       </WhiteButton>
     );
-  } else {
+  }
+  if (type === "blue") {
     return (
       <BlueButton {...styles} onClick={_onClick}>
         {children}
       </BlueButton>
     );
   }
+  return (
+    <DefaultButton {...styles} onClick={_onClick}>
+      {children}
+    </DefaultButton>
+  );
 };
 
 Button.defaultProps = {
   children: null,
   _onClick: () => {},
-  width: '100%',
-  bg: true,
-  color: 'black',
+  width: "100%",
+  bg: "transparent",
+  color: "black",
   margin: 0,
-  border: true,
+  padding: 0,
+  border: "none",
+  textAlign: "left",
   is_white: false,
 };
-
-//border 색
-const BlueButton = styled.button`
-  width: ${(props) => props.width};
-  background-color: #243443;
-  color: #fff;
-  padding: 12px 0px;
-  box-sizing: border-box;
-  text-align: center;
-  cursor: pointer;
-  border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : '')}
-`;
 
 const WhiteButton = styled.button`
   width: ${(props) => props.width};
@@ -56,7 +69,31 @@ const WhiteButton = styled.button`
   box-sizing: border-box;
   text-align: center;
   border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
+  ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+`;
+
+const BlueButton = styled.button`
+  width: ${(props) => props.width};
+  background-color: #243443;
+  color: #fff;
+  padding: 12px 0px;
+  box-sizing: border-box;
+  text-align: center;
+  cursor: pointer;
+  border: 1px solid #243443;
+  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
+`;
+
+const DefaultButton = styled.button`
+  width: auto;
+  text-align: left;
+  ${(props) => props.margin && `margin: ${props.margin}`};
+  ${(props) => props.padding && `padding: ${props.padding}`};
+  ${(props) => props.color && `color: ${props.color}`};
+  ${(props) => props.fontSize && `font-size: ${props.fontSize}`};
+  ${(props) => props.textAlign && `text-align: ${props.textAlign}`};
+  ${(props) => props.border && `border: ${props.border}`};
+  ${(props) => props.bg && `background-color: ${props.bg}`};
 `;
 
 export default Button;
