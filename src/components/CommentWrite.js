@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Input, Button, Container } from "../elements";
 
-const Comment = () => {
+const CommentWrite = () => {
   return (
     <Container padding="10px">
       <Grid is_flex flex>
@@ -12,4 +12,4 @@ const Comment = () => {
   );
 };
 
-export default Comment;
+export default CommentWrite;
