@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Grid, Container } from '../elements';
 import Modal from '../components/Modal';
 
-const Postlist = () => {
+const Postlist = (props) => {
   // 모달 State
   const [modal, setModal] = useState(false);
   // 모달on/off 함수
@@ -34,12 +34,39 @@ const Postlist = () => {
             4
           </Grid>
         </Grid>
+        <Grid is_flex justify='space-between' margin='20px 0 0 0'>
+          <Grid width='24%' height='250px' bg='#eee'>
+            1
+          </Grid>
+          <Grid width='24%' height='250px' bg='#eee'>
+            2
+          </Grid>
+          <Grid width='24%' height='250px' bg='#eee'>
+            3
+          </Grid>
+          <Grid width='24%' height='250px' bg='#eee'>
+            4
+          </Grid>
+        </Grid>
+        <Grid is_flex justify='space-between' margin='20px 0 0 0'>
+          <Grid width='24%' height='250px' bg='#eee'>
+            1
+          </Grid>
+          <Grid width='24%' height='250px' bg='#eee'>
+            2
+          </Grid>
+          <Grid width='24%' height='250px' bg='#eee'>
+            3
+          </Grid>
+          <Grid width='24%' height='250px' bg='#eee'>
+            4
+          </Grid>
+        </Grid>
       </Container>
 
       {/* modal on / off */}
       <button onClick={modalOnOff}>모달 띄우기</button>
-      {modal === true ? <Modal /> : ''}
-      
+      {modal === true ? <Modal _setModal={setModal} /> : ''}
     </>
   );
 };

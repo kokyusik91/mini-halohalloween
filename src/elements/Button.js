@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 //기본: 남색버튼, is_white: 하얀색버튼
 
@@ -29,9 +29,9 @@ const Button = (props) => {
 Button.defaultProps = {
   children: null,
   _onClick: () => {},
-  width: "100%",
+  width: '100%',
   bg: true,
-  color: "black",
+  color: 'black',
   margin: 0,
   border: true,
   is_white: false,
@@ -45,8 +45,9 @@ const BlueButton = styled.button`
   padding: 12px 0px;
   box-sizing: border-box;
   text-align: center;
+  cursor: pointer;
   border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')}
 `;
 
 const WhiteButton = styled.button`
@@ -57,7 +58,7 @@ const WhiteButton = styled.button`
   box-sizing: border-box;
   text-align: center;
   border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
 `;
 
 export default Button;

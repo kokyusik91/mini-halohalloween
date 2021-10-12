@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Grid = (props) => {
   const {
     is_flex,
+    type,
     flex,
     justify,
     width,
@@ -26,6 +27,10 @@ const Grid = (props) => {
     bg: bg,
     border: border,
   };
+
+  if (type === "card") {
+    return <CardGrid>{children}</CardGrid>;
+  }
   return <DefaultGrid {...styles}>{children}</DefaultGrid>;
 };
 
@@ -40,6 +45,12 @@ Grid.defaultProps = {
   bg: "transparent",
   border: "none",
 };
+
+const CardGrid = styled.div`
+  width: 24%;
+  height: 250px;
+  background-color: #f1f3f5;
+`;
 
 const DefaultGrid = styled.div`
   ${(props) => (props.is_flex ? `display:flex` : "")};

@@ -4,11 +4,10 @@ import React from "react";
 import styled from "styled-components";
 
 const Input = (props) => {
-  console.log(props);
-  const { placeholder, type, _onChange, width, margin, display, flex } = props;
+  const { placeholder, type, _onChange, width, margin, flex, value, name } =
+    props;
 
   const styles = {
-    display: display,
     width: width,
     margin: margin,
     flex: flex,
@@ -18,6 +17,8 @@ const Input = (props) => {
     <React.Fragment>
       <InputForm
         type={type}
+        name={name}
+        value={value}
         placeholder={placeholder}
         onChange={_onChange}
         {...styles}
@@ -32,12 +33,16 @@ Input.defaultProps = {
   _onChange: () => {},
   margin: false,
   width: "100%",
+  flex: false,
 };
 
 const InputForm = styled.input`
   width: ${(props) => props.width};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
-  padding: 12px 4px;
+  ${(props) => (props.display ? `display: ${props.display};` : "")};
+  ${(props) => (props.flex ? `flex: 1 ;` : "")};
+  padding: 8px;
+  /* padding: 12px 4px; */
   border: none;
   border: 1px solid #243443;
   box-sizing: border-box;
