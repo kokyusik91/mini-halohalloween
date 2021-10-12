@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "../elements/Button";
+import Text from "../elements/Text";
 
 const Main = (props) => {
   return (
