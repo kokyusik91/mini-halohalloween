@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Container } from "../elements";
+import { Grid, Container, CardGrid } from "../elements";
 import Spinner from "../shared/Spinner";
 import { apis } from "../shared/axios";
 
@@ -14,6 +14,7 @@ const Main = (props) => {
       }
     };
     load();
+    console.log(window.sessionStorage.getItem("token"));
   }, []);
   return (
     <>
@@ -32,18 +33,10 @@ const Main = (props) => {
           <h1>포스팅 키워드</h1>
         </Grid>
         <Grid is_flex justify="space-between">
-          <Grid width="24%" height="250px" bg="#eee">
-            1
-          </Grid>
-          <Grid width="24%" height="250px" bg="#eee">
-            2
-          </Grid>
-          <Grid width="24%" height="250px" bg="#eee">
-            3
-          </Grid>
-          <Grid width="24%" height="250px" bg="#eee">
-            4
-          </Grid>
+          <CardGrid>1123</CardGrid>
+          <CardGrid>2123</CardGrid>
+          <CardGrid>3</CardGrid>
+          <CardGrid>4</CardGrid>
         </Grid>
       </Container>
     </>
