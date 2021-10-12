@@ -4,7 +4,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Upload = (props) => {
-  const { placeholder } = props;
+  const { placeholder, color } = props;
+  const styles = {
+    color: color,
+  };
+
   return (
     <React.Fragment>
       <UploadForm placeholder={placeholder} />
@@ -19,6 +23,7 @@ Upload.defaultProps = {
 
 const UploadForm = styled.input`
   width: 100%;
+  ${(props) => (props.color ? `margin:${props.color}` : '')};
 `;
 
 export default Upload;
