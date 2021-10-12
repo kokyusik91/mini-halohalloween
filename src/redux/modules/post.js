@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
-import { apis } from '../shared/axios';
+import { apis } from '../../shared/axios';
 
 //action type
 const SET_POST = 'SET_POST';
@@ -10,7 +10,7 @@ const DELETE_POST = 'DELETE_POST';
 
 // action creator
 const setPost = createAction(SET_POST, (post_list) => ({ post_list }));
-const addPost = createAction(ADD_POST, (post_list) => ({ post_list }));
+const addPost = createAction(ADD_POST, (post_data) => ({ post_data }));
 const updatePost = createAction(UPDATE_POST, (post_list) => ({ post_list }));
 const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
 
@@ -30,17 +30,17 @@ const initialState = {
 };
 
 //middleware
-const setPostFB = () => {
+const addPostFB = (post_data) => {
   return async function (dispatch, getState) {
-    // axios 부분
-    // apis
-    //   .getPost()
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    console.log(post_data);
+    try {
+      const res = await apis.create('/post/posting', post_data);
+      alert('포스팅에 성공하였습니다!');
+      console.log(res);
+    } catch (e) {
+      console.log('error :::::: ', e);
+    }
+    dispatch(addPost(post_data));
   };
 };
 
@@ -48,7 +48,10 @@ const setPostFB = () => {
 export default handleActions(
   {
     [SET_POST]: (state, action) => produce(state, (draft) => {}),
-    [ADD_POST]: (state, action) => produce(state, (draft) => {}),
+    [ADD_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.post_list.push(action.payload.post_data);
+      }),
     [UPDATE_POST]: (state, action) => produce(state, (draft) => {}),
     [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
   },
@@ -60,6 +63,7 @@ const actionCreators = {
   addPost,
   updatePost,
   deletePost,
+  addPostFB,
 };
 
 export { actionCreators };

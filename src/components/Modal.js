@@ -10,7 +10,8 @@ import {
   Image,
 } from '../elements/index';
 import moment from 'moment';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
@@ -18,6 +19,7 @@ const Modal = (props) => {
     props._setModal(false);
   };
 
+  const dispatch = useDispatch();
   // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
     title: '',
@@ -36,43 +38,18 @@ const Modal = (props) => {
       [name]: value,
     });
   };
-  // moment사용하여
+  // moment사용하여 포스팅한 날짜정보
   const postingDate = moment().format('YYYY-MM-DD');
-  // console.log(postingDate);
-  // 토큰 가져오기
-  // console.log(sessionStorage.getItem('token'));
 
-  // 클릭했을때 axios를 사용하여 posting data를 보낸다.
+  // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
-    // 서버로 보낼 posting 데이터
-    // if (inputs.title == '' || inputs.content == '') {
-    //   alert('빈칸을 입력해주세요!');
-    //   return;
-    // }
-    const post_info = {
+    const post_data = {
       postingTitle: inputs.title,
       postingComment: inputs.content,
       postingDate: postingDate,
+      postingDel: 1,
     };
-
-    // axios사용하여 POST요청
-    axios({
-      url: '/post/posting',
-      method: 'POST',
-      headers: { Authorization: `Bearer ${sessionStorage.getItem('token')}` },
-      data: {
-        postingTitle: post_info.postingTitle,
-        postingComment: post_info.postingComment,
-        postingDate: post_info.postingDate,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        alert('포스팅 성공!');
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    dispatch(postActions.addPostFB(post_data));
   };
 
   return (
@@ -81,10 +58,10 @@ const Modal = (props) => {
         <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
           글을 써주세요!
           <Grid margin='20px 0 0 0'>
-            <Image
+            {/* <Image
               width='50%'
               src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
-            />
+            /> */}
           </Grid>
           <Grid margin='20px 0 0 0'>
             <Label margin=''>제목</Label>
@@ -145,3 +122,38 @@ export default Modal;
 //       .catch((err) => {
 //         console.log(err);
 //       });
+
+// axios사용하여 POST요청
+// axios({
+//   url: '/post/posting',
+//   method: 'POST',
+//   headers: {
+//     'content-type': 'application/json;charset=UTF-8',
+//     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+//     accept: 'application/json',
+//   },
+//   data: {
+//     postingTitle: post_info.postingTitle,
+//     postingComment: post_info.postingComment,
+//     postingDate: post_info.postingDate,
+//   },
+// })
+//   .then((response) => {
+//     console.log(response);
+//     alert('포스팅 성공!');
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// try {
+//   let res = await apis.create('/post/posting', post_info, { headers: {
+//     'content-type': 'application/json;charset=UTF-8',
+//     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
+//     accept: 'application/json',
+//   }} );
+//   console.log('성공?', res);
+// } catch (e) {
+//   alert(e);
+//   console.log('error === ', e);
+// }
