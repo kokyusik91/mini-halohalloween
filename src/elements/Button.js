@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+//기본: 남색버튼, is_white: 하얀색버튼
+
 const Button = (props) => {
   const { text, _onClick, children, margin, width, border, is_white } = props;
   const styles = {

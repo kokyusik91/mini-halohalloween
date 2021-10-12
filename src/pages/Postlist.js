@@ -39,6 +39,7 @@ const Postlist = () => {
       {/* modal on / off */}
       <button onClick={modalOnOff}>모달 띄우기</button>
       {modal === true ? <Modal /> : ''}
+      
     </>
   );
 };
