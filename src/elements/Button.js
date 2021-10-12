@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Button = (props) => {
-  const { text, _onClick, children, margin, width, border, is_white } = props;
+  const { _onClick, children, margin, width, border, is_white } = props;
 
   if (is_white) {
     const styles = {
@@ -13,25 +13,25 @@ const Button = (props) => {
 
     return (
       <WhiteButton {...styles} onClick={_onClick}>
-        {text ? text : children}
+        {children}
       </WhiteButton>
     );
+  } else {
+    const styles = {
+      width: width,
+      border: border,
+      margin: margin,
+    };
+
+    return (
+      <BlueButton {...styles} onClick={_onClick}>
+        {children}
+      </BlueButton>
+    );
   }
-
-  const styles = {
-    margin: margin,
-    width: width,
-  };
-
-  return (
-    <BuleButton {...styles} onClick={_onClick}>
-      {text ? text : children}
-    </BuleButton>
-  );
 };
 
 Button.defaultProps = {
-  text: false,
   children: null,
   _onClick: () => {},
   width: "100%",
@@ -43,7 +43,7 @@ Button.defaultProps = {
 };
 
 //border 색
-const BuleButton = styled.button`
+const BlueButton = styled.button`
   width: ${(props) => props.width};
   background-color: ${(props) => (props.bg ? `#243443` : "#fff")};
   color: ${(props) => (props.color ? `#fff` : "#243443")};
