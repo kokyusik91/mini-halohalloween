@@ -15,6 +15,7 @@ const Grid = (props) => {
     border,
     children,
   } = props;
+  
   const styles = {
     is_flex: is_flex,
     flex: flex,
