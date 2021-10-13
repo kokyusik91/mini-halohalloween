@@ -13,9 +13,10 @@ const Grid = (props) => {
     padding,
     bg,
     border,
+    _onClick,
     children,
   } = props;
-  
+
   const styles = {
     is_flex: is_flex,
     flex: flex,
@@ -29,9 +30,13 @@ const Grid = (props) => {
   };
 
   if (type === "card") {
-    return <CardGrid>{children}</CardGrid>;
+    return <CardGrid onClick={_onClick}>{children}</CardGrid>;
   }
-  return <DefaultGrid {...styles}>{children}</DefaultGrid>;
+  return (
+    <DefaultGrid onClick={_onClick} {...styles}>
+      {children}
+    </DefaultGrid>
+  );
 };
 
 Grid.defaultProps = {
@@ -44,6 +49,7 @@ Grid.defaultProps = {
   padding: 0,
   bg: "transparent",
   border: "none",
+  _onClick: () => {},
 };
 
 const CardGrid = styled.div`

@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const Postlist = (props) => {
   const post_data = useSelector((state) => state.post.post_list);
-  console.log("useSelector", post_data);
+
   // 모달 State
   const [modal1, setModal1] = useState(false);
   // 모달on/off 함수
@@ -17,6 +17,7 @@ const Postlist = (props) => {
       setModal1(false);
     }
   };
+
   const data = [
     { id: 1, content: "내용1", title: "제목1" },
     { id: 2, content: "내용2", title: "제목2" },
@@ -25,9 +26,17 @@ const Postlist = (props) => {
   ];
   return (
     <>
+      {modal1 === true ? <Modal _setModal={setModal1} /> : ""}
       <Container margin="40px auto 0">
-        <Grid margin="0 0 40px 0">
+        <Grid>
           <h1>포스팅 키워드</h1>
+        </Grid>
+
+        {/* modal on / off */}
+        <Grid is_flex justify="end" margin="40px 0">
+          <Button type="blue" width="60px" _onClick={modalOnOff}>
+            글쓰기
+          </Button>
         </Grid>
         <Grid is_flex justify="space-between">
           {data.map((item) => {
@@ -38,23 +47,7 @@ const Postlist = (props) => {
             );
           })}
         </Grid>
-        {/* <Grid is_flex justify="space-between">
-          <Grid type="card">1</Grid>
-          <Grid type="card">2</Grid>
-          <Grid type="card">3</Grid>
-          <Grid type="card">4</Grid>
-        </Grid>
-        <Grid is_flex justify="space-between" margin="20px 0 0 0">
-          <Grid type="card">1</Grid>
-          <Grid type="card">2</Grid>
-          <Grid type="card">3</Grid>
-          <Grid type="card">4</Grid>
-        </Grid> */}
       </Container>
-
-      {/* modal on / off */}
-      <button onClick={modalOnOff}>글쓰기</button>
-      {modal1 === true ? <Modal _setModal={setModal1} /> : ""}
     </>
   );
 };
