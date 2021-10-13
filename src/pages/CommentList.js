@@ -8,10 +8,21 @@ import Comment from "../components/Comment";
 
 const CommentList = () => {
   //const [login, loginSet] = useState(true);
-  const [inputData, inputDataSet] = useState("");
+
+  const [inputData, inputDataSet] = useState([
+    {
+      id: 1,
+      title: "고규식",
+      comment: "잘한다",
+    },
+    {},
+    {},
+  ]);
+
   const onClick = () => {
     console.log(inputData);
   };
+
   return (
     <React.Fragment>
       {/* 댓글입력 영역-inputData */}
@@ -21,16 +32,20 @@ const CommentList = () => {
             inputDataSet(e.target.value);
           }}
         />
-        <Button width="20%" _onClick={onClick}>
+        <Button width="auto" _onClick={onClick}>
           등록
         </Button>
       </Grid>
 
       {/* 댓글 컨텐츠 보여주는 영역 */}
-      <Comment />
+      {inputData.map((el, i) => {
+        console.log(el, i);
+        return <Comment inputData={el} key={i} />;
+      })}
     </React.Fragment>
   );
 };
+
 // console.log(props._onChange);
 
 export default CommentList;

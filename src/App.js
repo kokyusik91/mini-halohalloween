@@ -7,6 +7,7 @@ import Main from "./pages/Main";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Postlist from "./pages/Postlist";
+import Commentlist from "./pages/CommentList";
 
 function App() {
   const pathname = history.location.pathname;
@@ -23,6 +24,7 @@ function App() {
             <Hedaer />
             <Route path="/" exact component={Main} />
             <Route path="/postlist" exact component={Postlist} />
+            <Route path="/commentlist" component={Commentlist} />
             <Footer />
           </>
         )}
