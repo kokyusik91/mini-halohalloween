@@ -25,7 +25,6 @@ const Postlist = (props) => {
 
   useEffect(() => {
     if (post_list.length === 0) {
-      console.log("리렌더링");
       dispatch(postActions.setPostFB());
     }
   }, [post_list]);
@@ -39,7 +38,7 @@ const Postlist = (props) => {
             글쓰기
           </Button>
         </Grid>
-        <Grid is_flex justify="start">
+        <Grid is_flex justify="flex-start">
           {post_list.map((el) => {
             return <Post key={el.id} el={el} />;
           })}
