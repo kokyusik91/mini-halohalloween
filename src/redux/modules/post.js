@@ -30,6 +30,19 @@ const initialState = {
 };
 
 //middleware
+
+const setPostFB = () => {
+  return async function (dispatch, getState) {
+    try {
+      const res = await apis.get('post/postlist');
+      const post_list = res.data.postList;
+      dispatch(setPost(post_list));
+    } catch (e) {
+      console.log('error :::::: ', e);
+    }
+  };
+};
+
 const addPostFB = (post_data) => {
   return async function (dispatch, getState) {
     console.log(post_data);
@@ -47,7 +60,10 @@ const addPostFB = (post_data) => {
 // reducer
 export default handleActions(
   {
-    [SET_POST]: (state, action) => produce(state, (draft) => {}),
+    [SET_POST]: (state, action) =>
+      produce(state, (draft) => {
+        draft.post_list = action.payload.post_list;
+      }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.post_list.push(action.payload.post_data);
@@ -64,6 +80,7 @@ const actionCreators = {
   updatePost,
   deletePost,
   addPostFB,
+  setPostFB,
 };
 
 export { actionCreators };
