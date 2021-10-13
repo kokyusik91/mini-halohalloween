@@ -40,12 +40,16 @@ const Post = (props) => {
 const PostCard = styled.div`
   width: 24%;
   min-height: 300px;
+  margin-right: 1%;
   margin-bottom: 10px;
   background-color: #f1f3f5;
   transition: all ease 1s;
   cursor: pointer;
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+  }
+  &:last-child {
+    margin: 0;
   }
   border: 0.3px solid #243443;
 `;
