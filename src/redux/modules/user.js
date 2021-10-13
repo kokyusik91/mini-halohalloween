@@ -14,6 +14,7 @@ const setUser = createAction(SET_USER, (user) => ({ user }));
 const initialState = {
   user: null,
   is_token: null,
+  is_login: false,
   is_loading: false,
 };
 
@@ -21,7 +22,7 @@ export const signupFB = (user) => {
   return async (dispatch, getState, { history }) => {
     try {
       dispatch(isloading(true));
-      const res = await apis.create(`/user/register`, user);
+      const res = await apis.create(`user/register`, user);
       console.log("signup res === ", res);
       alert(res.data.Message);
       history.push("/login");
@@ -37,13 +38,15 @@ export const loginFB = (user) => {
   return async (dispatch, getState, { history }) => {
     try {
       dispatch(isloading(true));
-      const res = await apis.create(`/user/auth`, user);
+      const res = await apis.create(`user/auth`, user);
       console.log("login res = ", res);
       const token = res.data.token;
+      const infouser = { userNickname: res.data.userNickname };
       if (token) {
         sessionStorage.setItem("token", `${token}`);
         sessionStorage.setItem("userNickname", `${res.data.userNickname}`);
       }
+      dispatch(setUser(infouser));
       history.push("/");
       dispatch(isloading(false));
     } catch (e) {
@@ -54,6 +57,7 @@ export const loginFB = (user) => {
   };
 };
 
+// 이거를 추후 로그인 여부 체크하는 api로 변경할 예정입니다.
 export const setUserFB = () => {
   return (dispatch, getState, { history }) => {
     const is_user = sessionStorage.getItem("userNickname");
@@ -64,7 +68,7 @@ export const setUserFB = () => {
 export const logOutFB = () => {
   return (dispatch, getState, { history }) => {
     sessionStorage.removeItem("token");
-    sessionStorage.removeItem("userEmail");
+    sessionStorage.removeItem("userNickname");
     history.replace("/");
     alert("로그아웃 되었습니다.");
   };
@@ -78,7 +82,9 @@ export default handleActions(
       }),
     [SET_USER]: (state, action) =>
       produce(state, (draft) => {
+        console.log("action.payload = ", action.payload);
         draft.user = action.payload.user;
+        draft.is_login = action.payload.user !== null ? true : false;
       }),
   },
   initialState
