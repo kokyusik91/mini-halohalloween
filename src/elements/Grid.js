@@ -69,6 +69,7 @@ const DefaultGrid = styled.div`
   ${(props) => (props.padding ? `padding:${props.padding}` : "")};
   ${(props) => (props.bg ? `background-color:${props.bg}` : "")};
   ${(props) => props.border && `border:${props.border}`};
+  flex-wrap: wrap;
 `;
 
 export default Grid;

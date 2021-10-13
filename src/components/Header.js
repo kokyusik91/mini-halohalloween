@@ -18,21 +18,31 @@ const Hedaer = (props) => {
     <Grid width="100%" padding="25px 0" bg="hsl(346deg 33% 33%)">
       <Container>
         <Grid is_flex>
-          <Button fontSize="26px" _onClick={() => history.push("/")}>
+          <Button
+            fontSize="26px"
+            color="#fff"
+            _onClick={() => history.push("/")}
+          >
             halohalloween
           </Button>
           <Grid is_flex flex margin="0 0 0 20px">
-            <Button padding="0px 20px" _onClick={() => history.push("/about")}>
+            <Button
+              padding="0px 20px"
+              color="#f8f9fa"
+              _onClick={() => history.push("/about")}
+            >
               할로윈소개
             </Button>
             <Button
               padding="0px 20px"
+              color="#f8f9fa"
               _onClick={() => history.push("/postlist")}
             >
               포스팅
             </Button>
             <Button
               padding="0px 20px"
+              color="#f8f9fa"
               _onClick={() => history.push("/contactus")}
             >
               Contact us
@@ -43,19 +53,21 @@ const Hedaer = (props) => {
               <>
                 <Button
                   padding="0px 20px"
+                  color="#f8f9fa"
                   _onClick={() => history.push("/login")}
                 >
                   로그인
                 </Button>
                 <Button
                   padding="0px 20px"
+                  color="#f8f9fa"
                   _onClick={() => history.push("/signup")}
                 >
                   회원가입
                 </Button>
               </>
             ) : (
-              <Button padding="0 0 0 20px" _onClick={logout}>
+              <Button padding="0 0 0 20px" color="#f8f9fa" _onClick={logout}>
                 로그아웃
               </Button>
             )}
