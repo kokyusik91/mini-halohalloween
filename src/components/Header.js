@@ -1,8 +1,10 @@
 import React from "react";
 import { history } from "../redux/configureStore";
 import { Grid, Container, Button } from "../elements";
+import { useSelector } from "react-redux";
 
 const Hedaer = (props) => {
+  const is_login = useSelector((state) => state.user.is_login);
   const logout = () => {
     sessionStorage.removeItem("token");
     alert("로그아웃 되었습니다.");

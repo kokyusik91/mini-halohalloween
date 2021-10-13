@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 import {
   Grid,
   Label,
@@ -9,10 +9,10 @@ import {
   Button,
   Image,
   Text,
-} from '../elements/index';
-import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { actionCreators as postActions } from '../redux/modules/post';
+} from "../elements/index";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
@@ -23,8 +23,8 @@ const Modal = (props) => {
   const dispatch = useDispatch();
   // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
-    title: '',
-    content: '',
+    title: "",
+    content: "",
   });
 
   // 비구조화 할당으로 값 추출
@@ -40,7 +40,7 @@ const Modal = (props) => {
     });
   };
   // moment사용하여 포스팅한 날짜정보
-  const postingDate = moment().format('YYYY-MM-DD');
+  const postingDate = moment().format("YYYY-MM-DD");
 
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
@@ -53,30 +53,32 @@ const Modal = (props) => {
     dispatch(postActions.addPostFB(post_data));
   };
 
+  React.useEffect(() => {}, []);
+
   return (
     <>
       <ModalParent>
-        <Grid width='30vw' padding='10px 30px' bg='#f1f3f5'>
-          <Grid margin='10px 0 0 0' is_flex justify='flex-end'>
-            <Button margin='0 5px 0 0'>수정</Button>
+        <Grid width="30vw" padding="10px 30px" bg="#f1f3f5">
+          <Grid margin="10px 0 0 0" is_flex justify="flex-end">
+            <Button margin="0 5px 0 0">수정</Button>
             <Button>삭제</Button>
           </Grid>
-          <Grid is_flex justify='flex-end'>
-            <Image src='https://w.namu.la/s/45f0a9e507fc904b7accb3586ff709220b6242dfda220bd7ae85a39b57b22a760a4fa4cb0c2fbf16f37c9d229d0e93a1aac0d9c3dbd927c039698d9bdd9ab9a659f253ec19e2d0d33ddb115858b3222ea5a8a732082176563cc61e10ea9259b9' />
+          <Grid is_flex justify="flex-end">
+            <Image src="https://w.namu.la/s/45f0a9e507fc904b7accb3586ff709220b6242dfda220bd7ae85a39b57b22a760a4fa4cb0c2fbf16f37c9d229d0e93a1aac0d9c3dbd927c039698d9bdd9ab9a659f253ec19e2d0d33ddb115858b3222ea5a8a732082176563cc61e10ea9259b9" />
           </Grid>
-          <Grid margin='10px 0 0 0' is_flex justify='space-between'>
+          <Grid margin="10px 0 0 0" is_flex justify="space-between">
             <Text>잠실사는곡식</Text>
             <Text>{postingDate}</Text>
           </Grid>
-          <Grid margin='10px 0 0 0'>
-            <Input type='text' value='할로윈때는 뭐하지?' />
+          <Grid margin="10px 0 0 0">
+            <Input type="text" value="할로윈때는 뭐하지?" />
           </Grid>
-          <Grid margin='10px 0 0 0'>
-            <Textarea value='하지만 이번 할로윈때는 코로나시대 ㅜㅜ' />
+          <Grid margin="10px 0 0 0">
+            <Textarea value="하지만 이번 할로윈때는 코로나시대 ㅜㅜ" />
           </Grid>
-          <Grid margin='10px 0 0 0' is_flex>
-            <Input type='text' flex />
-            <Button margin='0 0 0 5px'>수정</Button>
+          <Grid margin="10px 0 0 0" is_flex>
+            <Input type="text" flex />
+            <Button margin="0 0 0 5px">수정</Button>
           </Grid>
         </Grid>
       </ModalParent>
