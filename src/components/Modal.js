@@ -8,7 +8,6 @@ import {
   Upload,
   Button,
   Image,
-  Text,
 } from "../elements/index";
 import moment from "moment";
 import { useDispatch } from "react-redux";
@@ -16,6 +15,7 @@ import { actionCreators as postActions } from "../redux/modules/post";
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
+
   const modaloff = () => {
     props._setModal(false);
   };
@@ -53,83 +53,52 @@ const Modal = (props) => {
     dispatch(postActions.addPostFB(post_data));
   };
 
-  React.useEffect(() => {}, []);
-
   return (
     <>
       <ModalParent>
-        <Grid width="30vw" padding="10px 30px" bg="#f1f3f5">
-          <Grid margin="10px 0 0 0" is_flex justify="flex-end">
-            <Button margin="0 5px 0 0">수정</Button>
-            <Button>삭제</Button>
+        <Grid width="30vw" padding="40px 50px" bg="#f1f3f5">
+          글을 써주세요!
+          <Grid margin="20px 0 0 0">
+            {/* <Image
+              width='50%'
+              src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
+            /> */}
           </Grid>
-          <Grid is_flex justify="flex-end">
-            <Image src="https://w.namu.la/s/45f0a9e507fc904b7accb3586ff709220b6242dfda220bd7ae85a39b57b22a760a4fa4cb0c2fbf16f37c9d229d0e93a1aac0d9c3dbd927c039698d9bdd9ab9a659f253ec19e2d0d33ddb115858b3222ea5a8a732082176563cc61e10ea9259b9" />
+          <Grid margin="20px 0 0 0">
+            <Label margin="">제목</Label>
+            <Input
+              name="title"
+              type="text"
+              placeholder="제목을 입력해주세요!"
+              _onChange={onChange}
+              value={title}
+            />
           </Grid>
-          <Grid margin="10px 0 0 0" is_flex justify="space-between">
-            <Text>잠실사는곡식</Text>
-            <Text>{postingDate}</Text>
+          <Grid margin="20px 0 0 0">
+            <Label margin="">게시글</Label>
+            <Textarea
+              name="content"
+              placeholder="게시글을 작성해주세요!"
+              _onChange={onChange}
+              value={content}
+            />
           </Grid>
-          <Grid margin="10px 0 0 0">
-            <Input type="text" value="할로윈때는 뭐하지?" />
+          <Grid margin="20px 0 0 0" is_flex justify="flex-end">
+            <Upload />
           </Grid>
-          <Grid margin="10px 0 0 0">
-            <Textarea value="하지만 이번 할로윈때는 코로나시대 ㅜㅜ" />
-          </Grid>
-          <Grid margin="10px 0 0 0" is_flex>
-            <Input type="text" flex />
-            <Button margin="0 0 0 5px">수정</Button>
+          <Grid>
+            <Button margin="10px 0 0 0" _onClick={submitPost}>
+              글올리기
+            </Button>
+            <Button margin="10px 0 0 0" _onClick={modaloff}>
+              취소
+            </Button>
           </Grid>
         </Grid>
       </ModalParent>
     </>
   );
 };
-
-//   return (
-//     <>
-//       <ModalParent>
-//         <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
-//           글을 써주세요!
-//           <Grid margin='20px 0 0 0'>
-//             {/* <Image
-//               width='50%'
-//               src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
-//             /> */}
-//           </Grid>
-//           <Grid margin='20px 0 0 0'>
-//             <Label margin=''>제목</Label>
-//             <Input
-//               name='title'
-//               type='text'
-//               placeholder='제목을 입력해주세요!'
-//               _onChange={onChange}
-//               value={title}
-//             />
-//           </Grid>
-//           <Grid margin='20px 0 0 0'>
-//             <Label margin=''>게시글</Label>
-//             <Textarea
-//               name='content'
-//               placeholder='게시글을 작성해주세요!'
-//               _onChange={onChange}
-//               value={content}
-//             />
-//           </Grid>
-//           <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
-//             <Upload />
-//           </Grid>
-//           <Grid>
-//             <Button margin='10px 0 0 0' type='blue' _onClick={submitPost}>
-//               글올리기
-//             </Button>
-//             <Button _onClick={modaloff}>X</Button>
-//           </Grid>
-//         </Grid>
-//       </ModalParent>
-//     </>
-//   );
-// };
 
 const ModalParent = styled.div`
   position: fixed;
