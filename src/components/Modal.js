@@ -16,6 +16,7 @@ import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
+
   const modaloff = () => {
     props._setModal(false);
   };

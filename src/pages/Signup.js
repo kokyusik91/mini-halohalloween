@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid, Label, Input, Button } from "../elements";
+import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck, passwordCheck } from "../shared/regExp";
+import { Grid, Label, Input, Button } from "../elements";
 import Spinner from "../shared/Spinner";
 
 const Signup = (props) => {
@@ -20,17 +21,20 @@ const Signup = (props) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const onClick = () => {
-    if (
-      state.userEmail === "" ||
-      state.userNickname === "" ||
-      state.userPassword === "" ||
-      state.passwordCheck === ""
-    ) {
-      alert("내용을 모두 입력해주세요");
+    if (state.userEmail === "") {
+      alert("이메일 주소를 입력해주세요");
       return;
     }
     if (!emailCheck(state.userEmail)) {
       alert("이메일 형식이 아닙니다. 다시 확인해주세요");
+      return;
+    }
+    if (state.userNickname === "") {
+      alert("닉네임을 입력해주세요");
+      return;
+    }
+    if (state.userPassword === "") {
+      alert("비밀번호를 입력해주세요");
       return;
     }
     if (!passwordCheck(state.userPassword)) {
@@ -108,7 +112,9 @@ const Signup = (props) => {
           </Button>
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button type="white">메인으로가기</Button>
+          <Button type="white" _onClick={() => history.push("/")}>
+            메인으로가기
+          </Button>
         </Grid>
       </Grid>
     </>
