@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 //기본: 남색버튼, is_white: 하얀색버튼
 
@@ -27,14 +27,14 @@ const Button = (props) => {
     border: border,
   };
 
-  if (type === "white") {
+  if (type === 'white') {
     return (
       <WhiteButton {...styles} onClick={_onClick}>
         {children}
       </WhiteButton>
     );
   }
-  if (type === "blue") {
+  if (type === 'blue') {
     return (
       <BlueButton {...styles} onClick={_onClick}>
         {children}
@@ -51,13 +51,13 @@ const Button = (props) => {
 Button.defaultProps = {
   children: null,
   _onClick: () => {},
-  width: "100%",
-  bg: "transparent",
-  color: "black",
+  width: '100%',
+  bg: 'transparent',
+  color: 'black',
   margin: 0,
   padding: 0,
-  border: "none",
-  textAlign: "left",
+  border: 'none',
+  textAlign: 'left',
   is_white: false,
 };
 
@@ -69,7 +69,10 @@ const WhiteButton = styled.button`
   box-sizing: border-box;
   text-align: center;
   border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const BlueButton = styled.button`
@@ -81,7 +84,10 @@ const BlueButton = styled.button`
   text-align: center;
   cursor: pointer;
   border: 1px solid #243443;
-  ${(props) => (props.margin ? `margin: ${props.margin}` : "")}
+  ${(props) => (props.margin ? `margin: ${props.margin}` : '')};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const DefaultButton = styled.button`
@@ -94,6 +100,9 @@ const DefaultButton = styled.button`
   ${(props) => props.textAlign && `text-align: ${props.textAlign}`};
   ${(props) => props.border && `border: ${props.border}`};
   ${(props) => props.bg && `background-color: ${props.bg}`};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export default Button;
