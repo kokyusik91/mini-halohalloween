@@ -3,8 +3,8 @@ import { produce } from "immer";
 import { apis } from "../../shared/axios";
 
 //action type
-const IS_LOADING = "IS_LOADING";
-const SET_USER = "SET_USER";
+const IS_LOADING = "user/IS_LOADING";
+const SET_USER = "user/SET_USER";
 
 //action creator
 const isloading = createAction(IS_LOADING, (value) => ({ value }));
@@ -42,9 +42,8 @@ export const loginFB = (user) => {
       const token = res.data.token;
       if (token) {
         sessionStorage.setItem("token", `${token}`);
-        sessionStorage.setItem("userEmail", `${user.userEmail}`);
+        sessionStorage.setItem("userNickname", `${res.data.userNickname}`);
       }
-
       history.push("/");
       dispatch(isloading(false));
     } catch (e) {
