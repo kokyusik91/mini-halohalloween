@@ -4,11 +4,11 @@ import { apis } from "../../shared/axios";
 
 //action type
 const IS_LOADING = "IS_LOADING";
-const IS_TOKEN = "IS_TOKEN";
+const SET_USER = "SET_USER";
 
 //action creator
 const isloading = createAction(IS_LOADING, (value) => ({ value }));
-const isToken = createAction(IS_TOKEN, (token) => ({ token }));
+const setUser = createAction(SET_USER, (user) => ({ user }));
 
 //initialState
 const initialState = {
@@ -42,12 +42,8 @@ export const loginFB = (user) => {
       const token = res.data.token;
       if (token) {
         sessionStorage.setItem("token", `${token}`);
-        // localStorage.setItem("token", `${res.data.token}`);
+        sessionStorage.setItem("userEmail", `${user.userEmail}`);
       }
-      // 일단 userEmail이 user 정보에 담기게 함.
-      // 실제로는 userNickname 이 리덕스의 정보에 담겨야 해서,
-      // 서버에서 유저 닉네임으로 받는걸로 나중에 변경할 예정입니다.
-      // dispatch(setUser({ userEmail: user.userEmail }));
 
       history.push("/");
       dispatch(isloading(false));
@@ -59,18 +55,19 @@ export const loginFB = (user) => {
   };
 };
 
-export const logOutFB = () => {
+export const setUserFB = () => {
   return (dispatch, getState, { history }) => {
-    sessionStorage.removeItem("token");
-    history.replace("/");
-    alert("로그아웃 되었습니다.");
+    const is_user = sessionStorage.getItem("userEmail");
+    dispatch(setUser(is_user));
   };
 };
 
-export const isTokenFB = () => {
+export const logOutFB = () => {
   return (dispatch, getState, { history }) => {
-    const is_token = sessionStorage.getItem("token");
-    dispatch(isToken(is_token));
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("userEmail");
+    history.replace("/");
+    alert("로그아웃 되었습니다.");
   };
 };
 
@@ -80,16 +77,16 @@ export default handleActions(
       produce(state, (draft) => {
         draft.is_loading = action.payload.value;
       }),
-    [IS_TOKEN]: (state, action) =>
+    [SET_USER]: (state, action) =>
       produce(state, (draft) => {
-        draft.is_token = action.payload.token;
+        draft.user = action.payload.user;
       }),
   },
   initialState
 );
 
 const actionCreators = {
-  isTokenFB,
+  setUserFB,
   loginFB,
   logOutFB,
   signupFB,

@@ -20,14 +20,14 @@ Text.defaultProps = {
   bold: false,
   color: "#222831",
   size: "14px",
-  margin: false,
+  margin: 0,
 };
 
 const P = styled.p`
   color: ${(props) => props.color};
   font-size: ${(props) => props.size};
   font-weight: ${(props) => (props.bold ? "800" : "600")};
-  line-height: 1.5;
+  line-height: 1.6;
   ${(props) => (props.margin ? `margin : ${props.margin}` : "")}
 `;
 
