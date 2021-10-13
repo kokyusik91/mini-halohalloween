@@ -27,7 +27,6 @@ const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
 //initialState
 const initialState = {
   post_list: [],
-  test: "1111",
 };
 
 //middleware
@@ -63,7 +62,6 @@ export default handleActions(
   {
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
-        console.log("리듀서", action.payload.post);
         draft.post_list = action.payload.post;
       }),
     [ADD_POST]: (state, action) =>

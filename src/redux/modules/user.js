@@ -56,7 +56,7 @@ export const loginFB = (user) => {
 
 export const setUserFB = () => {
   return (dispatch, getState, { history }) => {
-    const is_user = sessionStorage.getItem("userEmail");
+    const is_user = sessionStorage.getItem("userNickname");
     dispatch(setUser(is_user));
   };
 };

@@ -8,9 +8,9 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const Postlist = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.post_list);
-  const test = useSelector((state) => state.post.test);
+
   console.log("useSelector", post_list);
-  console.log("test == ", test);
+
   // 모달 on/off State
   const [modal1, setModal1] = useState(false);
 
