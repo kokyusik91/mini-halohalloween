@@ -13,7 +13,7 @@ const Textarea = (props) => {
       <ElTextarea
         name={name}
         placeholder={placeholder}
-        row={20}
+        rows={10}
         onChange={_onChange}
         value={value}
         {...styles}
@@ -31,11 +31,14 @@ Textarea.defaultProps = {
 const ElTextarea = styled.textarea`
   width: 100%;
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')};
-  padding: 12px 4px;
+  padding: 8px;
   border: none;
-  border: 1px solid #243443;
+  /* border: 1px solid #243443; */
   box-sizing: border-box;
   resize: none;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export default Textarea;

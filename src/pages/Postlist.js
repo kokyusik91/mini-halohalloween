@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 // import styled from 'styled-components';
-import { Grid, Container } from '../elements';
+import { Grid, Container, Button } from '../elements';
 import Modal from '../components/Modal';
 import { useSelector } from 'react-redux';
 
@@ -8,13 +8,13 @@ const Postlist = (props) => {
   const post_data = useSelector((state) => state.post.post_list);
   console.log('useSelector', post_data);
   // 모달 State
-  const [modal, setModal] = useState(false);
+  const [modal1, setModal1] = useState(false);
   // 모달on/off 함수
   const modalOnOff = () => {
-    if (!modal) {
-      setModal(true);
+    if (!modal1) {
+      setModal1(true);
     } else {
-      setModal(false);
+      setModal1(false);
     }
   };
   return (
@@ -32,23 +32,6 @@ const Postlist = (props) => {
           </Grid>
           <Grid width='24%' height='250px' bg='#eee'>
             3
-          </Grid>
-          <Grid width='24%' height='250px' bg='#eee'>
-            4
-          </Grid>
-        </Grid>
-        <Grid is_flex justify='space-between' margin='20px 0 0 0'>
-          <Grid width='24%' height='250px' bg='#eee'>
-            1
-          </Grid>
-          <Grid width='24%' height='250px' bg='#eee'>
-            2
-          </Grid>
-          <Grid width='24%' height='250px' bg='#eee'>
-            3
-          </Grid>
-          <Grid width='24%' height='250px' bg='#eee'>
-            4
           </Grid>
         </Grid>
         <Grid is_flex justify='space-between' margin='20px 0 0 0'>
@@ -68,8 +51,8 @@ const Postlist = (props) => {
       </Container>
 
       {/* modal on / off */}
-      <button onClick={modalOnOff}>모달 띄우기</button>
-      {modal === true ? <Modal _setModal={setModal} /> : ''}
+      <button onClick={modalOnOff}>글쓰기</button>
+      {modal1 === true ? <Modal _setModal={setModal1} /> : ''}
     </>
   );
 };

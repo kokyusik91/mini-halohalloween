@@ -1,9 +1,9 @@
 // Text.js
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const Text = (props) => {
-  const { bold, color, size, children, margin, display } = props;
+  const { bold, color, size, children, margin } = props;
 
   const styles = {
     bold: bold,
@@ -18,16 +18,16 @@ const Text = (props) => {
 Text.defaultProps = {
   children: null,
   bold: false,
-  color: "#222831",
-  size: "14px",
+  color: '#222831',
+  size: '14px',
   margin: false,
 };
 
 const P = styled.p`
   color: ${(props) => props.color};
   font-size: ${(props) => props.fontSize};
-  font-weight: ${(props) => (props.bold ? "600" : "800")};
-  ${(props) => (props.margin ? `margin : ${props.margin}` : "")}
+  font-weight: ${(props) => (props.bold ? '800' : '600')};
+  ${(props) => (props.margin ? `margin : ${props.margin}` : '')}
 `;
 
 export default Text;
