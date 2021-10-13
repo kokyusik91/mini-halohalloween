@@ -2,6 +2,12 @@ import React from "react";
 import { Grid, Container } from "../elements";
 
 const Main = (props) => {
+  const data = [
+    { id: 1, content: "1", title: "1" },
+    { id: 2, content: "2", title: "2" },
+    { id: 3, content: "3", title: "3" },
+    { id: 4, content: "4", title: "4" },
+  ];
   React.useEffect(() => {
     console.log("main");
   }, []);
@@ -21,10 +27,13 @@ const Main = (props) => {
           <h1>포스팅 키워드</h1>
         </Grid>
         <Grid is_flex justify="space-between">
-          <Grid type="card">1</Grid>
-          <Grid type="card">2</Grid>
-          <Grid type="card">3</Grid>
-          <Grid type="card">4</Grid>
+          {data.map((item) => {
+            return (
+              <Grid type="card" key={item.id}>
+                {item.content}
+              </Grid>
+            );
+          })}
         </Grid>
       </Container>
     </>

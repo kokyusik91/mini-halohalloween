@@ -4,18 +4,16 @@ import { apis } from "../../shared/axios";
 
 //action type
 const IS_LOADING = "IS_LOADING";
-const LOG_IN = "LOG_IN";
-const SET_USER = "SET_USER";
+const IS_TOKEN = "IS_TOKEN";
 
 //action creator
 const isloading = createAction(IS_LOADING, (value) => ({ value }));
-const logIn = createAction(LOG_IN, (user) => ({ user }));
-const setUser = createAction(SET_USER, (user) => ({ user }));
+const isToken = createAction(IS_TOKEN, (token) => ({ token }));
 
 //initialState
 const initialState = {
   user: null,
-  is_login: false,
+  is_token: null,
   is_loading: false,
 };
 
@@ -24,7 +22,7 @@ export const signupFB = (user) => {
     try {
       dispatch(isloading(true));
       const res = await apis.create(`/user/register`, user);
-      console.log("회원가입 서버연동 성공 === ", res.data.Message);
+      console.log("signup res === ", res);
       alert(res.data.Message);
       history.push("/login");
       dispatch(isloading(false));
@@ -40,16 +38,17 @@ export const loginFB = (user) => {
     try {
       dispatch(isloading(true));
       const res = await apis.create(`/user/auth`, user);
+      console.log("login res = ", res);
       const token = res.data.token;
       if (token) {
-        console.log("res.data.token === ", token);
         sessionStorage.setItem("token", `${token}`);
         // localStorage.setItem("token", `${res.data.token}`);
       }
       // 일단 userEmail이 user 정보에 담기게 함.
       // 실제로는 userNickname 이 리덕스의 정보에 담겨야 해서,
       // 서버에서 유저 닉네임으로 받는걸로 나중에 변경할 예정입니다.
-      dispatch(setUser({ userEmail: user.userEmail }));
+      // dispatch(setUser({ userEmail: user.userEmail }));
+
       history.push("/");
       dispatch(isloading(false));
     } catch (e) {
@@ -60,27 +59,40 @@ export const loginFB = (user) => {
   };
 };
 
+export const logOutFB = () => {
+  return (dispatch, getState, { history }) => {
+    sessionStorage.removeItem("token");
+    history.replace("/");
+    alert("로그아웃 되었습니다.");
+  };
+};
+
+export const isTokenFB = () => {
+  return (dispatch, getState, { history }) => {
+    const is_token = sessionStorage.getItem("token");
+    dispatch(isToken(is_token));
+  };
+};
+
 export default handleActions(
   {
     [IS_LOADING]: (state, action) =>
       produce(state, (draft) => {
         draft.is_loading = action.payload.value;
       }),
-    [LOG_IN]: (state, action) => produce(state, (draft) => {}),
-    [SET_USER]: (state, action) =>
+    [IS_TOKEN]: (state, action) =>
       produce(state, (draft) => {
-        draft.user = action.payload.user;
-        draft.is_login = action.payload.is_login;
+        draft.is_token = action.payload.token;
       }),
   },
   initialState
 );
 
 const actionCreators = {
-  logIn,
+  isTokenFB,
   loginFB,
+  logOutFB,
   signupFB,
-  setUser,
 };
 
 export { actionCreators };

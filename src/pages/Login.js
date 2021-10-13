@@ -1,9 +1,9 @@
 import React from "react";
-import { Grid, Label, Input, Button } from "../elements";
 import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 // import { emailCheck, passwordCheck } from "../shared/regExp";
+import { Grid, Label, Input, Button } from "../elements";
 import Spinner from "../shared/Spinner";
 
 const Login = (props) => {
@@ -16,8 +16,12 @@ const Login = (props) => {
   };
 
   const onClick = () => {
-    if (state.userEmail === "" || state.userPassword === "") {
-      alert("내용을 모두 입력해주세요");
+    if (state.userEmail === "") {
+      alert("이메일 주소를 입력해주세요");
+      return;
+    }
+    if (state.userPassword === "") {
+      alert("비밀번호를 입력해주세요");
       return;
     }
     // #### 이메일 비밀번호 정규표현식. 추후 배포할때 주석 해제 예정입니다!

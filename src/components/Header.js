@@ -1,14 +1,18 @@
 import React from "react";
 import { history } from "../redux/configureStore";
 import { Grid, Container, Button } from "../elements";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 const Hedaer = (props) => {
-  const is_login = useSelector((state) => state.user.is_login);
+  const dispatch = useDispatch();
+  const is_token = useSelector((state) => state.user.is_token);
   const logout = () => {
-    sessionStorage.removeItem("token");
-    alert("로그아웃 되었습니다.");
+    dispatch(userActions.logOutFB());
   };
+  React.useEffect(() => {
+    dispatch(userActions.isTokenFB());
+  }, [is_token]);
   return (
     <Grid width="100%" padding="25px 0" bg="hsl(346deg 33% 33%)">
       <Container>
@@ -17,20 +21,43 @@ const Hedaer = (props) => {
             halohalloween
           </Button>
           <Grid is_flex flex margin="0 0 0 20px">
-            <Button padding="0px 20px">할로윈소개</Button>
-            <Button padding="0px 20px">포스팅</Button>
-            <Button padding="0px 20px">Contact us</Button>
+            <Button padding="0px 20px" _onClick={() => history.push("/about")}>
+              할로윈소개
+            </Button>
+            <Button
+              padding="0px 20px"
+              _onClick={() => history.push("/postlist")}
+            >
+              포스팅
+            </Button>
+            <Button
+              padding="0px 20px"
+              _onClick={() => history.push("/contactus")}
+            >
+              Contact us
+            </Button>
           </Grid>
           <Grid>
-            <Button padding="0px 20px" _onClick={() => history.push("/login")}>
-              로그인
-            </Button>
-            <Button padding="0px 20px" _onClick={() => history.push("/signup")}>
-              회원가입
-            </Button>
-            <Button padding="0 0 0 20px" _onClick={logout}>
-              로그아웃
-            </Button>
+            {!is_token ? (
+              <>
+                <Button
+                  padding="0px 20px"
+                  _onClick={() => history.push("/login")}
+                >
+                  로그인
+                </Button>
+                <Button
+                  padding="0px 20px"
+                  _onClick={() => history.push("/signup")}
+                >
+                  회원가입
+                </Button>
+              </>
+            ) : (
+              <Button padding="0 0 0 20px" _onClick={logout}>
+                로그아웃
+              </Button>
+            )}
           </Grid>
         </Grid>
       </Container>
