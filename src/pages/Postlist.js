@@ -8,7 +8,7 @@ import { actionCreators as postActions } from '../redux/modules/post';
 const Postlist = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.post_list);
-  console.log(post_list);
+  console.log('useSelector', post_list);
   // 모달 on/off State
   const [modal1, setModal1] = useState(false);
 
@@ -23,6 +23,7 @@ const Postlist = (props) => {
 
   useEffect(() => {
     if (post_list.length === 0) {
+      console.log('리렌더링');
       dispatch(postActions.setPostFB());
     }
   }, []);

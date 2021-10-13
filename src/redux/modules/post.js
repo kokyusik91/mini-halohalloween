@@ -34,6 +34,7 @@ const initialState = {
 const setPostFB = () => {
   return async function (dispatch, getState) {
     try {
+      console.log('미들웨어');
       const res = await apis.get('post/postlist');
       const post_list = res.data.postList;
       dispatch(setPost(post_list));
@@ -62,7 +63,10 @@ export default handleActions(
   {
     [SET_POST]: (state, action) =>
       produce(state, (draft) => {
+        console.log('리듀서', action.payload.post_list);
         draft.post_list = action.payload.post_list;
+        console.log('리듀서 state', state);
+        console.log('리듀서 draft', draft.post_list);
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
