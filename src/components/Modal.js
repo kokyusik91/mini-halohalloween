@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 import {
   Grid,
   Label,
@@ -9,10 +9,10 @@ import {
   Button,
   Image,
   Text,
-} from "../elements/index";
-import moment from "moment";
-import { useDispatch } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
+} from '../elements/index';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
@@ -23,8 +23,8 @@ const Modal = (props) => {
   const dispatch = useDispatch();
   // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
-    title: "",
-    content: "",
+    title: '',
+    content: '',
   });
 
   // 비구조화 할당으로 값 추출
@@ -40,7 +40,7 @@ const Modal = (props) => {
     });
   };
   // moment사용하여 포스팅한 날짜정보
-  const postingDate = moment().format("YYYY-MM-DD");
+  const postingDate = moment().format('YYYY-MM-DD');
 
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
@@ -53,83 +53,51 @@ const Modal = (props) => {
     dispatch(postActions.addPostFB(post_data));
   };
 
-  React.useEffect(() => {}, []);
-
+  // 글쓰기 모달
   return (
     <>
       <ModalParent>
-        <Grid width="30vw" padding="10px 30px" bg="#f1f3f5">
-          <Grid margin="10px 0 0 0" is_flex justify="flex-end">
-            <Button margin="0 5px 0 0">수정</Button>
-            <Button>삭제</Button>
+        <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
+          글을 써주세요!
+          <Grid margin='20px 0 0 0'>
+            {/* <Image
+              width='50%'
+              src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
+            /> */}
           </Grid>
-          <Grid is_flex justify="flex-end">
-            <Image src="https://w.namu.la/s/45f0a9e507fc904b7accb3586ff709220b6242dfda220bd7ae85a39b57b22a760a4fa4cb0c2fbf16f37c9d229d0e93a1aac0d9c3dbd927c039698d9bdd9ab9a659f253ec19e2d0d33ddb115858b3222ea5a8a732082176563cc61e10ea9259b9" />
+          <Grid margin='20px 0 0 0'>
+            <Label margin=''>제목</Label>
+            <Input
+              name='title'
+              type='text'
+              placeholder='제목을 입력해주세요!'
+              _onChange={onChange}
+              value={title}
+            />
           </Grid>
-          <Grid margin="10px 0 0 0" is_flex justify="space-between">
-            <Text>잠실사는곡식</Text>
-            <Text>{postingDate}</Text>
+          <Grid margin='20px 0 0 0'>
+            <Label margin=''>게시글</Label>
+            <Textarea
+              name='content'
+              placeholder='게시글을 작성해주세요!'
+              _onChange={onChange}
+              value={content}
+            />
           </Grid>
-          <Grid margin="10px 0 0 0">
-            <Input type="text" value="할로윈때는 뭐하지?" />
+          <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
+            <Upload />
           </Grid>
-          <Grid margin="10px 0 0 0">
-            <Textarea value="하지만 이번 할로윈때는 코로나시대 ㅜㅜ" />
+          <Grid>
+            <Button margin='10px 0 0 0' type='blue' _onClick={submitPost}>
+              글올리기
+            </Button>
           </Grid>
-          <Grid margin="10px 0 0 0" is_flex>
-            <Input type="text" flex />
-            <Button margin="0 0 0 5px">수정</Button>
-          </Grid>
+          <Cancelbtn onClick={modaloff}>닫기</Cancelbtn>
         </Grid>
       </ModalParent>
     </>
   );
 };
-
-//   return (
-//     <>
-//       <ModalParent>
-//         <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
-//           글을 써주세요!
-//           <Grid margin='20px 0 0 0'>
-//             {/* <Image
-//               width='50%'
-//               src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
-//             /> */}
-//           </Grid>
-//           <Grid margin='20px 0 0 0'>
-//             <Label margin=''>제목</Label>
-//             <Input
-//               name='title'
-//               type='text'
-//               placeholder='제목을 입력해주세요!'
-//               _onChange={onChange}
-//               value={title}
-//             />
-//           </Grid>
-//           <Grid margin='20px 0 0 0'>
-//             <Label margin=''>게시글</Label>
-//             <Textarea
-//               name='content'
-//               placeholder='게시글을 작성해주세요!'
-//               _onChange={onChange}
-//               value={content}
-//             />
-//           </Grid>
-//           <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
-//             <Upload />
-//           </Grid>
-//           <Grid>
-//             <Button margin='10px 0 0 0' type='blue' _onClick={submitPost}>
-//               글올리기
-//             </Button>
-//             <Button _onClick={modaloff}>X</Button>
-//           </Grid>
-//         </Grid>
-//       </ModalParent>
-//     </>
-//   );
-// };
 
 const ModalParent = styled.div`
   position: fixed;
@@ -144,48 +112,20 @@ const ModalParent = styled.div`
   z-index: 999;
 `;
 
+const Cancelbtn = styled.button`
+  position: absolute;
+  top: -65px;
+  right: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  /* transform: translate(-50%, -50%); */
+  background-color: transparent;
+  color: #fff;
+  transition: all ease 0.3s;
+  &:hover {
+    color: #ff4949;
+  }
+`;
+
 export default Modal;
-
-// apis
-//       .getPost()
-//       .then((response) => {
-//         console.log(response.data);
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       });
-
-// axios사용하여 POST요청
-// axios({
-//   url: '/post/posting',
-//   method: 'POST',
-//   headers: {
-//     'content-type': 'application/json;charset=UTF-8',
-//     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-//     accept: 'application/json',
-//   },
-//   data: {
-//     postingTitle: post_info.postingTitle,
-//     postingComment: post_info.postingComment,
-//     postingDate: post_info.postingDate,
-//   },
-// })
-//   .then((response) => {
-//     console.log(response);
-//     alert('포스팅 성공!');
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
-
-// try {
-//   let res = await apis.create('/post/posting', post_info, { headers: {
-//     'content-type': 'application/json;charset=UTF-8',
-//     Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-//     accept: 'application/json',
-//   }} );
-//   console.log('성공?', res);
-// } catch (e) {
-//   alert(e);
-//   console.log('error === ', e);
-// }
