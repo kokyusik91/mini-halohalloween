@@ -8,29 +8,28 @@ import Comment from "../components/Comment";
 
 const CommentList = () => {
   //const [login, loginSet] = useState(true);
+  const [input, setInput] = useState("");
 
-  const [inputData, inputDataSet] = useState([
-    {
-      id: 1,
-      title: "고규식",
-      comment: "잘한다",
-    },
-    {},
-    {},
-  ]);
+  const inputData = [{ comment: "안녕하세요" }, { comment: "반가워요" }];
 
   const onClick = () => {
+    //inputData값을 ui에 나타내줌
     console.log(inputData);
+
+    let inputCopy = [...inputData];
+    inputData.unshift(inputCopy);
   };
 
   return (
     <React.Fragment>
       {/* 댓글입력 영역-inputData */}
       <Grid is_flex flex>
+        {/* input값에 onChange로 상태값 변경해줌 */}
         <Input
           _onChange={(e) => {
-            inputDataSet(e.target.value);
+            setInput(e.target.value);
           }}
+          value={input}
         />
         <Button width="auto" _onClick={onClick}>
           등록
@@ -39,8 +38,8 @@ const CommentList = () => {
 
       {/* 댓글 컨텐츠 보여주는 영역 */}
       {inputData.map((el, i) => {
-        console.log(el, i);
-        return <Comment inputData={el} key={i} />;
+        // console.log(el, i);
+        return <Comment key={i} {...el} />;
       })}
     </React.Fragment>
   );

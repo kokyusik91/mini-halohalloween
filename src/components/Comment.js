@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Button, Text } from "../elements";
 
 const Comment = (props) => {
-  console.log(props);
+  console.log(props.inputData, "comment");
   return (
     <Grid is_flex flex justify="space-between" margin="10px 0 0 0">
       <Text>유저네임</Text>
