@@ -46,7 +46,6 @@ export const loginFB = (user) => {
         sessionStorage.setItem("token", `${token}`);
         sessionStorage.setItem("userNickname", `${res.data.userNickname}`);
       }
-      dispatch(setUser(infouser));
       history.push("/");
       dispatch(isloading(false));
     } catch (e) {
