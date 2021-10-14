@@ -30,9 +30,7 @@ function App() {
             <Route path="/about" exact component={About} />
             <Route path="/contactus" exact component={ContactUs} />
             <Route path="/commentlist" component={Commentlist} />
-
-            {/* <Route component={NotFound} /> */}
-
+            {/* <Route component={NotFound} />/ */}
             <Footer />
           </>
         )}

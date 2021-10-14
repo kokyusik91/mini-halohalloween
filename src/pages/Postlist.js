@@ -45,7 +45,6 @@ const Postlist = (props) => {
           })}
         </Grid>
       </Container>
-
       {/* modal on / off */}
       {modal1 === true ? <Modal _setModal={setModal1} /> : ""}
     </>

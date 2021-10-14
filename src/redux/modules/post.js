@@ -36,7 +36,9 @@ const setPostFB = () => {
   return async function (dispatch, getState) {
     try {
       const res = await apis.get('post/postlist');
+      console.log(res);
       const post_list = res.data.postList;
+
       // console.log('서버에서 받아온 데이터', post_list);
       dispatch(setPost(post_list));
     } catch (e) {
