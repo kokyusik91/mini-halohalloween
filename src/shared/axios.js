@@ -1,12 +1,12 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
   // 기본적으로 우리가 바라볼 서버의 주소
-  baseURL: 'http://3.36.130.184',
+  baseURL: "http://3.36.130.184",
   headers: {
-    'content-type': 'application/json;charset=UTF-8',
-    Authorization: `Bearer ${sessionStorage.getItem('token')}`,
-    accept: 'application/json',
+    "content-type": "application/json;charset=UTF-8",
+    Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+    accept: "application/json",
   },
 });
 
@@ -27,10 +27,11 @@ export const apis = {
   // delPost: (id) => instance.delete(`/posts/${id}`),
 
   // 모듈화 작업
-  get: (url = '/') => instance.get(`${url}`),
-  create: (url = '/', contents = {}) => instance.post(`${url}`, contents),
-  update: (url = '/', contents = {}) => instance.patch(`${url}`, contents),
-  delete: (url = '', id = '') => instance.delete(`${url}/${id}`),
+  get: (url = "/") => instance.get(`${url}`),
+  create: (url = "/", contents = {}) => instance.post(`${url}`, contents),
+  update: (url = "/", contents = {}) => instance.patch(`${url}`, contents),
+  delete: (url = "", id = "") => instance.delete(`${url}/${id}`),
+  getReply: (url = "/", id = "") => instance.get(`${url}/${id}`),
 };
 
 // apis
