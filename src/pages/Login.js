@@ -10,10 +10,35 @@ const Login = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
   const [state, setState] = React.useState({ userEmail: "", userPassword: "" });
+  const [disable, setDisable] = React.useState({ type: true });
 
-  const onChange = (e) => {
-    setState({ ...state, [e.target.name]: e.target.value });
+  const changeState = (name, value) => {
+    setState({ ...state, [name]: (state[name] = value) });
+    console.log("state = ", state);
   };
+  const changeDisable = (value) => {
+    setDisable({ ...disable, type: (disable.type = value) });
+    console.log("  disable == ", disable);
+  };
+  const onChange = (e) => {
+    console.log(state.userEmail !== "" && state.userPassword !== "");
+    console.log("length", state.userPassword.length);
+    if (state.userEmail !== "" && state.userPassword !== "") {
+      // setDisable(false);
+      console.log("1");
+      changeDisable(false);
+    } else {
+      // setDisable(true);
+      console.log("2");
+      changeDisable(true);
+    }
+
+    changeState(e.target.name, e.target.value);
+  };
+
+  React.useEffect(() => {
+    console.log("useEffect");
+  }, []);
 
   const onClick = () => {
     if (state.userEmail === "") {
@@ -69,7 +94,7 @@ const Login = (props) => {
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button type="blue" _onClick={onClick}>
+          <Button type="blue" disable={disable.type} _onClick={onClick}>
             로그인
           </Button>
         </Grid>

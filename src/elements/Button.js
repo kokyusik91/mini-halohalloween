@@ -28,24 +28,25 @@ const Button = (props) => {
     color: color,
     bg: bg,
     border: border,
+    disable: disable,
   };
 
   if (type === "white") {
     return (
-      <WhiteButton {...styles} onClick={_onClick}>
+      <WhiteButton disable={disable} {...styles} onClick={_onClick}>
         {children}
       </WhiteButton>
     );
   }
   if (type === "blue") {
     return (
-      <BlueButton {...styles} onClick={_onClick}>
+      <BlueButton disable={disable} {...styles} onClick={_onClick}>
         {children}
       </BlueButton>
     );
   }
   return (
-    <DefaultButton {...styles} onClick={_onClick}>
+    <DefaultButton disable={disable} {...styles} onClick={_onClick}>
       {children}
     </DefaultButton>
   );
@@ -74,6 +75,10 @@ const WhiteButton = styled.button`
   text-align: center;
   border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  ${(props) =>
+    props.disable
+      ? `background-color: #e9ecef; color:#ced4da; border:1px solid #ced4da`
+      : ""};
   &:hover {
     cursor: pointer;
   }
@@ -86,11 +91,14 @@ const BlueButton = styled.button`
   padding: 12px 0px;
   box-sizing: border-box;
   text-align: center;
-  cursor: pointer;
   border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
+  ${(props) =>
+    props.disable
+      ? `background-color: #e9ecef; color:#ced4da; border:1px solid #ced4da`
+      : ""};
   &:hover {
-    cursor: pointer;
+    cursor: ${(props) => (!props.disable ? "pointer" : "not-allowed")};
   }
 `;
 
@@ -104,7 +112,10 @@ const DefaultButton = styled.button`
   ${(props) => props.textAlign && `text-align: ${props.textAlign}`};
   ${(props) => props.border && `border: ${props.border}`};
   ${(props) => props.bg && `background-color: ${props.bg}`};
-  ${(props) => props.disable && `background-color: ${props.bg}`};
+  ${(props) =>
+    props.disable
+      ? `background-color: #e9ecef; color:#ced4da; border:1px solid #ced4da`
+      : ""};
   &:hover {
     cursor: pointer;
   }

@@ -10,9 +10,6 @@ import {
 const About = () => {
   return (
     <>
-      <Grid>
-        <Image />
-      </Grid>
       <Grid margin="40px 0 0 0">
         <Container>
           <Text size="26px">할로윈소개</Text>

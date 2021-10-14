@@ -9,7 +9,8 @@ import Login from "./pages/Login";
 import Postlist from "./pages/Postlist";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
-import Commentlist from "./pages/CommentList";
+// import CommentList from "./pages/CommentList";
+import CommentListTest from "./pages/CommentListTest";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
         <Route path="/postlist" exact component={Postlist} />
         <Route path="/about" exact component={About} />
         <Route path="/contactus" exact component={ContactUs} />
-        <Route path="/commentlist" component={Commentlist} />
+        {/* <Route path="/commentlist" component={CommentList} /> */}
+        <Route path="/commentlist" component={CommentListTest} />
         <Route component={NotFound} />
       </Switch>
       {pathname !== "login" && pathname !== "signup" && <Footer />}
