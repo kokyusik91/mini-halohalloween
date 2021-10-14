@@ -8,8 +8,8 @@ import { actionCreators as postActions } from "../redux/modules/post";
 const Postlist = (props) => {
   const dispatch = useDispatch();
   const post_list = useSelector((state) => state.post.post_list);
+  const exitedToken = sessionStorage.getItem("token");
 
-  // console.log('useSelector', post_list);
   // 모달 on/off State
   const [modal1, setModal1] = useState(false);
 
@@ -33,9 +33,11 @@ const Postlist = (props) => {
       <Container margin="40px auto 0">
         <Grid margin="0 0 40px 0" is_flex justify="space-between">
           <h1>다들 할로윈 어케 보내시는지?....</h1>
-          <Button type="blue" width="10%" _onClick={modalOnOff}>
-            글쓰기
-          </Button>
+          {exitedToken ? (
+            <Button type="blue" width="10%" _onClick={modalOnOff}>
+              글쓰기
+            </Button>
+          ) : null}
         </Grid>
         <Grid is_flex justify="flex-start">
           {post_list.map((el) => {
