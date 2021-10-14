@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router";
 import { history } from "../redux/configureStore";
 import { Grid, Container, Button } from "../elements";
 import { useSelector, useDispatch } from "react-redux";
@@ -9,7 +8,7 @@ const Hedaer = (props) => {
   const dispatch = useDispatch();
   const is_user = useSelector((state) => state.user.user);
   const is_login = useSelector((state) => state.user.is_login);
-  console.log("is_user == ", is_user);
+  console.log("is_user ?? == ", is_user);
   console.log("is_login == ", is_login);
   const logout = () => {
     dispatch(userActions.logOutFB());
