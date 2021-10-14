@@ -10,6 +10,7 @@ import Postlist from "./pages/Postlist";
 import About from "./pages/About";
 import ContactUs from "./pages/ContactUs";
 import Commentlist from "./pages/CommentList";
+// import NotFound from "./pages/NotFound";
 
 function App() {
   const pathname = history.location.pathname;
@@ -29,6 +30,9 @@ function App() {
             <Route path="/about" exact component={About} />
             <Route path="/contactus" exact component={ContactUs} />
             <Route path="/commentlist" component={Commentlist} />
+
+            {/* <Route component={NotFound} /> */}
+
             <Footer />
           </>
         )}
