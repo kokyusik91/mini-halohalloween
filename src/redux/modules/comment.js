@@ -9,8 +9,8 @@ const ADD_COMMENT = "ADD_COMMENT";
 const DELETE_COMMENT = "DELETE_COMMENT";
 
 // action creator
-const setComment = createAction(SET_COMMENT, (comment_list) => ({
-  comment_list,
+const setComment = createAction(SET_COMMENT, (커멘트리스트) => ({
+  커멘트리스트,
 }));
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_id) => ({
@@ -31,17 +31,23 @@ const deleteComment = createAction(DELETE_COMMENT, (comment_id) => ({
 const initialState = { comment_list: [] };
 
 //middleware
+//서버에서 데이터 받아오기위함
+const setCommentFB = () => {
+  return async function (dispatch, getState) {
+    try {
+      const res = await apis.get("reply/replyList");
+      const 커멘트 = res.data.Replies;
+      dispatch(setComment(커멘트));
+
+      //comment_list는 어디서 받아오는 거지??
+    } catch (e) {
+      console.log("error ? :::::: ", e);
+    }
+  };
+};
+
 const addCommentFB = (comment) => {
   return async function (dispatch, getState) {
-    //axios 부분
-    // apis
-    //   .getPost()
-    //   .then((response) => {
-    //     console.log(response.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
     try {
       const newComment = {
         postingID: "61668228ba1286fac093414a",
@@ -49,7 +55,7 @@ const addCommentFB = (comment) => {
         replyComment: comment.comment,
       };
       const res = await apis.create("reply/replyPost", newComment);
-      console.log(res);
+      console.log(res, "둥록확인");
       //리덕스저장
       dispatch(addComment(comment));
     } catch (e) {
@@ -69,6 +75,7 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
+        draft.comment_list = action.payload.커멘트리스트;
         //let data ={[post_id]: comment_list,...}
         //draft.list[action.payload.comment_id] = action.payload.comment_list;
       }),
@@ -92,6 +99,7 @@ const actionCreators = {
   deleteComment,
 
   addCommentFB,
+  setCommentFB,
 };
 
 export { actionCreators };

@@ -14,21 +14,24 @@ const CommentList = () => {
 
   //useSelector는 현재 리덕스의 state값을 가져온다
   const comment_list = useSelector((state) => state.comment.comment_list);
+  // const exitedToken
+  console.log("커멘트페이지", comment_list);
 
   React.useEffect(() => {
     if (comment_list.length === 0) {
       //디스패치로 액션함수 불러오기
-      // dispatch(commentActions.getPostFB());
+      dispatch(commentActions.setCommentFB());
     }
   }, []);
 
-  // const inputData = [{ comment: "안녕하세요" }, { comment: "반가워요" }];
-
+  //comment 등록버튼 누르면 일어나는 이벤트
   const onClick = () => {
     const comment = { comment: input };
+    //dispatch를 불러서 comment값을 리덕스로 넘겨줍니다
     dispatch(commentActions.addCommentFB(comment));
-    //
   };
+
+  //comment 삭제버튼 누르면 일어나는 이벤트
 
   return (
     <Container>
