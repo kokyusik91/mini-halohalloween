@@ -43,7 +43,7 @@ const Login = (props) => {
       {is_loading && <Spinner />}
       <Grid
         width="30vw"
-        height="60vh"
+        height="390px"
         margin="20vh auto"
         padding="40px 50px"
         bg="#f1f3f5"
