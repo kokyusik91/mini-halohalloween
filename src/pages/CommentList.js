@@ -40,7 +40,7 @@ const CommentList = () => {
           }}
           value={input}
         />
-        <Button width="auto" _onClick={onClick}>
+        <Button width='auto' _onClick={onClick}>
           등록
         </Button>
       </Grid>

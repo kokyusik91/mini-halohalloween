@@ -13,15 +13,15 @@ const setComment = createAction(SET_COMMENT, (comment_list) => ({ comment_list }
 const addComment = createAction(ADD_COMMENT, (comment_list) => ({ comment_list }));
 const deleteComment = createAction(DELETE_COMMENT, (comment_list) => ({ comment_list }));
 
-// 기본형식
-// {
-//   postingID: '',
-//   postingTitle: '',
-//   postingAuthor: '',
-//   postingComment: '',
-//   postingDate: '',
-//   postingComment: '',
-// },
+// // 기본형식
+// // {
+// //   postingID: '',
+// //   postingTitle: '',
+// //   postingAuthor: '',
+// //   postingComment: '',
+// //   postingDate: '',
+// //   postingComment: '',
+// // },
 
 //initialState
 const initialState = {
@@ -64,4 +64,4 @@ const actionCreators = {
   deleteComment,
 };
 
-export { actionCreators };
+// export { actionCreators };

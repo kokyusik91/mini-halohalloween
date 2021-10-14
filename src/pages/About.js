@@ -1,5 +1,12 @@
 import React from "react";
 import { Container, Grid, Text, Image } from "../elements";
+import {
+  hallween01,
+  hallween02,
+  hallween03,
+  hallween04,
+  // emoji01,
+} from "../image";
 const About = () => {
   return (
     <>
@@ -43,6 +50,22 @@ const About = () => {
                 기념한다.
               </Text>
               <Text></Text>
+            </Grid>
+          </Grid>
+          <Grid is_flex justify="space-between" margin="20px 0 0 0">
+            <Grid width="49%">
+              <Image src={hallween01} height="350px" />
+            </Grid>
+            <Grid width="49%">
+              <Image src={hallween02} height="350px" />
+            </Grid>
+          </Grid>
+          <Grid is_flex justify="space-between" margin="20px 0 0 0">
+            <Grid width="49%">
+              <Image src={hallween03} height="350px" />
+            </Grid>
+            <Grid width="49%">
+              <Image src={hallween04} height="350px" />
             </Grid>
           </Grid>
         </Container>

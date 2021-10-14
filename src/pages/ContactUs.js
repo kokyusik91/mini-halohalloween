@@ -1,10 +1,13 @@
 import React from "react";
+import { Container, Grid } from "../elements";
 
 const ContactUs = () => {
   return (
-    <>
-      <h1>ContactUs</h1>
-    </>
+    <Grid>
+      <Container>
+        <h1>ContactUs</h1>
+      </Container>
+    </Grid>
   );
 };
 

@@ -56,6 +56,8 @@ const CardGrid = styled.div`
   width: 24%;
   height: 250px;
   background-color: #f1f3f5;
+  flex-wrap: wrap;
+  position: relative;
 `;
 
 const DefaultGrid = styled.div`
@@ -69,6 +71,8 @@ const DefaultGrid = styled.div`
   ${(props) => (props.padding ? `padding:${props.padding}` : "")};
   ${(props) => (props.bg ? `background-color:${props.bg}` : "")};
   ${(props) => props.border && `border:${props.border}`};
+  flex-wrap: wrap;
+  position: relative;
 `;
 
 export default Grid;
