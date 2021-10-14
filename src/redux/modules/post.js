@@ -61,7 +61,7 @@ const addPostFB = (post_data) => {
 
 const updatePostFB = (update_postdata) => {
   return async function (dispatch, getState) {
-    console.log('미들웨어로 넘어온', update_postdata);
+    // console.log('미들웨어로 넘어온', update_postdata);
     try {
       const res = await apis.update('post/postModify', update_postdata);
       alert('수정에 성공하였습니다.');
@@ -69,7 +69,7 @@ const updatePostFB = (update_postdata) => {
     } catch (e) {
       console.log('error :::::: ', e);
     }
-    // dispatch(updatePost(update_postdata));
+    dispatch(updatePost(update_postdata));
   };
 };
 
@@ -83,7 +83,7 @@ const deletePostFB = (postID) => {
     } catch (e) {
       console.log('error :::::: ', e);
     }
-    // dispatch(updatePost(update_postdata));
+    // dispatch(deletePost(postID));
   };
 };
 
@@ -105,6 +105,8 @@ export default handleActions(
     [UPDATE_POST]: (state, action) =>
       produce(state, (draft) => {
         console.log('리듀서로 넘어온 데이터', action.payload.updatePost_list);
+        // findex써서 해당되는
+        // draft.post_list.findIndex()
       }),
     [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
   },

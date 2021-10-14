@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Input, Textarea, Button, Image, Text } from '../elements/index';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal2 = (props) => {
   // 상세포스트 카드 모달창
+  // redux user module에 저장되어있는 현재 유저 정보 불러오기
+  const user_data = useSelector((state) => state.user.user);
+
   const modaloff = () => {
     props._setModal(false);
   };
   // 게시물의 닉네임과 세션스토리지에 있는 닉네임을 비교해서 "수정,삭제 버튼 보여줌,안보여줌"
   // 현재는 sessionStorage에 userNickname으로 저장되어있는데, 미다님께서 redux의 user module에 저장할 예정, useSelector로 userNickname 가져와야함
-  const userNickname = sessionStorage.getItem('userNickname');
+  // const userNickname = sessionStorage.getItem('userNickname');
+  const userNickname = user_data.userNickname;
   const dispatch = useDispatch();
   const [editTitle, setEditTitle] = useState(props.el.postingTitle);
   const [editContent, setEditContent] = useState(props.el.postingComment);
