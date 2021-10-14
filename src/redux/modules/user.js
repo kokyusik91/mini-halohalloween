@@ -23,7 +23,6 @@ export const signupFB = (user) => {
     try {
       dispatch(isloading(true));
       const res = await apis.create(`user/register`, user);
-      console.log("signup res === ", res);
       alert(res.data.Message);
       history.push("/login");
       dispatch(isloading(false));
@@ -41,7 +40,7 @@ export const loginFB = (user) => {
       const res = await apis.create(`user/auth`, user);
       console.log("login res = ", res);
       const token = res.data.token;
-      const infouser = { userNickname: res.data.userNickname };
+      // const userInfo = { userNickname: res.data.userNickname };
       if (token) {
         sessionStorage.setItem("token", `${token}`);
         sessionStorage.setItem("userNickname", `${res.data.userNickname}`);

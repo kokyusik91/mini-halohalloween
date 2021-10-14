@@ -14,6 +14,7 @@ const Button = (props) => {
     bg,
     textAlign,
     color,
+    disable,
     _onClick,
     children,
   } = props;
@@ -61,6 +62,7 @@ Button.defaultProps = {
   border: "none",
   textAlign: "left",
   is_white: false,
+  disable: false,
 };
 
 const WhiteButton = styled.button`
@@ -102,6 +104,7 @@ const DefaultButton = styled.button`
   ${(props) => props.textAlign && `text-align: ${props.textAlign}`};
   ${(props) => props.border && `border: ${props.border}`};
   ${(props) => props.bg && `background-color: ${props.bg}`};
+  ${(props) => props.disable && `background-color: ${props.bg}`};
   &:hover {
     cursor: pointer;
   }
