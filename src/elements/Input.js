@@ -1,11 +1,20 @@
 /* eslint-disable */
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Input = (props) => {
-  const { placeholder, type, _onChange, width, margin, flex, value, name } =
-    props;
+  const {
+    placeholder,
+    type,
+    _onChange,
+    width,
+    margin,
+    flex,
+    value,
+    name,
+    disabled,
+  } = props;
 
   const styles = {
     width: width,
@@ -21,6 +30,7 @@ const Input = (props) => {
         value={value}
         placeholder={placeholder}
         onChange={_onChange}
+        disabled={disabled}
         {...styles}
       />
     </React.Fragment>
@@ -34,7 +44,7 @@ Input.defaultProps = {
   margin: false,
   width: '100%',
   flex: false,
-  // disabled: true,
+  disabled: false,
 };
 
 const InputForm = styled.input`

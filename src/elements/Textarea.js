@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Textarea = (props) => {
-  const { placeholder, _onChange, margin, name, value } = props;
+  const { placeholder, _onChange, margin, name, value, disabled } = props;
 
   const styles = {
     margin: margin,
@@ -13,9 +13,10 @@ const Textarea = (props) => {
       <ElTextarea
         name={name}
         placeholder={placeholder}
-        rows={10}
+        rows={3}
         onChange={_onChange}
         value={value}
+        disabled={disabled}
         {...styles}
       />
     </React.Fragment>
@@ -26,6 +27,7 @@ Textarea.defaultProps = {
   placeholder: '텍스트를 입력하세요',
   _onChange: () => {},
   margin: false,
+  disabled: false,
 };
 
 const ElTextarea = styled.textarea`
