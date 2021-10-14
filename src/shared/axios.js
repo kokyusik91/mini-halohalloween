@@ -29,8 +29,7 @@ export const apis = {
   // 모듈화 작업
   get: (url = '/') => instance.get(`${url}`),
   create: (url = '/', contents = {}) => instance.post(`${url}`, contents),
-  update: (url = '/', id = '', contents = {}) =>
-    instance.put(`${url}:${id}`, contents),
+  update: (url = '/', contents = {}) => instance.patch(`${url}`, contents),
   delete: (url = '', id = '') => instance.delete(`${url}/${id}`),
 };
 
