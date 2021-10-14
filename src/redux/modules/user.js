@@ -38,12 +38,9 @@ export const loginFB = (user) => {
     try {
       dispatch(isloading(true));
       const res = await apis.create(`user/auth`, user);
-      console.log("login res = ", res);
       const token = res.data.token;
-      // const userInfo = { userNickname: res.data.userNickname };
       if (token) {
         sessionStorage.setItem("token", `${token}`);
-        // sessionStorage.setItem("userNickname", `${res.data.userNickname}`);/
       }
       history.push("/");
       dispatch(isloading(false));
@@ -55,11 +52,10 @@ export const loginFB = (user) => {
   };
 };
 
-// 이거를 추후 로그인 여부 체크하는 api로 변경할 예정입니다.
+// 로그인 여부 체크
 export const setUserFB = () => {
   return async (dispatch) => {
     const res = await apis.get(`user/chkLogin`);
-    console.log("setUserFB res == ", res);
     dispatch(setUser(res.data.user));
   };
 };
