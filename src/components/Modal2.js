@@ -4,6 +4,7 @@ import { Grid, Input, Textarea, Button, Image, Text } from '../elements/index';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
+import CommentList from '../pages/CommentList';
 
 const Modal2 = (props) => {
   // 상세포스트 카드 모달창
@@ -33,11 +34,13 @@ const Modal2 = (props) => {
     postingComment: editContent,
     postingUpdate: postingDate,
   };
-
+  // 각각 카드에 대한 postID
   // 서버에 넘겨줄 postID
   const postID = {
     postID: props.el.postID,
   };
+
+  // console.log('해당하는 게시물 ID', postID);
 
   // 수정 버튼을 누르면 발생하는 함수
   const onModify = () => {
@@ -70,7 +73,13 @@ const Modal2 = (props) => {
   return (
     <>
       <ModalParent>
-        <Grid width='30vw' padding='10px 30px' bg='#f1f3f5'>
+        <Grid
+          width='30vw'
+          padding='15px 30px'
+          bg='#f1f3f5'
+          max_hg='80vh'
+          overflow='auto'
+        >
           <Grid margin='0 0 10px 0' is_flex justify='flex-end'>
             {userNickname === props.el.postingAuthor ? (
               <Button margin='0 5px 0 0' _onClick={onModify}>
@@ -113,10 +122,7 @@ const Modal2 = (props) => {
             ) : null}
           </Grid>
           <Grid margin='10px 0 0 0' is_flex>
-            <Input type='text' flex />
-            <Button margin='0 0 0 5px' width='70%'>
-              수정
-            </Button>
+            <CommentList postID={postID} />
           </Grid>
           <Cancelbtn onClick={modaloff}>닫기</Cancelbtn>
         </Grid>
@@ -139,13 +145,12 @@ const ModalParent = styled.div`
 `;
 
 const Cancelbtn = styled.button`
-  position: absolute;
-  top: -65px;
-  right: 5px;
+  position: fixed;
+  top: 50px;
+  right: 50px;
   border: none;
   cursor: pointer;
   font-size: 20px;
-  /* transform: translate(-50%, -50%); */
   background-color: transparent;
   color: #fff;
   transition: all ease 0.3s;

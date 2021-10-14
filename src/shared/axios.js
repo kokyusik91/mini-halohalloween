@@ -27,10 +27,11 @@ export const apis = {
   // delPost: (id) => instance.delete(`/posts/${id}`),
 
   // 모듈화 작업
-  get: (url = '/') => instance.get(`${url}`),
+  get: (url = '/', contents = {}) => instance.get(`${url}`, contents),
   create: (url = '/', contents = {}) => instance.post(`${url}`, contents),
   update: (url = '/', contents = {}) => instance.patch(`${url}`, contents),
   delete: (url = '', id = '') => instance.delete(`${url}/${id}`),
+  getReply: (url = '/', id = '') => instance.get(`${url}/${id}`),
 };
 
 // apis
