@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Button, Input } from "../elements";
+import { Grid, Button, Input, Container } from "../elements";
 import Comment from "../components/Comment";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -11,38 +11,38 @@ const CommentList = () => {
   const [input, setInput] = useState("");
 
   const dispatch = useDispatch();
+
+  //useSelector는 현재 리덕스의 state값을 가져온다
   const comment_list = useSelector((state) => state.comment.comment_list);
-  console.log("comment_list", comment_list);
 
   React.useEffect(() => {
     if (comment_list.length === 0) {
       //디스패치로 액션함수 불러오기
-      dispatch(commentActions.getPostFB());
+      //dispatch(commentActions.setPostFB());
     }
   }, []);
 
   // const inputData = [{ comment: "안녕하세요" }, { comment: "반가워요" }];
 
   const onClick = () => {
-    //inputData값을 ui에 나타내줌
-    // let inputCopy = [...inputData];
-    // inputData.unshift(inputCopy);
+    const comment = { comment: input };
+    dispatch(commentActions.addCommentFB(comment));
+    //
   };
 
   return (
-    <React.Fragment>
+    <Container>
       {/* 댓글입력 영역-inputData */}
-      <Grid is_flex flex>
+      <Grid is_flex>
         {/* input값에 onChange로 상태값 변경해줌 */}
         <Input
+          flex="3"
           _onChange={(e) => {
             setInput(e.target.value);
           }}
           value={input}
         />
-        <Button width='auto' _onClick={onClick}>
-          등록
-        </Button>
+        <Button _onClick={onClick}>등록</Button>
       </Grid>
 
       {/* 댓글 컨텐츠 보여주는 영역 */}
@@ -50,7 +50,7 @@ const CommentList = () => {
         // console.log(el, i);
         return <Comment key={i} {...el} />;
       })}
-    </React.Fragment>
+    </Container>
   );
 };
 

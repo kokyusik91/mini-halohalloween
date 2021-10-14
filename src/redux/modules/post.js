@@ -2,13 +2,13 @@ import { createAction, handleActions } from 'redux-actions';
 import { produce } from 'immer';
 import { apis } from '../../shared/axios';
 
-//action type
+  //action type
 const SET_POST = 'SET_POST';
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST = 'UPDATE_POST';
 const DELETE_POST = 'DELETE_POST';
 
-// action creator
+  // action creator
 const setPost = createAction(SET_POST, (post) => ({ post }));
 const addPost = createAction(ADD_POST, (post_data) => ({ post_data }));
 const updatePost = createAction(UPDATE_POST, (post_list) => ({ post_list }));
@@ -24,7 +24,7 @@ const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
 //   postingComment: '',
 // },
 
-//initialState
+  //initialState
 const initialState = {
   post_list: [],
 };
@@ -33,7 +33,7 @@ const initialState = {
 const setPostFB = () => {
   return async function (dispatch, getState) {
     try {
-      const res = await apis.get('post/postlist');
+      const res = await apis.get('post/postlist'); 
       const post_list = res.data.postList;
       // console.log('서버에서 받아온 데이터', post_list);
       dispatch(setPost(post_list));
