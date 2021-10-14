@@ -3,7 +3,7 @@ import { Container, Grid } from "../elements";
 
 const ContactUs = () => {
   return (
-    <Grid>
+    <Grid margin="40px 0 0 0">
       <Container>
         <h1>ContactUs</h1>
       </Container>

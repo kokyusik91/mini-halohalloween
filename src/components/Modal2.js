@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Grid, Input, Textarea, Button, Image, Text } from '../elements/index';
+import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal2 = (props) => {
   // 상세포스트 카드 모달창
@@ -8,11 +11,58 @@ const Modal2 = (props) => {
     props._setModal(false);
   };
   // 게시물의 닉네임과 세션스토리지에 있는 닉네임을 비교해서 "수정,삭제 버튼 보여줌,안보여줌"
+  // 현재는 sessionStorage에 userNickname으로 저장되어있는데, 미다님께서 redux의 user module에 저장할 예정, useSelector로 userNickname 가져와야함
   const userNickname = sessionStorage.getItem('userNickname');
+  const dispatch = useDispatch();
+  const [editTitle, setEditTitle] = useState(props.el.postingTitle);
+  const [editContent, setEditContent] = useState(props.el.postingComment);
+  const [editButton, setEditButton] = useState(false);
+  const [isEditedtitle, setIsEditedtitle] = useState(true);
+  const [isEditedcontent, setIsEditedcontent] = useState(true);
+  const postingDate = moment().format('YYYY-MM-DD');
 
-  const onModify = () => {
-    console.log('수정시작');
+  // 서버에 넘겨줄 수정된 데이터
+  const update_postdata = {
+    postID: props.el.postID,
+    postingTitle: editTitle,
+    postingAuthor: props.el.postingAuthor,
+    postingComment: editContent,
+    postingUpdate: postingDate,
   };
+
+  // 서버에 넘겨줄 postID
+  const postID = {
+    postID: props.el.postID,
+  };
+
+  // 수정 버튼을 누르면 발생하는 함수
+  const onModify = () => {
+    setIsEditedtitle(!isEditedtitle);
+    setIsEditedcontent(!isEditedcontent);
+    setEditButton(!editButton);
+  };
+  // 제목 input 부분 수정
+  const editInput = (e) => {
+    setEditTitle(e.target.value);
+  };
+  // 내용 textarea 부분 수정
+  const editTextarea = (e) => {
+    setEditContent(e.target.value);
+  };
+
+  // 수정된 내용을 middleware로 보내기
+  const editDataSubmit = () => {
+    // if(alert(수정 하ㄱ)){
+    //   console.log(alert);
+    // }
+    dispatch(postActions.updatePostFB(update_postdata));
+  };
+  // 삭제하기 위해서 postID 서버로 보내기
+  const onDelete = () => {
+    dispatch(postActions.deletePostFB(postID));
+    // console.log('삭제되니?');
+  };
+
   return (
     <>
       <ModalParent>
@@ -24,7 +74,9 @@ const Modal2 = (props) => {
               </Button>
             ) : null}
             {userNickname === props.el.postingAuthor ? (
-              <Button margin='0 5px 0 0'>삭제</Button>
+              <Button margin='0 5px 0 0' _onClick={onDelete}>
+                삭제
+              </Button>
             ) : null}
           </Grid>
           <Grid is_flex justify='flex-end'>
@@ -35,14 +87,32 @@ const Modal2 = (props) => {
             <Text>{props.el.postingDate}</Text>
           </Grid>
           <Grid margin='10px 0 0 0'>
-            <Input type='text' value={props.el.postingTitle} />
+            <Input
+              type='text'
+              _onChange={editInput}
+              value={editTitle}
+              disabled={isEditedtitle}
+            />
           </Grid>
           <Grid margin='10px 0 0 0'>
-            <Textarea value={props.el.postingComment} />
+            <Textarea
+              _onChange={editTextarea}
+              value={editContent}
+              disabled={isEditedcontent}
+            />
+          </Grid>
+          <Grid margin='10px 0 0 0' is_flex>
+            {userNickname === props.el.postingAuthor && editButton ? (
+              <Button margin='0 5px 0 0' type='blue' _onClick={editDataSubmit}>
+                수정하기
+              </Button>
+            ) : null}
           </Grid>
           <Grid margin='10px 0 0 0' is_flex>
             <Input type='text' flex />
-            <Button margin='0 0 0 5px'>수정</Button>
+            <Button margin='0 0 0 5px' width='70%'>
+              수정
+            </Button>
           </Grid>
           <Cancelbtn onClick={modaloff}>닫기</Cancelbtn>
         </Grid>

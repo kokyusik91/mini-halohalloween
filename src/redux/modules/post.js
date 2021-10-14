@@ -11,7 +11,9 @@ const DELETE_POST = 'DELETE_POST';
   // action creator
 const setPost = createAction(SET_POST, (post) => ({ post }));
 const addPost = createAction(ADD_POST, (post_data) => ({ post_data }));
-const updatePost = createAction(UPDATE_POST, (post_list) => ({ post_list }));
+const updatePost = createAction(UPDATE_POST, (updatePost_list) => ({
+  updatePost_list,
+}));
 const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
 
 // 기본형식
@@ -57,6 +59,34 @@ const addPostFB = (post_data) => {
   };
 };
 
+const updatePostFB = (update_postdata) => {
+  return async function (dispatch, getState) {
+    console.log('미들웨어로 넘어온', update_postdata);
+    try {
+      const res = await apis.update('post/postModify', update_postdata);
+      alert('수정에 성공하였습니다.');
+      console.log(res);
+    } catch (e) {
+      console.log('error :::::: ', e);
+    }
+    // dispatch(updatePost(update_postdata));
+  };
+};
+
+const deletePostFB = (postID) => {
+  return async function (dispatch, getState) {
+    // console.log('미들웨어로 넘어온', postID);
+    try {
+      const res = await apis.update('post/postDelete', postID);
+      alert('삭제에 성공하였습니다.');
+      console.log(res);
+    } catch (e) {
+      console.log('error :::::: ', e);
+    }
+    // dispatch(updatePost(update_postdata));
+  };
+};
+
 // reducer
 export default handleActions(
   {
@@ -72,7 +102,10 @@ export default handleActions(
           postingAuthor: userNickname,
         });
       }),
-    [UPDATE_POST]: (state, action) => produce(state, (draft) => {}),
+    [UPDATE_POST]: (state, action) =>
+      produce(state, (draft) => {
+        console.log('리듀서로 넘어온 데이터', action.payload.updatePost_list);
+      }),
     [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
   },
   initialState
@@ -85,6 +118,8 @@ const actionCreators = {
   deletePost,
   addPostFB,
   setPostFB,
+  updatePostFB,
+  deletePostFB,
 };
 
 export { actionCreators };

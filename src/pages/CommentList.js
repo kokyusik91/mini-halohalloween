@@ -18,7 +18,7 @@ const CommentList = () => {
   React.useEffect(() => {
     if (comment_list.length === 0) {
       //디스패치로 액션함수 불러오기
-      //dispatch(commentActions.setPostFB());
+      // dispatch(commentActions.getPostFB());
     }
   }, []);
 
@@ -42,7 +42,9 @@ const CommentList = () => {
           }}
           value={input}
         />
-        <Button _onClick={onClick}>등록</Button>
+        <Button width="auto" _onClick={onClick}>
+          등록
+        </Button>
       </Grid>
 
       {/* 댓글 컨텐츠 보여주는 영역 */}
