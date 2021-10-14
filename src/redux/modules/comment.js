@@ -36,6 +36,7 @@ const setCommentFB = () => {
   return async function (dispatch, getState) {
     try {
       const res = await apis.get("reply/replyList");
+      console.log(res);
       const 커멘트 = res.data.Replies;
       dispatch(setComment(커멘트));
 
