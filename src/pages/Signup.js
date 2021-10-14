@@ -60,7 +60,7 @@ const Signup = (props) => {
       {is_loading && <Spinner />}
       <Grid
         width="30vw"
-        height="75vh"
+        height="520px"
         margin="12vh auto"
         padding="40px 50px"
         bg="#f1f3f5"
