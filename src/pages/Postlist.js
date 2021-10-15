@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Container, Button } from "../elements";
+import { Grid, Container, Button, Text } from "../elements";
 import Modal from "../components/Modal";
 import Post from "../components/Post";
 import { useSelector, useDispatch } from "react-redux";
@@ -33,7 +33,7 @@ const Postlist = (props) => {
     <>
       <Container margin="40px auto 0">
         <Grid margin="0 0 40px 0" is_flex justify="space-between">
-          <h1>다들 할로윈 어케 보내시는지?....</h1>
+          <Text>다들 할로윈 어케 보내시는지?....</Text>
           {exitedToken ? (
             <Button type="blue" width="10%" _onClick={modalOnOff}>
               글쓰기

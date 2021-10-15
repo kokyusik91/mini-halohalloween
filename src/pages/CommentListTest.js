@@ -27,7 +27,7 @@ const CommentListTest = (props) => {
   const onClick = () => {
     dispatch(commentActions.addCommentFB(comment));
     setInput("");
-    // dispatch(commentActions.setCommentFB(postID));
+    dispatch(commentActions.setCommentFB(postID));
   };
 
   React.useEffect(() => {

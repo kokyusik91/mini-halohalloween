@@ -3,13 +3,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Text = (props) => {
-  const { bold, color, size, children, margin } = props;
+  const { bold, color, size, children, margin, is_title } = props;
 
   const styles = {
     bold: bold,
     color: color,
     size: size,
     margin: margin,
+    is_title: is_title,
   };
 
   return <P {...styles}>{children}</P>;
@@ -21,6 +22,7 @@ Text.defaultProps = {
   color: "#222831",
   size: "14px",
   margin: 0,
+  is_title: false,
 };
 
 const P = styled.p`

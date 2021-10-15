@@ -114,7 +114,7 @@ Front-end 3인, Back-end 3인
 
 ### 클라이언트쪽
 
-1. 각각의 카드 게시물 Update 및 Delete 서버와 통신하여 데이터베이스에 Update 및 Delete
+1. 각각의 카드 게시물 Update 및 Delete 서버와 통신하여 데이터베이스에 Update 및 Delete.
 2. 각각의 카드 게시물 Update 및 Delete 리덕스로 상태 바로 업데이트.
 3. 기존 Session storage에 저장되어있던, userNickname을 지우고 페이지가 새로고침 될때 서버에 요청을 보내어
 
@@ -123,6 +123,11 @@ Front-end 3인, Back-end 3인
 ### 클라이언트쪽
 
 1. 파이어 베이스 연동, 파이어 스토리지 연동 및 이미지 업로드하여 파이어 스토리지에 저장되는 것 확인!
-2. image url을 Upload.js에서만 가지고 있기 때문에 리덕스로 올린 이미지 url 관리
+2. image url을 Upload.js에서만 가지고 있기 때문에 리덕스로 올린 이미지 url 관리!
 3. 저장된 image url을 Modal.js에서 useSelector로 불러온다음 다른 post정보들과 함께 전송!
 4. .env 파일 생성!
+<<<<<<< HEAD
+5. image module 생성!
+6. 오류 수정!
+=======
+>>>>>>> 690976254f129ec0940b52cfd952100998972eab

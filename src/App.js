@@ -28,16 +28,16 @@ function App() {
   // 브라우저 뒤로가기 버튼을 클릭하면 hader, footer가 보여야 하는 컴포넌트임에도
   // 안보이는 이슈가 발생함. 이 문제는 router의 history로 해결해보려고 합니다.
 
-  // React.useEffect(() => {
-  //   return history.listen((location) => {
-  //     dispatch(userActions.isloading(true));
-  //     history.replace("/");
-  //     // dispatch(userActions.isloading(false));
-  //     setTimeout(() => {
-  //       dispatch(userActions.isloading(false));
-  //     }, 2000);
-  //   });
-  // }, [history]);
+  React.useEffect(() => {
+    return history.listen((location) => {
+      dispatch(userActions.isloading(true));
+      history.replace("/");
+      // dispatch(userActions.isloading(false));
+      setTimeout(() => {
+        dispatch(userActions.isloading(false));
+      }, 2000);
+    });
+  }, [history]);
 
   // 1. url 주소를 자른다.
   // history.location.pathname 으로 변수를 담으면 (" /login") <- 앞에 빈 공백이 생기기 때문에
