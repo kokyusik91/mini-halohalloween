@@ -6,6 +6,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 const Comment = (props) => {
   const dispatch = useDispatch();
   const { replyNickname, replyComment, replyID } = props;
+  // console.log(replyID, "댓글ID값");
   const replyID_send = { replyID: replyID };
   const user_data = useSelector((state) => state.user.user.userNickname);
   const replyNicKname = props.replyNickname;

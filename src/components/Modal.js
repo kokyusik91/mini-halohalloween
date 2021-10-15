@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {
   Grid,
@@ -12,14 +12,11 @@ import {
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
-import image from '../redux/modules/image';
 
 const Modal = (props) => {
-  // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
-  // console.log('상세 모달에서의 postID', props.el.postID);
-
   const dispatch = useDispatch();
   let image_url = useSelector((state) => state.image.image_url);
+  useEffect(() => {});
   // console.log('모달로 들어온 이미지 url', image_url);
   // 인풋창 2개 state 1개로 관리하는 방법
   const modaloff = () => {
@@ -44,7 +41,6 @@ const Modal = (props) => {
   };
   // moment사용하여 포스팅한 날짜정보
   const postingDate = moment().format('YYYY-MM-DD');
-  // 포스팅 할 정보들
 
   // console.log('마지막으로 올라갈 데이터', post_data);
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
