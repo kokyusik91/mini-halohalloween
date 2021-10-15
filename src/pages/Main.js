@@ -11,7 +11,7 @@ const Main = (props) => {
   console.log("main best_list = ", best_list);
   React.useEffect(() => {
     dispatch(postActions.getPostBestFB());
-  });
+  }, []);
 
   return (
     <>

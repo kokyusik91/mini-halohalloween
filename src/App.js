@@ -33,7 +33,7 @@ function App() {
         <Route path="/about" exact component={About} />
         <Route path="/contactus" exact component={ContactUs} />
         {/* <Route path="/commentlist" component={CommentList} /> */}
-        <Route path="/commentlist" component={CommentListTest} />
+        {/* <Route path="/commentlist" component={CommentListTest} /> */}
         <Route component={NotFound} />
       </Switch>
       {pathname !== "login" && pathname !== "signup" && <Footer />}

@@ -154,13 +154,10 @@ export default handleActions(
           return el.postID !== action.payload.post_id;
         });
       }),
-    [GET_POST_BEST]: (state, action) => {
+    [GET_POST_BEST]: (state, action) =>
       produce(state, (draft) => {
-        console.log("action.payload.best_list = ", action.payload.best_list);
         draft.best_list = action.payload.best_list;
-        console.log("state = ", state);
-      });
-    },
+      }),
   },
   initialState
 );
