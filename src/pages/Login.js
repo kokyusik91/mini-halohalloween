@@ -1,7 +1,7 @@
-import React from 'react';
-import { history } from '../redux/configureStore';
-import { useDispatch, useSelector } from 'react-redux';
-import { actionCreators as userActions } from '../redux/modules/user';
+import React from "react";
+import { history } from "../redux/configureStore";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 // import { emailCheck, passwordCheck } from "../shared/regExp";
 import { Grid, Label, Input, Button, Text } from "../elements";
 import Spinner from "../shared/Spinner";
@@ -17,12 +17,12 @@ const Login = (props) => {
     setState({ ...state, [e.target.name]: e.target.value });
   };
   const onClick = () => {
-    if (state.userEmail === '') {
-      alert('이메일 주소를 입력해주세요');
+    if (state.userEmail === "") {
+      alert("이메일 주소를 입력해주세요");
       return;
     }
-    if (state.userPassword === '') {
-      alert('비밀번호를 입력해주세요');
+    if (state.userPassword === "") {
+      alert("비밀번호를 입력해주세요");
       return;
     }
     // #### 이메일 비밀번호 정규표현식. 추후 배포할때 주석 해제 예정입니다!
@@ -34,7 +34,7 @@ const Login = (props) => {
     //   alert("비밀번호는 영문 숫자 조합 6자리 이상입니다.");
     //   return;
     // }
-    if (state.userEmail !== '' && state.userPassword !== '') {
+    if (state.userEmail !== "" && state.userPassword !== "") {
       dispatch(userActions.loginFB(state));
     }
   };
@@ -50,11 +50,11 @@ const Login = (props) => {
     <>
       {is_loading && <Spinner />}
       <Grid
-        width='30vw'
-        height='390px'
-        margin='20vh auto'
-        padding='40px 50px'
-        bg='#f1f3f5'
+        width="30vw"
+        height="390px"
+        margin="20vh auto"
+        padding="40px 50px"
+        bg="#f1f3f5"
       >
         <Text size="24px" bold>
           로그인
@@ -62,17 +62,17 @@ const Login = (props) => {
         <Grid margin="20px 0 0 0">
           <Label>이메일</Label>
           <Input
-            name='userEmail'
+            name="userEmail"
             value={state.userEmail}
             _onChange={onChange}
             _onSubmit={onClick}
             placeholder="이메일 주소를 입력해주세요."
           />
         </Grid>
-        <Grid margin='10px 0 0 0'>
+        <Grid margin="10px 0 0 0">
           <Label>비밀번호</Label>
           <Input
-            name='userPassword'
+            name="userPassword"
             value={state.userPassword}
             type="password"
             _onChange={onChange}
@@ -85,8 +85,8 @@ const Login = (props) => {
             로그인
           </Button>
         </Grid>
-        <Grid margin='20px 0 0 0'>
-          <Button type='white' _onClick={() => history.push('/signup')}>
+        <Grid margin="20px 0 0 0">
+          <Button type="white" _onClick={() => history.push("/signup")}>
             회원가입
           </Button>
         </Grid>

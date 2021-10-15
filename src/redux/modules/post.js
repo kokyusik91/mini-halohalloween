@@ -3,11 +3,11 @@ import { produce } from "immer";
 import { apis } from "../../shared/axios";
 
 //action type
-const SET_POST = 'SET_POST';
-const ADD_POST = 'ADD_POST';
-const UPDATE_POST = 'UPDATE_POST';
-const DELETE_POST = 'DELETE_POST';
-const GET_POST_BEST = 'GET_POST_BEST';
+const SET_POST = "SET_POST";
+const ADD_POST = "ADD_POST";
+const UPDATE_POST = "UPDATE_POST";
+const DELETE_POST = "DELETE_POST";
+const GET_POST_BEST = "GET_POST_BEST";
 
 // action creator
 const setPost = createAction(SET_POST, (post) => ({ post }));
@@ -17,6 +17,7 @@ const updatePost = createAction(UPDATE_POST, (updatePost_list) => ({
 }));
 const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
 const getPostBest = createAction(GET_POST_BEST, (best_list) => ({ best_list }));
+
 // 기본형식
 // {
 //   postingID: '',
@@ -52,8 +53,8 @@ const setPostFB = () => {
 const addPostFB = (post_data) => {
   return async function (dispatch, getState) {
     try {
-      const res = await apis.create('post/posting', post_data);
-      alert('포스팅에 성공하였습니다!');
+      const res = await apis.create("post/posting", post_data);
+      alert("포스팅에 성공하였습니다!");
       console.log(res);
     } catch (e) {
       console.log("error :::::: ", e);
@@ -66,7 +67,7 @@ const addPostFB = (post_data) => {
 
 const updatePostFB = (update_postdata) => {
   return async function (dispatch, getState) {
-    console.log('미들웨어로 넘어온', update_postdata);
+    console.log("미들웨어로 넘어온", update_postdata);
     try {
       const res = await apis.update("post/postModify", update_postdata);
       alert("수정에 성공하였습니다.");
@@ -116,12 +117,13 @@ const deletePostFB = (postID) => {
 const getPostBestFB = () => {
   return async (dispatch) => {
     try {
-      const res = await apis.get('post/postBest');
+      const res = await apis.get("post/postBest");
       const list = res.data.postList;
+      console.log("list = ", list);
       dispatch(getPostBest(list));
     } catch (e) {
       alert(e.response);
-      console.log(e.response);
+      console.log("e.response", e.response);
     }
   };
 };
@@ -152,6 +154,13 @@ export default handleActions(
           return el.postID !== action.payload.post_id;
         });
       }),
+    [GET_POST_BEST]: (state, action) => {
+      produce(state, (draft) => {
+        console.log("action.payload.best_list = ", action.payload.best_list);
+        draft.best_list = action.payload.best_list;
+        console.log("state = ", state);
+      });
+    },
   },
   initialState
 );
