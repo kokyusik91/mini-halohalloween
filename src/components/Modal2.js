@@ -15,7 +15,7 @@ const Modal2 = (props) => {
   const postID = {
     postID: props.el.postID,
   };
-
+  console.log(postID);
   useEffect(() => {
     apis.update('post/postClick', postID);
   }, []);
@@ -78,9 +78,9 @@ const Modal2 = (props) => {
     dispatch(postActions.deletePostFB(postID));
     // console.log('삭제되니?');
   };
-  React.useEffect(() => {
-    // dispatch(userActions.setUserFB());
-  });
+  // React.useEffect(() => {
+  //   // dispatch(userActions.setUserFB());
+  // });
   return (
     <>
       <ModalParent>

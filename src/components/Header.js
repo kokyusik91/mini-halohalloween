@@ -6,9 +6,8 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 const Hedaer = (props) => {
   const dispatch = useDispatch();
-  const is_user = useSelector((state) => state.user.user);
+  // const is_user = useSelector((state) => state.user.user);
   const is_login = useSelector((state) => state.user.is_login);
-  console.log("is_user = ", is_user);
   const logout = () => {
     dispatch(userActions.logOutFB());
   };

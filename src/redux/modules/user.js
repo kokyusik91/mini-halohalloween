@@ -95,6 +95,7 @@ const actionCreators = {
   loginFB,
   logOutFB,
   signupFB,
+  isloading,
 };
 
 export { actionCreators };
