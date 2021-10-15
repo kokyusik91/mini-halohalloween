@@ -1,43 +1,29 @@
 import React from "react";
-import { Grid, Container, Image } from "../elements";
-import { hallween01, hallween02, hallween03, hallween04, main } from "../image";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
+import { Grid, Container, Image, Text } from "../elements";
+import Post from "../components/Post";
+import { main } from "../image";
 
 const Main = (props) => {
-  const data = [
-    { id: 1, content: "1", title: "1", image: hallween01 },
-    { id: 2, content: "2", title: "2", image: hallween02 },
-    { id: 3, content: "3", title: "3", image: hallween03 },
-    { id: 4, content: "4", title: "4", image: hallween04 },
-  ];
+  const dispatch = useDispatch();
+  const best_list = useSelector((state) => state.post.best_list);
+  React.useEffect(() => {
+    dispatch(postActions.getPostBestFB());
+  }, []);
 
   return (
     <>
       <Grid height="auto" bg="#000">
         <Image width="100%" src={main} />
-        {/* <Container>
-          <p
-            style={{
-              color: "#fff",
-              lineHeight: "450px",
-              textAlign: "center",
-            }}
-          >
-            동영상 혹은 이미지
-          </p>
-        </Container> */}
       </Grid>
       <Container margin="40px auto 0">
         <Grid margin="0 0 40px 0">
-          <h1>포스팅 키워드</h1>
-          {/* <Image src={emoji01} width="80px" /> */}
+          <Text size="26px">인기 포스팅</Text>
         </Grid>
-        <Grid is_flex justify="space-between">
-          {data.map((item) => {
-            return (
-              <Grid type="card" key={item.id}>
-                <Image src={item.image} height="250px" />
-              </Grid>
-            );
+        <Grid is_flex justify="flex-start">
+          {best_list.map((item) => {
+            return <Post key={item.id} el={item} />;
           })}
         </Grid>
       </Container>

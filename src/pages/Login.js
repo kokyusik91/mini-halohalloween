@@ -9,43 +9,13 @@ import Spinner from "../shared/Spinner";
 const Login = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
-  const [state, setState] = React.useState({
-    userEmail: "",
-    userPassword: "",
-    disabled: true,
-  });
 
-  const changeState = (name, value, test) => {
-    // setState({ ...state, [name]: (state[name] = value) });
-    setState((preState) => ({ ...preState, [name]: value, disabled: test }));
-    console.log("state = ", state);
-  };
+  const [state, setState] = React.useState({ userEmail: "", userPassword: "" });
+  const [disabled, setDisabled] = React.useState(true);
+
   const onChange = (e) => {
-    if (state.userEmail !== "" && state.userPassword !== "") {
-      changeState(e.target.name, e.target.value, false);
-    } else {
-      changeState(e.target.name, e.target.value, true);
-    }
-    // changeState(e.target.name, e.target.value);
+    setState({ ...state, [e.target.name]: e.target.value });
   };
-  // const changeDisabled = (value) => {
-  //   setDisabled({ ...disabled, test: (disabled.test = value) });
-  //   console.log("disabled = ", disabled);
-  //   console.log("value = ", value);
-  // };
-  // const onChange = (e) => {
-  //   if (state.userEmail !== "" && state.userPassword !== "") {
-  //     changeDisabled(false);
-  //   } else {
-  //     changeDisabled(true);
-  //   }
-  //   changeState(e.target.name, e.target.value);
-  // };
-
-  React.useEffect(() => {
-    console.log("useEffect");
-  }, []);
-
   const onClick = () => {
     if (state.userEmail === "") {
       alert("이메일 주소를 입력해주세요");
@@ -69,6 +39,13 @@ const Login = (props) => {
     }
   };
 
+  // 지영 멘토님 답변 useEffect에서 disabled를 관리한다.
+  React.useEffect(() => {
+    if (state.userEmail !== "" && state.userPassword !== "") {
+      return setDisabled(false);
+    }
+    setDisabled(true);
+  }, [state]);
   return (
     <>
       {is_loading && <Spinner />}
@@ -104,7 +81,7 @@ const Login = (props) => {
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button type="blue" disabled={state.disabled} _onClick={onClick}>
+          <Button type="blue" disabled={disabled} _onClick={onClick}>
             로그인
           </Button>
         </Grid>
