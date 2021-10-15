@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import Spinner from "./shared/Spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
+import styled, { ThemeProvider } from "styled-components";
+import theme from "./style/theme";
 
 function App() {
   const dispatch = useDispatch();
@@ -26,16 +28,16 @@ function App() {
   // 브라우저 뒤로가기 버튼을 클릭하면 hader, footer가 보여야 하는 컴포넌트임에도
   // 안보이는 이슈가 발생함. 이 문제는 router의 history로 해결해보려고 합니다.
 
-  React.useEffect(() => {
-    return history.listen((location) => {
-      dispatch(userActions.isloading(true));
-      history.replace("/");
-      // dispatch(userActions.isloading(false));
-      setTimeout(() => {
-        dispatch(userActions.isloading(false));
-      }, 2000);
-    });
-  }, [history]);
+  // React.useEffect(() => {
+  //   return history.listen((location) => {
+  //     dispatch(userActions.isloading(true));
+  //     history.replace("/");
+  //     // dispatch(userActions.isloading(false));
+  //     setTimeout(() => {
+  //       dispatch(userActions.isloading(false));
+  //     }, 2000);
+  //   });
+  // }, [history]);
 
   // 1. url 주소를 자른다.
   // history.location.pathname 으로 변수를 담으면 (" /login") <- 앞에 빈 공백이 생기기 때문에
@@ -47,20 +49,22 @@ function App() {
   const pathname = history.location.pathname.split("/").reverse()[0];
   return (
     <ConnectedRouter history={history}>
-      {is_loading && <Spinner />}
-      {pathname !== "login" && pathname !== "signup" && <Hedaer />}
-      <Switch>
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/" exact component={Main} />
-        <Route path="/postlist" exact component={Postlist} />
-        <Route path="/about" exact component={About} />
-        <Route path="/contactus" exact component={ContactUs} />
-        {/* <Route path="/commentlist" component={CommentList} /> */}
-        <Route path="/commentlist" component={CommentListTest} />
-        <Route component={NotFound} />
-      </Switch>
-      {pathname !== "login" && pathname !== "signup" && <Footer />}
+      <ThemeProvider theme={theme}>
+        {pathname !== "login" && pathname !== "signup" && <Hedaer />}
+        <Switch>
+          {is_loading && <Spinner />}
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/" exact component={Main} />
+          <Route path="/postlist" exact component={Postlist} />
+          <Route path="/about" exact component={About} />
+          <Route path="/contactus" exact component={ContactUs} />
+          {/* <Route path="/commentlist" component={CommentList} /> */}
+          <Route path="/commentlist" component={CommentListTest} />
+          <Route component={NotFound} />
+        </Switch>
+        {pathname !== "login" && pathname !== "signup" && <Footer />}
+      </ThemeProvider>
     </ConnectedRouter>
   );
 }

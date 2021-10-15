@@ -119,7 +119,7 @@ const getPostBestFB = () => {
     try {
       const res = await apis.get("post/postBest");
       const list = res.data.postList;
-      console.log("list = ", list);
+      console.log("미들웨어 response list = ", list);
       dispatch(getPostBest(list));
     } catch (e) {
       alert(e.response);

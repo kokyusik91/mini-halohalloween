@@ -14,7 +14,6 @@ const CommentListTest = (props) => {
 
   //전체 댓글 정보 불러오기
   const comment_list = useSelector((state) => state.comment.comment_list);
-  console.log(comment_list, "commtlist의 전체정보");
   const user_data = useSelector((state) => state.user.user);
   const userNickname = user_data !== undefined ? user_data.userNickname : "";
 
@@ -27,6 +26,8 @@ const CommentListTest = (props) => {
   //comment 등록버튼 누르면 일어나는 이벤트
   const onClick = () => {
     dispatch(commentActions.addCommentFB(comment));
+    setInput("");
+    // dispatch(commentActions.setCommentFB(postID));
   };
 
   React.useEffect(() => {

@@ -53,6 +53,7 @@ const setCommentFB = (postID) => {
     try {
       const res = await apis.getReply("reply/replyList", postID.postID);
       const list = res.data.Replies;
+      console.log("comment list fb == ", list);
       dispatch(setComment(list));
     } catch (e) {
       console.log("error ? :::::: ", e);
@@ -65,7 +66,7 @@ const addCommentFB = (comment) => {
     try {
       // console.log("미들웨어로 넘어왔나?", comment);
       const res = await apis.create("reply/replyPost", comment);
-      console.log(res, "둥록확인");
+      console.log(res, "res");
       //리덕스저장
       // 사랑합니다 댓글 및 유저정보.
       dispatch(addComment(comment));
@@ -78,10 +79,10 @@ const addCommentFB = (comment) => {
 const deleteCommentFB = (replyID) => {
   return async function (dispatch, getState) {
     try {
-      console.log("replyID 미들웨어서 확인", replyID);
       const res = await apis.update("reply/replyDelete", replyID);
       alert("삭제에 성공했습니다");
-      console.log(res);
+      console.log("삭제 res", res);
+      console.log("삭제 replyID ", replyID);
       dispatch(deleteComment(replyID));
     } catch (e) {
       console.log("error ? ::::::", e);
@@ -111,13 +112,9 @@ export default handleActions(
 
     [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log("리듀서",action);
-        let array = draft.comment_list.filter((el) => {
+        draft.comment_list = draft.comment_list.filter((el) => {
           return el.replyID !== action.payload.replyID.replyID;
         });
-
-        console.log(array, "array");
-        draft.comment_list = array;
       }),
   },
   initialState
@@ -127,7 +124,6 @@ const actionCreators = {
   setComment,
   addComment,
   deleteComment,
-
   addCommentFB,
   setCommentFB,
   deleteCommentFB,

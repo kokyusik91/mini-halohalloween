@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import Modal2 from './Modal2';
-import { Image, Text, Grid } from '../elements';
+import React, { useState } from "react";
+import styled from "styled-components";
+import Modal2 from "./Modal2";
+import { Image, Text, Grid } from "../elements";
 
 const Post = (props) => {
   const { el } = props;
@@ -19,24 +19,24 @@ const Post = (props) => {
     <>
       <PostCard onClick={modalOnOff2}>
         <Image
-          width='100%'
+          width="100%"
           src={
             !props.el.postingImgUrl
-              ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2qRSiz3_RF1OMIdMiZvtWrycSyblXRgyl1Q&usqp=CAU'
+              ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2qRSiz3_RF1OMIdMiZvtWrycSyblXRgyl1Q&usqp=CAU"
               : props.el.postingImgUrl
           }
         />
-        <Grid padding='8px'>
+        <Grid padding="8px">
           <Text bold>닉네임 : {props.el.postingAuthor}</Text>
         </Grid>
-        <Grid padding='8px'>
+        <Grid padding="8px">
           <Text>제목 : {props.el.postingTitle}</Text>
         </Grid>
-        <Grid padding='8px'>
+        <Grid padding="8px">
           <Text>내용 : {props.el.postingComment}</Text>
         </Grid>
       </PostCard>
-      {modal2 === true ? <Modal2 el={el} _setModal={setModal2} /> : ''}
+      {modal2 === true ? <Modal2 el={el} _setModal={setModal2} /> : ""}
     </>
   );
 };
@@ -54,6 +54,9 @@ const PostCard = styled.div`
   &:hover {
     transform: scale(1.05);
   }
+  @media ${({ theme }) => theme.tablet} {
+    width: 49%;
+  } ;
 `;
 
 export default Post;

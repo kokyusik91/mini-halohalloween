@@ -29,7 +29,7 @@ const ContactUs = () => {
     <Grid margin="40px 0 0 0">
       <Container>
         <Text size="26px">Contact Us</Text>
-        <Grid is_flex justify="space-between" margin="30px 0 0 0">
+        <Grid is_flex justify="space-between">
           <TeamGrid
             onMouseOver={() => setHover({ ...hover, emoji04: true })}
             onMouseOut={() => setHover({ ...hover, emoji04: false })}
@@ -104,7 +104,7 @@ const ContactUs = () => {
             </GridCenter>
           </TeamGrid>
         </Grid>
-        <Grid is_flex justify="space-between" margin="30px 0 0 0">
+        <Grid is_flex justify="space-between">
           <TeamGrid
             onMouseOver={() => setHover({ ...hover, emoji02: true })}
             onMouseOut={() => setHover({ ...hover, emoji02: false })}
@@ -189,9 +189,18 @@ const fade = keyframes`
 `;
 const TeamGrid = styled.div`
   width: 32%;
+  margin-top: 30px;
   padding: 35px 30px;
   background-color: #f1f3f5;
   box-shadow: 3px 3px 3px #dee2e6;
+
+  @media ${({ theme }) => theme.tablet} {
+    padding: 15px 20px;
+  }
+  @media ${({ theme }) => theme.mobile} {
+    width: 100%;
+    margin-top: 20px;
+  }
   p,
   a {
     color: #243443;
