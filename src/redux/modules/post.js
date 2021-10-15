@@ -110,10 +110,13 @@ export default handleActions(
         // findex써서 해당되는
         // draft.post_list.findIndex()
       }),
-    [DELETE_POST]: (state, action) => produce(state, (draft) => {}),
-  },
-  initialState
-);
+    [DELETE_POST]: (state, action) => 
+      produce(state, (draft) => {
+        
+      }),
+    },
+    initialState
+  );
 
 const actionCreators = {
   setPost,

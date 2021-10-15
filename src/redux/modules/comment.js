@@ -77,9 +77,14 @@ const addCommentFB = (comment) => {
   };
 };
 
-const deleteCommentFB = () => {
+const deleteCommentFB = (commentID) => {
   return async function (dispatch, getState) {
-    dispatch(deleteComment());
+    try {
+      const res = await apis.delete("reply/replyDelte", commentID);
+      alert("삭제에 성공했습니다");
+    } catch (e) {
+      console.log("error ? ::::::", e);
+    }
   };
 };
 
@@ -93,6 +98,7 @@ export default handleActions(
         //let data ={[post_id]: comment_list,...}
         //draft.list[action.payload.comment_id] = action.payload.comment_list;
       }),
+
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         //comment가 실제로 더해짐
@@ -100,10 +106,13 @@ export default handleActions(
 
         // [해당하는 PostID] 게시물에만 댓글을 달아준다.
       }),
-    // [DELETE_COMMENT]: (state, action) =>
-    //   produce(state, (draft) => {
-    //     draft.
-    // }),
+
+    [UPDATE_COMMENT]: (state, action) =>
+      produce(state, (draft) => {
+        produce(state, (draft) => {
+          console.log("리듀서로 넘어온 데이터", action.payload.updatePost_list);
+        });
+      }),
   },
   initialState
 );
@@ -115,6 +124,7 @@ const actionCreators = {
 
   addCommentFB,
   setCommentFB,
+  deleteCommentFB,
 };
 
 export { actionCreators };
