@@ -7,7 +7,7 @@ const SET_POST = 'SET_POST';
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST = 'UPDATE_POST';
 const DELETE_POST = 'DELETE_POST';
-// const MODAL_ONOFF = 'MODAL_ONOFF';
+const GET_POST_BEST = 'GET_POST_BEST';
 
 // action creator
 const setPost = createAction(SET_POST, (post) => ({ post }));
@@ -15,11 +15,8 @@ const addPost = createAction(ADD_POST, (post_data) => ({ post_data }));
 const updatePost = createAction(UPDATE_POST, (updatePost_list) => ({
   updatePost_list,
 }));
-const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }));
-// const modalonoff = createAction(MODAL_ONOFF, (modalStatus) => ({
-//   modalStatus,
-// }));
-
+const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
+const getPostBest = createAction(GET_POST_BEST, (best_list) => ({ best_list }));
 // 기본형식
 // {
 //   postingID: '',
@@ -33,7 +30,7 @@ const deletePost = createAction(DELETE_POST, (post_id) => ({ post_id }));
 //initialState
 const initialState = {
   post_list: [],
-  is_modal: false,
+  best_list: [],
 };
 
 //middleware
@@ -116,6 +113,19 @@ const deletePostFB = (postID) => {
   };
 };
 
+const getPostBestFB = () => {
+  return async (dispatch) => {
+    try {
+      const res = await apis.get('post/postBest');
+      const list = res.data.postList;
+      dispatch(getPostBest(list));
+    } catch (e) {
+      alert(e.response);
+      console.log(e.response);
+    }
+  };
+};
+
 // reducer
 export default handleActions(
   {
@@ -155,6 +165,7 @@ const actionCreators = {
   setPostFB,
   updatePostFB,
   deletePostFB,
+  getPostBestFB,
 };
 
 export { actionCreators };

@@ -3,13 +3,13 @@ import { history } from "../redux/configureStore";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { emailCheck, passwordCheck } from "../shared/regExp";
-import { Grid, Label, Input, Button } from "../elements";
+import { Grid, Label, Input, Button, Text } from "../elements";
 import Spinner from "../shared/Spinner";
 
 const Signup = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
-
+  const [disabled, setDisabled] = React.useState(true);
   const [state, setState] = React.useState({
     userEmail: "",
     userNickname: "",
@@ -54,7 +54,17 @@ const Signup = (props) => {
       dispatch(userActions.signupFB(state));
     }
   };
-
+  React.useEffect(() => {
+    if (
+      state.userEmail !== "" &&
+      state.userNickname !== "" &&
+      state.userPassword !== "" &&
+      state.passwordCheck !== ""
+    ) {
+      return setDisabled(false);
+    }
+    setDisabled(true);
+  }, [state]);
   return (
     <>
       {is_loading && <Spinner />}
@@ -65,7 +75,7 @@ const Signup = (props) => {
         padding="40px 50px"
         bg="#f1f3f5"
       >
-        <h1>회원가입</h1>
+        <Text>회원가입</Text>
         <Grid margin="20px 0 0 0">
           <Label>이메일</Label>
           <Grid is_flex>
@@ -73,6 +83,7 @@ const Signup = (props) => {
               name="userEmail"
               value={state.userEmail}
               _onChange={onChange}
+              _onSubmit={onClick}
               placeholder="이메일 주소를 입력해주세요."
             />
           </Grid>
@@ -83,6 +94,7 @@ const Signup = (props) => {
             name="userNickname"
             value={state.userNickname}
             _onChange={onChange}
+            _onSubmit={onClick}
             placeholder="닉네임을 입력해주세요."
           />
         </Grid>
@@ -91,8 +103,9 @@ const Signup = (props) => {
           <Input
             name="userPassword"
             value={state.userPassword}
-            _onChange={onChange}
             type="password"
+            _onChange={onChange}
+            _onSubmit={onClick}
             placeholder="비밀번호를 입력해주세요."
           />
         </Grid>
@@ -101,13 +114,14 @@ const Signup = (props) => {
           <Input
             name="passwordCheck"
             value={state.passwordCheck}
-            _onChange={onChange}
             type="password"
+            _onChange={onChange}
+            _onSubmit={onClick}
             placeholder="비밀번호를 한번 더 입력해주세요."
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button type="blue" _onClick={onClick}>
+          <Button type="blue" disabled={disabled} _onClick={onClick}>
             회원가입
           </Button>
         </Grid>

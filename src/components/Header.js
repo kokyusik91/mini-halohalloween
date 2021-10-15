@@ -8,8 +8,12 @@ const Hedaer = (props) => {
   const dispatch = useDispatch();
   const is_user = useSelector((state) => state.user.user);
   const is_login = useSelector((state) => state.user.is_login);
+<<<<<<< HEAD
   // console.log("is_user ?? == ", is_user);
   // console.log("is_login == ", is_login);
+=======
+  console.log("header is_user = ", is_user);
+>>>>>>> 9cd8df668b345be3a017e4d481343fcd27a1cea9
   const logout = () => {
     dispatch(userActions.logOutFB());
   };
