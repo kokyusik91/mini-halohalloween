@@ -8,9 +8,10 @@ import { main } from "../image";
 const Main = (props) => {
   const dispatch = useDispatch();
   const best_list = useSelector((state) => state.post.best_list);
+  console.log("main best_list = ", best_list);
   React.useEffect(() => {
     dispatch(postActions.getPostBestFB());
-  }, []);
+  });
 
   return (
     <>
@@ -22,8 +23,8 @@ const Main = (props) => {
           <Text size="26px">인기 포스팅</Text>
         </Grid>
         <Grid is_flex justify="flex-start">
-          {best_list.map((item) => {
-            return <Post key={item.id} el={item} />;
+          {best_list.map((item, idx) => {
+            return <Post key={`best-${idx}`} el={item} />;
           })}
         </Grid>
       </Container>
