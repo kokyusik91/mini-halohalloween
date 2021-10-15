@@ -8,10 +8,8 @@ const CommentListTest = (props) => {
   const postID = props.postID;
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-
   const comment_list = useSelector((state) => state.comment.comment_list);
   const user_data = useSelector((state) => state.user.user);
-
   const userNickname = user_data !== undefined ? user_data.userNickname : "";
 
   const comment = {

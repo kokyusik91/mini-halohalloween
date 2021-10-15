@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 import {
   Grid,
   Label,
@@ -9,14 +9,14 @@ import {
   Button,
   Image,
   Text,
-} from '../elements/index';
-import moment from 'moment';
-import { useDispatch } from 'react-redux';
-import { actionCreators as postActions } from '../redux/modules/post';
+} from "../elements/index";
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
-  console.log('상세 모달에서의 postID', props.el.postID);
+  console.log("상세 모달에서의 postID", props.el.postID);
   const modaloff = () => {
     props._setModal(false);
   };
@@ -24,8 +24,8 @@ const Modal = (props) => {
   const dispatch = useDispatch();
   // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
-    title: '',
-    content: '',
+    title: "",
+    content: "",
   });
 
   // 비구조화 할당으로 값 추출
@@ -41,7 +41,7 @@ const Modal = (props) => {
     });
   };
   // moment사용하여 포스팅한 날짜정보
-  const postingDate = moment().format('YYYY-MM-DD');
+  const postingDate = moment().format("YYYY-MM-DD");
 
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
@@ -58,38 +58,38 @@ const Modal = (props) => {
   return (
     <>
       <ModalParent>
-        <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
+        <Grid width="30vw" padding="40px 50px" bg="#f1f3f5">
           글을 써주세요!
-          <Grid margin='20px 0 0 0'>
+          <Grid margin="20px 0 0 0">
             {/* <Image
               width='50%'
               src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
             /> */}
           </Grid>
-          <Grid margin='20px 0 0 0'>
-            <Label margin=''>제목</Label>
+          <Grid margin="20px 0 0 0">
+            <Label margin="">제목</Label>
             <Input
-              name='title'
-              type='text'
-              placeholder='제목을 입력해주세요!'
+              name="title"
+              type="text"
+              placeholder="제목을 입력해주세요!"
               _onChange={onChange}
               value={title}
             />
           </Grid>
-          <Grid margin='20px 0 0 0'>
-            <Label margin=''>게시글</Label>
+          <Grid margin="20px 0 0 0">
+            <Label margin="">게시글</Label>
             <Textarea
-              name='content'
-              placeholder='게시글을 작성해주세요!'
+              name="content"
+              placeholder="게시글을 작성해주세요!"
               _onChange={onChange}
               value={content}
             />
           </Grid>
-          <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
+          <Grid margin="20px 0 0 0" is_flex justify="flex-end">
             <Upload />
           </Grid>
           <Grid>
-            <Button margin='10px 0 0 0' type='blue' _onClick={submitPost}>
+            <Button margin="10px 0 0 0" type="blue" _onClick={submitPost}>
               글올리기
             </Button>
           </Grid>

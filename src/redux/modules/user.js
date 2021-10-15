@@ -27,8 +27,9 @@ export const signupFB = (user) => {
       history.push("/login");
       dispatch(isloading(false));
     } catch (e) {
+      alert(e.response.data.errorMessage);
       dispatch(isloading(false));
-      console.log("error :::::: ", e);
+      console.log("error :::::: ", e.response);
     }
   };
 };
@@ -46,8 +47,8 @@ export const loginFB = (user) => {
       dispatch(isloading(false));
     } catch (e) {
       dispatch(isloading(false));
-      alert(e);
-      console.log("error === ", e);
+      alert(e.response.data.errorMessage);
+      console.log("error :::::: ", e.response);
     }
   };
 };
@@ -55,16 +56,15 @@ export const loginFB = (user) => {
 // 로그인 여부 체크
 export const setUserFB = () => {
   return async (dispatch) => {
-    const res = await apis.get(`user/chkLogin`);
-    dispatch(setUser(res.data.user));
+    try {
+      const res = await apis.get(`user/chkLogin`);
+      dispatch(setUser(res.data.user));
+    } catch (e) {
+      alert(e.response.data.errorMessage);
+      console.log("error :::::: ", e.response);
+    }
   };
 };
-// export const setUserFB = () => {
-//   return (dispatch, getState, { history }) => {
-//     const is_user = sessionStorage.getItem("userNickname");
-//     dispatch(setUser(is_user));
-//   };
-// };
 
 export const logOutFB = () => {
   return (dispatch, getState, { history }) => {
