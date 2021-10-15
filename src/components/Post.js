@@ -5,7 +5,7 @@ import { Image, Text, Grid } from '../elements';
 
 const Post = (props) => {
   const { el } = props;
-  // console.log('각각의 POST에 해당하는 POSTID값', el.postID);
+  console.log('post props ===', props);
   const [modal2, setModal2] = useState(false);
   // 상세페이지 모달on/off 함수
   const modalOnOff2 = () => {
