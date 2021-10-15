@@ -41,7 +41,6 @@ const Modal = (props) => {
   };
   // moment사용하여 포스팅한 날짜정보
   const postingDate = moment().format('YYYY-MM-DD');
-  // 포스팅 할 정보들
 
   // console.log('마지막으로 올라갈 데이터', post_data);
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식

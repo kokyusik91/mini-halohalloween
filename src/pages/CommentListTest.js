@@ -11,6 +11,7 @@ const CommentListTest = (props) => {
 
   //로그인 정보 불러오기
   const is_login = useSelector((state) => state.user.is_login);
+  console.log(is_login);
 
   //전체 댓글 정보 불러오기
   const comment_list = useSelector((state) => state.comment.comment_list);
@@ -27,6 +28,8 @@ const CommentListTest = (props) => {
   //comment 등록버튼 누르면 일어나는 이벤트
   const onClick = () => {
     dispatch(commentActions.addCommentFB(comment));
+    setInput("");
+    dispatch(commentActions.setCommentFB(postID));
   };
 
   React.useEffect(() => {
