@@ -1,12 +1,6 @@
 import React from "react";
 import { Grid, Container, Image } from "../elements";
-import {
-  hallween01,
-  hallween02,
-  hallween03,
-  hallween04,
-  // emoji01,
-} from "../image";
+import { hallween01, hallween02, hallween03, hallween04 } from "../image";
 
 const Main = (props) => {
   const data = [

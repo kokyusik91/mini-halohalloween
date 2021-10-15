@@ -14,7 +14,7 @@ const Button = (props) => {
     bg,
     textAlign,
     color,
-    disable,
+    disabled,
     _onClick,
     children,
   } = props;
@@ -28,25 +28,25 @@ const Button = (props) => {
     color: color,
     bg: bg,
     border: border,
-    disable: disable,
+    disabled: disabled,
   };
 
   if (type === "white") {
     return (
-      <WhiteButton disable={disable} {...styles} onClick={_onClick}>
+      <WhiteButton disabled={disabled} {...styles} onClick={_onClick}>
         {children}
       </WhiteButton>
     );
   }
   if (type === "blue") {
     return (
-      <BlueButton disable={disable} {...styles} onClick={_onClick}>
+      <BlueButton disabled={disabled} {...styles} onClick={_onClick}>
         {children}
       </BlueButton>
     );
   }
   return (
-    <DefaultButton disable={disable} {...styles} onClick={_onClick}>
+    <DefaultButton disabled={disabled} {...styles} onClick={_onClick}>
       {children}
     </DefaultButton>
   );
@@ -76,7 +76,7 @@ const WhiteButton = styled.button`
   border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
   ${(props) =>
-    props.disable
+    props.disabled
       ? `background-color: #e9ecef; color:#ced4da; border:1px solid #ced4da`
       : ""};
   &:hover {
@@ -94,11 +94,11 @@ const BlueButton = styled.button`
   border: 1px solid #243443;
   ${(props) => (props.margin ? `margin: ${props.margin}` : "")};
   ${(props) =>
-    props.disable
+    props.disabled
       ? `background-color: #e9ecef; color:#ced4da; border:1px solid #ced4da`
       : ""};
   &:hover {
-    cursor: ${(props) => (!props.disable ? "pointer" : "not-allowed")};
+    cursor: ${(props) => (!props.disabled ? "pointer" : "not-allowed")};
   }
 `;
 
@@ -113,7 +113,7 @@ const DefaultButton = styled.button`
   ${(props) => props.border && `border: ${props.border}`};
   ${(props) => props.bg && `background-color: ${props.bg}`};
   ${(props) =>
-    props.disable
+    props.disabled
       ? `background-color: #e9ecef; color:#ced4da; border:1px solid #ced4da`
       : ""};
   &:hover {
