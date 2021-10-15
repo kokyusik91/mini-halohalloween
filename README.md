@@ -125,4 +125,4 @@ Front-end 3인, Back-end 3인
 1. 파이어 베이스 연동, 파이어 스토리지 연동 및 이미지 업로드하여 파이어 스토리지에 저장되는 것 확인!
 2. image url을 Upload.js에서만 가지고 있기 때문에 리덕스로 올린 이미지 url 관리
 3. 저장된 image url을 Modal.js에서 useSelector로 불러온다음 다른 post정보들과 함께 전송!
-4. .env 파일 생성
+4. .env 파일 생성!
