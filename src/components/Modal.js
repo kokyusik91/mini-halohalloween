@@ -7,21 +7,20 @@ import {
   Textarea,
   Upload,
   Button,
-  Image,
-  Text,
 } from '../elements/index';
 import moment from 'moment';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
-  console.log('상세 모달에서의 postID', props.el.postID);
+  // console.log('상세 모달에서의 postID', props.el.postID);
   const modaloff = () => {
     props._setModal(false);
   };
-
   const dispatch = useDispatch();
+  const image_url = useSelector((state) => state.image.image_url);
+  console.log('모달로 들어온 이미지 url', image_url);
   // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
     title: '',
@@ -42,16 +41,23 @@ const Modal = (props) => {
   };
   // moment사용하여 포스팅한 날짜정보
   const postingDate = moment().format('YYYY-MM-DD');
+  // 포스팅 할 정보들
 
+  // console.log('마지막으로 올라갈 데이터', post_data);
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
     const post_data = {
       postingTitle: inputs.title,
       postingComment: inputs.content,
       postingDate: postingDate,
+      //image url이 없으면?
+      postingImgUrl: image_url,
       postingDel: 1,
     };
     dispatch(postActions.addPostFB(post_data));
+    // 질문 : dispatch한번 더 쓰는게 좋은지, 아니면 Modal on/off 전역상태로 리렌더링 하는게 나을지??
+    dispatch(postActions.setPostFB());
+    modaloff();
   };
 
   // 글쓰기 모달
@@ -60,12 +66,7 @@ const Modal = (props) => {
       <ModalParent>
         <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
           글을 써주세요!
-          <Grid margin='20px 0 0 0'>
-            {/* <Image
-              width='50%'
-              src='https://www.statehumanities.org/wp-content/uploads/2015/08/400x300-300x225.gif'
-            /> */}
-          </Grid>
+          <Grid margin='20px 0 0 0'></Grid>
           <Grid margin='20px 0 0 0'>
             <Label margin=''>제목</Label>
             <Input
@@ -86,6 +87,7 @@ const Modal = (props) => {
             />
           </Grid>
           <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
+            {/* 이미지 업로드 */}
             <Upload />
           </Grid>
           <Grid>
