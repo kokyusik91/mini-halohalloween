@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import { Grid, Button, Input, Container } from "../elements";
-import Comment from "../components/Comment";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import React, { useState } from 'react';
+import { Grid, Button, Input, Container } from '../elements';
+import Comment from '../components/Comment';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as commentActions } from '../redux/modules/comment';
 
 //1. login 했을때만 commentcard가 보임 => useState 이용 is_login  삼항연산자넣기
 //2. input값을 useEffect를 이용해서, inputdata가 변할때만  실행시켜줌
 
 const CommentList = (props) => {
-  console.log("CommentList의 PostID", props.postID);
+  console.log('CommentList의 PostID', props.postID);
   // console.log('해당하는 게시물ID를 commentList에서 받아옴 props', props.postID);
-  console.log("commentList.js에서 가지고 있는 postID", props.postID);
-  const [input, setInput] = useState("");
+  // console.log('commentList.js에서 가지고 있는 postID', props.postID);
+  const [input, setInput] = useState('');
 
   const dispatch = useDispatch();
 
   //useSelector는 현재 리덕스의 state값을 가져온다
   const comment_list = useSelector((state) => state.comment.comment_list);
-  console.log("현재 리덕스 state에 저장되있는 comment_list", comment_list);
+  // console.log('현재 리덕스 state에 저장되있는 comment_list', comment_list);
   const user_data = useSelector((state) => state.user.user);
   // console.log('현재 로그인 중인 유저 정보', user_data);
+  const userNickname = user_data !== undefined ? user_data.userNickname : '';
   // const userNickname = user_data.userNickname;
-  // 미다 수정
-  const userNickname = user_data !== undefined ? user_data.userNickname : "";
+  console.log('userNickname', userNickname);
   // const exitedToken
   // console.log('커멘트페이지', comment_list);
 
@@ -46,9 +46,6 @@ const CommentList = (props) => {
   };
 
   //comment 삭제버튼 누르면 일어나는 이벤트
-  let filteredArray = comment_list.filter((el, i) => {
-    return el.postID === comment.postID;
-  });
   // console.log(
   //   '리덕스에서 넘어온 전체 State 게시물의 postID와 현재 열려있는 postID를 걸러서 같은 댓글만 뿌려준다.',
   //   filteredArray
@@ -59,13 +56,13 @@ const CommentList = (props) => {
       <Grid is_flex>
         {/* input값에 onChange로 상태값 변경해줌 */}
         <Input
-          flex="3"
+          flex='3'
           _onChange={(e) => {
             setInput(e.target.value);
           }}
           value={input}
         />
-        <Button width="auto" _onClick={onClick}>
+        <Button width='auto' _onClick={onClick}>
           등록
         </Button>
       </Grid>

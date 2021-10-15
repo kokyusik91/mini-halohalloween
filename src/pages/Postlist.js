@@ -42,7 +42,7 @@ const Postlist = (props) => {
         </Grid>
         <Grid is_flex justify='flex-start'>
           {post_list.map((el) => {
-            return <Post key={el.id} el={el} />;
+            return <Post key={el.index} el={el} />;
           })}
         </Grid>
       </Container>

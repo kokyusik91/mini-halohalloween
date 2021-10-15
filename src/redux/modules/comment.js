@@ -1,12 +1,12 @@
-import { createAction, handleActions } from "redux-actions";
-import { produce } from "immer";
+import { createAction, handleActions } from 'redux-actions';
+import { produce } from 'immer';
 // import moment from "moment";
-import { apis } from "../../shared/axios";
+import { apis } from '../../shared/axios';
 
 //action type
-const SET_COMMENT = "SET_COMMENT";
-const ADD_COMMENT = "ADD_COMMENT";
-const DELETE_COMMENT = "DELETE_COMMENT";
+const SET_COMMENT = 'SET_COMMENT';
+const ADD_COMMENT = 'ADD_COMMENT';
+const DELETE_COMMENT = 'DELETE_COMMENT';
 
 // action creator
 const setComment = createAction(SET_COMMENT, (list) => ({ list }));
@@ -53,11 +53,11 @@ const initialState = { comment_list: [] };
 const setCommentFB = (postID) => {
   return async function (dispatch, getState) {
     try {
-      const res = await apis.getReply("reply/replyList", postID.postID);
+      const res = await apis.getReply('reply/replyList', postID.postID);
       const list = res.data.Replies;
       dispatch(setComment(list));
     } catch (e) {
-      console.log("error ? :::::: ", e);
+      console.log('error ? :::::: ', e);
     }
   };
 };
@@ -65,14 +65,14 @@ const setCommentFB = (postID) => {
 const addCommentFB = (comment) => {
   return async function (dispatch, getState) {
     try {
-      console.log("미들웨어로 넘어왔나?", comment);
-      const res = await apis.create("reply/replyPost", comment);
-      console.log(res, "둥록확인");
+      // console.log("미들웨어로 넘어왔나?", comment);
+      const res = await apis.create('reply/replyPost', comment);
+      console.log(res, '둥록확인');
       //리덕스저장
       // 사랑합니다 댓글 및 유저정보.
       dispatch(addComment(comment));
     } catch (e) {
-      console.log("error ? :::::", e);
+      console.log('error ? :::::', e);
     }
   };
 };
