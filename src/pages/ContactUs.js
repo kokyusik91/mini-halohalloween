@@ -28,7 +28,7 @@ const ContactUs = () => {
   return (
     <Grid margin="40px 0 0 0">
       <Container>
-        <Text size="26px">Contact Us</Text>
+        <Text is_title>Contact Us</Text>
         <Grid is_flex justify="space-between">
           <TeamGrid
             onMouseOver={() => setHover({ ...hover, emoji04: true })}

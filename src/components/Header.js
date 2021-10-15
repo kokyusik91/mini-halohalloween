@@ -63,6 +63,9 @@ const HeaderLink = styled.button`
     cursor: pointer;
     color: #cd7f4f;
   }
+  :last-child {
+    padding: 0px 0px 0px 10px;
+  }
   @media ${({ theme }) => theme.tablet} {
     padding: ${(props) => (props.is_title ? "0" : "0 10px")};
     font-size: ${(props) => (props.is_title ? "15px" : "12px")};

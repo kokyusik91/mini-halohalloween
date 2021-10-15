@@ -21,7 +21,7 @@ const Main = (props) => {
       </Grid>
       <Container margin="40px auto 0">
         <Grid margin="0 0 40px 0">
-          <Text size="26px">인기 포스팅</Text>
+          <Text is_title>인기 포스팅</Text>
         </Grid>
         <Grid is_flex justify="flex-start">
           {best_list.map((item, idx) => {

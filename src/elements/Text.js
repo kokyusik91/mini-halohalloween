@@ -27,10 +27,13 @@ Text.defaultProps = {
 
 const P = styled.p`
   color: ${(props) => props.color};
-  font-size: ${(props) => props.size};
+  font-size: ${(props) => (props.is_title ? "26px" : props.size)};
   font-weight: ${(props) => (props.bold ? "900" : "600")};
   line-height: 1.6;
-  ${(props) => (props.margin ? `margin : ${props.margin}` : "")}
+  ${(props) => (props.margin ? `margin : ${props.margin}` : "")};
+  @media ${({ theme }) => theme.tablet} {
+    font-size: ${(props) => (props.is_title ? "16px" : "13px")};
+  } ;
 `;
 
 export default Text;

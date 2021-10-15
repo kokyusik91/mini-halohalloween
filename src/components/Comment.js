@@ -8,8 +8,9 @@ const Comment = (props) => {
   const { replyNickname, replyComment, replyID } = props;
   // console.log(replyID, "댓글ID값");
   const replyID_send = { replyID: replyID };
-  const user_data = useSelector((state) => state.user.user.userNickname);
-  const replyNicKname = props.replyNickname;
+  const user_data = useSelector((state) => state.user.user);
+  const replyNicKname =
+    props.replyNickname !== undefined ? props.replyNickname : "";
   //현재 로그인한 유저닉네임 : user_data
   //댓글을 누가 달았는지 props로 받아오기
   console.log(user_data, "현재 로그인한 유저닉네임");
