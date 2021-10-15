@@ -5,6 +5,8 @@ import {
   hallween02,
   hallween03,
   hallween04,
+  main,
+  about,
   // emoji01,
 } from "../image";
 const About = () => {
@@ -12,8 +14,13 @@ const About = () => {
     <>
       <Grid margin="40px 0 0 0">
         <Container>
-          <Text size="26px">할로윈소개</Text>
-          <Grid margin="30px 0 0 0">
+          <Grid>
+            <Image height="300px" src={about} />
+          </Grid>
+          <Text size="26px" margin="30px 0 0 0">
+            할로윈소개
+          </Text>
+          <Grid margin="20px 0 0 0">
             <Text size="20px">October 31</Text>
             <Grid margin="10px 0 0 0">
               <Text>
@@ -49,20 +56,18 @@ const About = () => {
               <Text></Text>
             </Grid>
           </Grid>
-          <Grid is_flex justify="space-between" margin="20px 0 0 0">
-            <Grid width="49%">
-              <Image src={hallween01} height="350px" />
+          <Grid is_flex justify="space-between" margin="30px 0 0 0">
+            <Grid width="24%">
+              <Image src={hallween01} height="300px" />
             </Grid>
-            <Grid width="49%">
-              <Image src={hallween02} height="350px" />
+            <Grid width="24%">
+              <Image src={hallween02} height="300px" />
             </Grid>
-          </Grid>
-          <Grid is_flex justify="space-between" margin="20px 0 0 0">
-            <Grid width="49%">
-              <Image src={hallween03} height="350px" />
+            <Grid width="24%">
+              <Image src={hallween03} height="300px" />
             </Grid>
-            <Grid width="49%">
-              <Image src={hallween04} height="350px" />
+            <Grid width="24%">
+              <Image src={hallween04} height="300px" />
             </Grid>
           </Grid>
         </Container>

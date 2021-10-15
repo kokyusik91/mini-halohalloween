@@ -14,6 +14,8 @@ import emoji05 from "./emoji05.png";
 import emoji05_hover from "./emoji05-01.png";
 import emoji06 from "./emoji06.png";
 import emoji06_hover from "./emoji06-01.png";
+import main from "./main.png";
+import about from "./about.jpg";
 
 export {
   hallween01,
@@ -32,4 +34,6 @@ export {
   emoji05_hover,
   emoji06,
   emoji06_hover,
+  main,
+  about,
 };

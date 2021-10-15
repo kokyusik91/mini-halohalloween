@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, Container, Image } from "../elements";
-import { hallween01, hallween02, hallween03, hallween04 } from "../image";
+import { hallween01, hallween02, hallween03, hallween04, main } from "../image";
 
 const Main = (props) => {
   const data = [
@@ -12,8 +12,9 @@ const Main = (props) => {
 
   return (
     <>
-      <Grid height="450px" bg="#000">
-        <Container>
+      <Grid height="auto" bg="#000">
+        <Image width="100%" src={main} />
+        {/* <Container>
           <p
             style={{
               color: "#fff",
@@ -23,7 +24,7 @@ const Main = (props) => {
           >
             동영상 혹은 이미지
           </p>
-        </Container>
+        </Container> */}
       </Grid>
       <Container margin="40px auto 0">
         <Grid margin="0 0 40px 0">

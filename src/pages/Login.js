@@ -9,26 +9,38 @@ import Spinner from "../shared/Spinner";
 const Login = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
-  const [state, setState] = React.useState({ userEmail: "", userPassword: "" });
-  const [disabled, setDisabled] = React.useState({ test: true });
+  const [state, setState] = React.useState({
+    userEmail: "",
+    userPassword: "",
+    disabled: true,
+  });
 
-  const changeState = (name, value) => {
-    setState({ ...state, [name]: (state[name] = value) });
+  const changeState = (name, value, test) => {
+    // setState({ ...state, [name]: (state[name] = value) });
+    setState((preState) => ({ ...preState, [name]: value, disabled: test }));
     console.log("state = ", state);
-  };
-  const changeDisabled = (value) => {
-    setDisabled({ ...disabled, test: (disabled.test = value) });
-    console.log("disabled = ", disabled);
-    console.log("value = ", value);
   };
   const onChange = (e) => {
     if (state.userEmail !== "" && state.userPassword !== "") {
-      changeDisabled(false);
+      changeState(e.target.name, e.target.value, false);
     } else {
-      changeDisabled(true);
+      changeState(e.target.name, e.target.value, true);
     }
-    changeState(e.target.name, e.target.value);
+    // changeState(e.target.name, e.target.value);
   };
+  // const changeDisabled = (value) => {
+  //   setDisabled({ ...disabled, test: (disabled.test = value) });
+  //   console.log("disabled = ", disabled);
+  //   console.log("value = ", value);
+  // };
+  // const onChange = (e) => {
+  //   if (state.userEmail !== "" && state.userPassword !== "") {
+  //     changeDisabled(false);
+  //   } else {
+  //     changeDisabled(true);
+  //   }
+  //   changeState(e.target.name, e.target.value);
+  // };
 
   React.useEffect(() => {
     console.log("useEffect");
@@ -92,7 +104,7 @@ const Login = (props) => {
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button type="blue" disabled={disabled.test} _onClick={onClick}>
+          <Button type="blue" disabled={state.disabled} _onClick={onClick}>
             로그인
           </Button>
         </Grid>
