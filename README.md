@@ -126,5 +126,8 @@ Front-end 3인, Back-end 3인
 2. image url을 Upload.js에서만 가지고 있기 때문에 리덕스로 올린 이미지 url 관리!
 3. 저장된 image url을 Modal.js에서 useSelector로 불러온다음 다른 post정보들과 함께 전송!
 4. .env 파일 생성!
+<<<<<<< HEAD
 5. image module 생성!
 6. 오류 수정!
+=======
+>>>>>>> 690976254f129ec0940b52cfd952100998972eab

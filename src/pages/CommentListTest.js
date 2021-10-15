@@ -8,7 +8,13 @@ const CommentListTest = (props) => {
   const postID = props.postID;
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
+
+  //로그인 정보 불러오기
+  const is_login = useSelector((state) => state.user.is_login);
+
+  //전체 댓글 정보 불러오기
   const comment_list = useSelector((state) => state.comment.comment_list);
+  console.log(comment_list, "commtlist의 전체정보");
   const user_data = useSelector((state) => state.user.user);
   const userNickname = user_data !== undefined ? user_data.userNickname : "";
 
@@ -30,16 +36,20 @@ const CommentListTest = (props) => {
   return (
     <Container>
       <Grid is_flex>
-        <Input
-          flex="3"
-          _onChange={(e) => {
-            setInput(e.target.value);
-          }}
-          value={input}
-        />
-        <Button width="auto" _onClick={onClick}>
-          등록
-        </Button>
+        {is_login ? (
+          <>
+            <Input
+              flex="3"
+              _onChange={(e) => {
+                setInput(e.target.value);
+              }}
+              value={input}
+            />
+            <Button width="auto" _onClick={onClick}>
+              등록
+            </Button>
+          </>
+        ) : null}
       </Grid>
 
       {comment_list.map((el, i) => {
@@ -48,7 +58,5 @@ const CommentListTest = (props) => {
     </Container>
   );
 };
-
-// console.log(props._onChange);
 
 export default CommentListTest;

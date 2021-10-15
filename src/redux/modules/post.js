@@ -1,13 +1,13 @@
-import { createAction, handleActions } from 'redux-actions';
-import { produce } from 'immer';
-import { apis } from '../../shared/axios';
+import { createAction, handleActions } from "redux-actions";
+import { produce } from "immer";
+import { apis } from "../../shared/axios";
 
 //action type
-const SET_POST = 'SET_POST';
-const ADD_POST = 'ADD_POST';
-const UPDATE_POST = 'UPDATE_POST';
-const DELETE_POST = 'DELETE_POST';
-const GET_POST_BEST = 'GET_POST_BEST';
+const SET_POST = "SET_POST";
+const ADD_POST = "ADD_POST";
+const UPDATE_POST = "UPDATE_POST";
+const DELETE_POST = "DELETE_POST";
+const GET_POST_BEST = "GET_POST_BEST";
 
 // action creator
 const setPost = createAction(SET_POST, (post) => ({ post }));
@@ -38,14 +38,14 @@ const initialState = {
 const setPostFB = () => {
   return async function (dispatch, getState) {
     try {
-      const res = await apis.get('post/postlist');
+      const res = await apis.get("post/postlist");
       console.log(res);
       const post_list = res.data.postList;
 
       // console.log('서버에서 받아온 데이터', post_list);
       dispatch(setPost(post_list));
     } catch (e) {
-      console.log('error ? :::::: ', e);
+      console.log("error ? :::::: ", e);
     }
   };
 };
@@ -53,11 +53,11 @@ const setPostFB = () => {
 const addPostFB = (post_data) => {
   return async function (dispatch, getState) {
     try {
-      const res = await apis.create('post/posting', post_data);
-      alert('포스팅에 성공하였습니다!');
+      const res = await apis.create("post/posting", post_data);
+      alert("포스팅에 성공하였습니다!");
       console.log(res);
     } catch (e) {
-      console.log('error :::::: ', e);
+      console.log("error :::::: ", e);
     }
     const user_data = getState().user.user;
     const addPostData = { ...post_data, postingAuthor: user_data.userNickname };
@@ -67,13 +67,13 @@ const addPostFB = (post_data) => {
 
 const updatePostFB = (update_postdata) => {
   return async function (dispatch, getState) {
-    console.log('미들웨어로 넘어온', update_postdata);
+    console.log("미들웨어로 넘어온", update_postdata);
     try {
-      const res = await apis.update('post/postModify', update_postdata);
-      alert('수정에 성공하였습니다.');
+      const res = await apis.update("post/postModify", update_postdata);
+      alert("수정에 성공하였습니다.");
       console.log(res);
     } catch (e) {
-      console.log('error :::::: ', e);
+      console.log("error :::::: ", e);
     }
     //업데이트 한 정보를 기존 post_list의 하나의 객체의 형식에 들어있는 데이터와 양식을 맞춰주기위해 필요한 userEmail을 가져온다.
     const user_data = getState().user.user;
@@ -99,11 +99,11 @@ const deletePostFB = (postID) => {
   return async function (dispatch, getState) {
     // console.log('미들웨어로 넘어온', postID);
     try {
-      const res = await apis.update('post/postDelete', postID);
-      alert('삭제에 성공하였습니다.');
+      const res = await apis.update("post/postDelete", postID);
+      alert("삭제에 성공하였습니다.");
       console.log(res);
     } catch (e) {
-      console.log('error :::::: ', e);
+      console.log("error :::::: ", e);
     }
     // let currentArray = getState().post.post_list;
     // let array = currentArray.filter((el) => {
@@ -117,13 +117,13 @@ const deletePostFB = (postID) => {
 const getPostBestFB = () => {
   return async (dispatch) => {
     try {
-      const res = await apis.get('post/postBest');
+      const res = await apis.get("post/postBest");
       const list = res.data.postList;
-      console.log('list = ', list);
+      console.log("list = ", list);
       dispatch(getPostBest(list));
     } catch (e) {
       alert(e.response);
-      console.log('e.response', e.response);
+      console.log("e.response", e.response);
     }
   };
 };
@@ -156,9 +156,7 @@ export default handleActions(
       }),
     [GET_POST_BEST]: (state, action) =>
       produce(state, (draft) => {
-        console.log('action.payload.best_list = ', action.payload.best_list);
         draft.best_list = action.payload.best_list;
-        console.log('state = ', state);
       }),
   },
   initialState
