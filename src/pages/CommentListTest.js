@@ -9,6 +9,8 @@ const CommentListTest = (props) => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
   const comment_list = useSelector((state) => state.comment.comment_list);
+  const comments = useSelector((state) => state);
+
   const user_data = useSelector((state) => state.user.user);
   const userNickname = user_data !== undefined ? user_data.userNickname : "";
 
@@ -17,6 +19,8 @@ const CommentListTest = (props) => {
     replyNickname: userNickname,
     replyComment: input,
   };
+  console.log(comment_list, "commentlisttest에선 replyID가 찍힐까요?");
+  console.log(comments, "commentstate가 찍힐까요?");
 
   //comment 등록버튼 누르면 일어나는 이벤트
   const onClick = () => {

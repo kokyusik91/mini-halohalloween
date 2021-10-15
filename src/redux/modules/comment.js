@@ -11,9 +11,10 @@ const DELETE_COMMENT = "DELETE_COMMENT";
 // action creator
 const setComment = createAction(SET_COMMENT, (list) => ({ list }));
 const addComment = createAction(ADD_COMMENT, (comment) => ({ comment }));
-const deleteComment = createAction(DELETE_COMMENT, (comment_id) => ({
-  comment_id,
+const deleteComment = createAction(DELETE_COMMENT, (reply_id) => ({
+  reply_id,
 }));
+
 
 // // 기본형식
 // // {
@@ -77,11 +78,12 @@ const addCommentFB = (comment) => {
   };
 };
 
-const deleteCommentFB = (commentID) => {
+const deleteCommentFB = (replyID) => {
   return async function (dispatch, getState) {
     try {
-      const res = await apis.delete("reply/replyDelte", commentID);
+      const res = await apis.delete("reply/replyDelte", replyID);
       alert("삭제에 성공했습니다");
+      dispatch(deleteComment(replyID));
     } catch (e) {
       console.log("error ? ::::::", e);
     }
@@ -97,6 +99,7 @@ export default handleActions(
         draft.comment_list = action.payload.list;
         //let data ={[post_id]: comment_list,...}
         //draft.list[action.payload.comment_id] = action.payload.comment_list;
+        console.log(action.payload.list);
       }),
 
     [ADD_COMMENT]: (state, action) =>
@@ -107,7 +110,7 @@ export default handleActions(
         // [해당하는 PostID] 게시물에만 댓글을 달아준다.
       }),
 
-    [UPDATE_COMMENT]: (state, action) =>
+    [DELETE_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         produce(state, (draft) => {
           console.log("리듀서로 넘어온 데이터", action.payload.updatePost_list);

@@ -8,6 +8,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 //2. input값을 useEffect를 이용해서, inputdata가 변할때만  실행시켜줌
 
 const CommentList = (props) => {
+  console.log(props, "commentlist의 props");
   console.log("CommentList의 PostID", props.postID);
   // console.log('해당하는 게시물ID를 commentList에서 받아옴 props', props.postID);
   console.log("commentList.js에서 가지고 있는 postID", props.postID);
@@ -45,10 +46,6 @@ const CommentList = (props) => {
     dispatch(commentActions.addCommentFB(comment));
   };
 
-  //comment 삭제버튼 누르면 일어나는 이벤트
-  let filteredArray = comment_list.filter((el, i) => {
-    return el.postID === comment.postID;
-  });
   // console.log(
   //   '리덕스에서 넘어온 전체 State 게시물의 postID와 현재 열려있는 postID를 걸러서 같은 댓글만 뿌려준다.',
   //   filteredArray
