@@ -20,6 +20,7 @@ import { actionCreators as userActions } from "./redux/modules/user";
 function App() {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
+  console.log("history = ", history);
   // ## 이슈 로그인, 회원가입 페이지는 header , footer 컴포넌트가 보여지면 안된다.
   // header, footer가 보여지는 컴포넌트에서 로그인 혹은 회원가입 컴포넌트로 이동후
   // 브라우저 뒤로가기 버튼을 클릭하면 hader, footer가 보여야 하는 컴포넌트임에도
@@ -28,11 +29,11 @@ function App() {
   React.useEffect(() => {
     return history.listen((location) => {
       dispatch(userActions.isloading(true));
-      history.replace("/");
+      history.reload();
       // dispatch(userActions.isloading(false));
       setTimeout(() => {
         dispatch(userActions.isloading(false));
-      }, 3000);
+      }, 2000);
     });
   }, [history]);
 
