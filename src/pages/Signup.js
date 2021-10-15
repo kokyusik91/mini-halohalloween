@@ -9,7 +9,7 @@ import Spinner from "../shared/Spinner";
 const Signup = (props) => {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
-
+  const [disabled, setDisabled] = React.useState(true);
   const [state, setState] = React.useState({
     userEmail: "",
     userNickname: "",
@@ -54,7 +54,17 @@ const Signup = (props) => {
       dispatch(userActions.signupFB(state));
     }
   };
-
+  React.useEffect(() => {
+    if (
+      state.userEmail !== "" &&
+      state.userNickname !== "" &&
+      state.userPassword !== "" &&
+      state.passwordCheck !== ""
+    ) {
+      return setDisabled(false);
+    }
+    setDisabled(true);
+  }, [state]);
   return (
     <>
       {is_loading && <Spinner />}
@@ -111,7 +121,7 @@ const Signup = (props) => {
           />
         </Grid>
         <Grid margin="20px 0 0 0">
-          <Button type="blue" _onClick={onClick}>
+          <Button type="blue" disabled={disabled} _onClick={onClick}>
             회원가입
           </Button>
         </Grid>

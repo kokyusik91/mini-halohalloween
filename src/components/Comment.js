@@ -8,12 +8,11 @@ const Comment = (props) => {
   // const replyID = props.replyID;
   const { replyNickname, replyComment } = props;
 
-
   const replyID = useSelector((state) => state.comment.comment_list[0].postID);
-  const [deleteRelplyID, setDeleteReplyID] = useState(state.comment.comment_list[0].postID);
+  // const [deleteRelplyID, setDeleteReplyID] = useState(state.comment.comment_list[0].postID);
   console.log(replyID);
 
-//삭제버튼이 클릭되면 해당 댓글의 ID값을 미들웨어로 보내줌
+  //삭제버튼이 클릭되면 해당 댓글의 ID값을 미들웨어로 보내줌
   const deleteClick = (replyID) => {
     dispatch(commentActions.deleteCommentFB(replyID));
   };

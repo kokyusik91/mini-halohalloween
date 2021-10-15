@@ -8,22 +8,21 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 //2. input값을 useEffect를 이용해서, inputdata가 변할때만  실행시켜줌
 
 const CommentList = (props) => {
-  console.log(props, "commentlist의 props");
   console.log("CommentList의 PostID", props.postID);
   // console.log('해당하는 게시물ID를 commentList에서 받아옴 props', props.postID);
-  console.log("commentList.js에서 가지고 있는 postID", props.postID);
+  // console.log('commentList.js에서 가지고 있는 postID', props.postID);
   const [input, setInput] = useState("");
 
   const dispatch = useDispatch();
 
   //useSelector는 현재 리덕스의 state값을 가져온다
   const comment_list = useSelector((state) => state.comment.comment_list);
-  console.log("현재 리덕스 state에 저장되있는 comment_list", comment_list);
+  // console.log('현재 리덕스 state에 저장되있는 comment_list', comment_list);
   const user_data = useSelector((state) => state.user.user);
   // console.log('현재 로그인 중인 유저 정보', user_data);
-  // const userNickname = user_data.userNickname;
-  // 미다 수정
   const userNickname = user_data !== undefined ? user_data.userNickname : "";
+  // const userNickname = user_data.userNickname;
+  console.log("userNickname", userNickname);
   // const exitedToken
   // console.log('커멘트페이지', comment_list);
 
@@ -46,6 +45,7 @@ const CommentList = (props) => {
     dispatch(commentActions.addCommentFB(comment));
   };
 
+  //comment 삭제버튼 누르면 일어나는 이벤트
   // console.log(
   //   '리덕스에서 넘어온 전체 State 게시물의 postID와 현재 열려있는 postID를 걸러서 같은 댓글만 뿌려준다.',
   //   filteredArray

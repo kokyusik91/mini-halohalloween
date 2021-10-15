@@ -12,6 +12,7 @@ import ContactUs from "./pages/ContactUs";
 // import CommentList from "./pages/CommentList";
 import CommentListTest from "./pages/CommentListTest";
 import NotFound from "./pages/NotFound";
+import React from "react";
 
 function App() {
   // 1. url 주소를 자른다.
@@ -22,6 +23,7 @@ function App() {
   // 배열의 순서를 무조건 맨 첫번째로 오도록 reverse()로 돌린다.
   // 첫번째 배열을 pathname 변수에 담아서 조건처리를 해준다.
   const pathname = history.location.pathname.split("/").reverse()[0];
+  React.useEffect(() => {}, []);
   return (
     <ConnectedRouter history={history}>
       {pathname !== "login" && pathname !== "signup" && <Hedaer />}
