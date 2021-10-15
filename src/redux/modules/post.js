@@ -15,7 +15,7 @@ const addPost = createAction(ADD_POST, (post_data) => ({ post_data }));
 const updatePost = createAction(UPDATE_POST, (updatePost_list) => ({
   updatePost_list,
 }));
-const deletePost = createAction(DELETE_POST, (post_list) => ({ post_list }));
+const deletePost = createAction(DELETE_POST, (postID) => ({ postID }));
 const getPostBest = createAction(GET_POST_BEST, (best_list) => ({ best_list }));
 
 // 기본형식
@@ -151,7 +151,7 @@ export default handleActions(
     [DELETE_POST]: (state, action) =>
       produce(state, (draft) => {
         draft.post_list = draft.post_list.filter((el) => {
-          return el.postID !== action.payload.post_id;
+          return el.postID !== action.payload.postID.postID;
         });
       }),
     [GET_POST_BEST]: (state, action) =>

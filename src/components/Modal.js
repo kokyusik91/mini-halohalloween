@@ -7,21 +7,24 @@ import {
   Textarea,
   Upload,
   Button,
+  Image,
 } from '../elements/index';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCreators as postActions } from '../redux/modules/post';
+import image from '../redux/modules/image';
 
 const Modal = (props) => {
   // Modal on/off 부모 컴포넌트의 State를 건드리니 Context-api로 개선하기
   // console.log('상세 모달에서의 postID', props.el.postID);
+
+  const dispatch = useDispatch();
+  let image_url = useSelector((state) => state.image.image_url);
+  // console.log('모달로 들어온 이미지 url', image_url);
+  // 인풋창 2개 state 1개로 관리하는 방법
   const modaloff = () => {
     props._setModal(false);
   };
-  const dispatch = useDispatch();
-  const image_url = useSelector((state) => state.image.image_url);
-  console.log('모달로 들어온 이미지 url', image_url);
-  // 인풋창 2개 state 1개로 관리하는 방법
   const [inputs, setInputs] = useState({
     title: '',
     content: '',
@@ -46,11 +49,14 @@ const Modal = (props) => {
   // console.log('마지막으로 올라갈 데이터', post_data);
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
+    // 제목, 내용 유효성 검토
+    if (!inputs.title || !inputs.content) {
+      return alert('빈칸을 입력해 주세요!');
+    }
     const post_data = {
       postingTitle: inputs.title,
       postingComment: inputs.content,
       postingDate: postingDate,
-      //image url이 없으면?
       postingImgUrl: image_url,
       postingDel: 1,
     };
@@ -66,7 +72,9 @@ const Modal = (props) => {
       <ModalParent>
         <Grid width='30vw' padding='40px 50px' bg='#f1f3f5'>
           글을 써주세요!
-          <Grid margin='20px 0 0 0'></Grid>
+          <Grid margin='20px 0 0 0'>
+            <Image src={image_url} />
+          </Grid>
           <Grid margin='20px 0 0 0'>
             <Label margin=''>제목</Label>
             <Input

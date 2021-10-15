@@ -25,6 +25,7 @@ const Modal2 = (props) => {
 
   const modaloff = () => {
     props._setModal(false);
+    dispatch(postActions.setPostFB());
   };
   // 게시물의 닉네임과 세션스토리지에 있는 닉네임을 비교해서 "수정,삭제 버튼 보여줌,안보여줌"
   // 현재는 sessionStorage에 userNickname으로 저장되어있는데, 미다님께서 redux의 user module에 저장할 예정, useSelector로 userNickname 가져와야함
@@ -67,9 +68,7 @@ const Modal2 = (props) => {
 
   // 수정된 내용을 middleware로 보내기
   const editDataSubmit = () => {
-    // if(alert(수정 하ㄱ)){
-    //   console.log(alert);
-    // }
+    alert('정말 지우실 건가요?');
     dispatch(postActions.updatePostFB(update_postdata));
     modaloff();
   };

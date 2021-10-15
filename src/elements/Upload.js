@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Button from '../elements/Button';
 import { storage } from '../shared/firebase';
 import { actionCreators as imageActions } from '../redux/modules/image';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Upload = (props) => {
   const { type, color, backgroundColor } = props;
@@ -18,12 +18,12 @@ const Upload = (props) => {
   // Input태그에 접근하기 위해 useRef()사용.
   const fileInput = useRef();
   const dispatch = useDispatch();
+  // 업로드중인지 아닌지 구분자.
+  const is_uploading = useSelector((state) => state.image.uploading);
+  console.log('업로드 되냐 안되냐?', is_uploading);
 
   // onChange 함수에서 선택한 파일의 정보를 알 수 있다.
   const selectFile = (e) => {
-    console.log('e', e);
-    console.log('e.target', e.target);
-    console.log('e.target.files', e.target.files[0]);
     // Ref로 접근가능한지 확인
     console.log('useRef', fileInput.current.files[0]);
     let image = fileInput.current.files[0];
@@ -33,15 +33,22 @@ const Upload = (props) => {
 
   return (
     <React.Fragment>
-      <LabelFile htmlFor='ex_file' {...styles}>
-        업로드
-      </LabelFile>
+      {is_uploading ? (
+        <LabelFiled htmlFor='ex_file' {...styles}>
+          업로드중
+        </LabelFiled>
+      ) : (
+        <LabelFile htmlFor='ex_file' {...styles}>
+          업로드
+        </LabelFile>
+      )}
       <UploadForm
         id='ex_file'
         type={type}
         {...styles}
         onChange={selectFile}
         ref={fileInput}
+        disabled={is_uploading}
       />
     </React.Fragment>
   );
@@ -58,6 +65,15 @@ const LabelFile = styled.label`
   color: ${(props) => props.color};
   padding: 12px;
   background-color: ${(props) => props.backgroundColor};
+  font-size: 12px;
+  cursor: pointer;
+`;
+
+const LabelFiled = styled.label`
+  display: inline-block;
+  color: #fff;
+  padding: 12px;
+  background-color: #808387;
   font-size: 12px;
   cursor: pointer;
 `;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Modal2 from './Modal2';
 import { Image, Text, Grid } from '../elements';
@@ -15,11 +15,13 @@ const Post = (props) => {
       setModal2(false);
     }
   };
+
   return (
     <>
       <PostCard onClick={modalOnOff2}>
         <Image
-          width='100%'
+          // width='100%'
+          height='200px'
           src={
             !props.el.postingImgUrl
               ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2qRSiz3_RF1OMIdMiZvtWrycSyblXRgyl1Q&usqp=CAU'
@@ -35,6 +37,9 @@ const Post = (props) => {
         <Grid padding='8px'>
           <Text>내용 : {props.el.postingComment}</Text>
         </Grid>
+        <Grid padding='8px'>
+          <Text>조회수 : {props.el.postingSeen}</Text>
+        </Grid>
       </PostCard>
       {modal2 === true ? <Modal2 el={el} _setModal={setModal2} /> : ''}
     </>
@@ -43,7 +48,7 @@ const Post = (props) => {
 
 const PostCard = styled.div`
   width: 24%;
-  min-height: 300px;
+  height: 400px;
   margin-right: 1%;
   margin-bottom: 10px;
   margin-right: 1%;
