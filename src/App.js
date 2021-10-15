@@ -29,7 +29,7 @@ function App() {
   React.useEffect(() => {
     return history.listen((location) => {
       dispatch(userActions.isloading(true));
-      history.reload();
+      history.replace("/");
       // dispatch(userActions.isloading(false));
       setTimeout(() => {
         dispatch(userActions.isloading(false));
