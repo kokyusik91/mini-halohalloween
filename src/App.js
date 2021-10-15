@@ -1,3 +1,4 @@
+import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { history } from "./redux/configureStore";
 import { Route, Switch } from "react-router-dom";
@@ -12,8 +13,29 @@ import ContactUs from "./pages/ContactUs";
 // import CommentList from "./pages/CommentList";
 import CommentListTest from "./pages/CommentListTest";
 import NotFound from "./pages/NotFound";
+import Spinner from "./shared/Spinner";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as userActions } from "./redux/modules/user";
 
 function App() {
+  const dispatch = useDispatch();
+  const is_loading = useSelector((state) => state.user.is_loading);
+  // ## 이슈 로그인, 회원가입 페이지는 header , footer 컴포넌트가 보여지면 안된다.
+  // header, footer가 보여지는 컴포넌트에서 로그인 혹은 회원가입 컴포넌트로 이동후
+  // 브라우저 뒤로가기 버튼을 클릭하면 hader, footer가 보여야 하는 컴포넌트임에도
+  // 안보이는 이슈가 발생함. 이 문제는 router의 history로 해결해보려고 합니다.
+
+  React.useEffect(() => {
+    return history.listen((location) => {
+      dispatch(userActions.isloading(true));
+      history.replace("/");
+      // dispatch(userActions.isloading(false));
+      setTimeout(() => {
+        dispatch(userActions.isloading(false));
+      }, 3000);
+    });
+  }, [history]);
+
   // 1. url 주소를 자른다.
   // history.location.pathname 으로 변수를 담으면 (" /login") <- 앞에 빈 공백이 생기기 때문에
   // 2. istory.location.pathname.split("/") / 기준으로 자른다.
@@ -24,6 +46,7 @@ function App() {
   const pathname = history.location.pathname.split("/").reverse()[0];
   return (
     <ConnectedRouter history={history}>
+      {is_loading && <Spinner />}
       {pathname !== "login" && pathname !== "signup" && <Hedaer />}
       <Switch>
         <Route path="/signup" exact component={Signup} />
