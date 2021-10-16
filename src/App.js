@@ -16,6 +16,8 @@ import NotFound from "./pages/NotFound";
 import Spinner from "./shared/Spinner";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "./redux/modules/user";
+import styled, { ThemeProvider } from "styled-components";
+import theme from "./style/theme";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,20 +49,22 @@ function App() {
   const pathname = history.location.pathname.split("/").reverse()[0];
   return (
     <ConnectedRouter history={history}>
-      {is_loading && <Spinner />}
-      {pathname !== "login" && pathname !== "signup" && <Hedaer />}
-      <Switch>
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/" exact component={Main} />
-        <Route path="/postlist" exact component={Postlist} />
-        <Route path="/about" exact component={About} />
-        <Route path="/contactus" exact component={ContactUs} />
-        {/* <Route path="/commentlist" component={CommentList} /> */}
-        <Route path="/commentlist" component={CommentListTest} />
-        <Route component={NotFound} />
-      </Switch>
-      {pathname !== "login" && pathname !== "signup" && <Footer />}
+      <ThemeProvider theme={theme}>
+        {pathname !== "login" && pathname !== "signup" && <Hedaer />}
+        <Switch>
+          {is_loading && <Spinner />}
+          <Route path="/signup" exact component={Signup} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/" exact component={Main} />
+          <Route path="/postlist" exact component={Postlist} />
+          <Route path="/about" exact component={About} />
+          <Route path="/contactus" exact component={ContactUs} />
+          {/* <Route path="/commentlist" component={CommentList} /> */}
+          <Route path="/commentlist" component={CommentListTest} />
+          <Route component={NotFound} />
+        </Switch>
+        {pathname !== "login" && pathname !== "signup" && <Footer />}
+      </ThemeProvider>
     </ConnectedRouter>
   );
 }

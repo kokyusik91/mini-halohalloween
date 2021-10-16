@@ -3,8 +3,8 @@ const size = {
   tablet: "1023px",
 };
 const theme = {
-  mobile: `max-width:${size.mobile}`,
-  tablet: `max-width:${size.tablet}`,
+  mobile: `screen and (max-width: ${size.mobile})`,
+  tablet: `screen and (max-width: ${size.tablet})`,
 };
 
 export default theme;

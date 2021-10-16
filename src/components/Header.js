@@ -19,10 +19,7 @@ const Hedaer = (props) => {
     <Grid width="100%" padding="25px 0" bg="#6e3845">
       <Container>
         <Grid is_flex>
-          <HeaderLink
-            style={{ fontSize: 24, padding: 0 }}
-            onClick={() => history.push("/")}
-          >
+          <HeaderLink is_title onClick={() => history.push("/")}>
             halohalloween
           </HeaderLink>
           <Grid is_flex flex margin="0 0 0 20px">
@@ -57,8 +54,8 @@ const Hedaer = (props) => {
 };
 
 const HeaderLink = styled.button`
-  padding: 0px 20px;
-  font-size: 14px;
+  padding: ${(props) => (props.is_title ? "0" : "0 20px")};
+  font-size: ${(props) => (props.is_title ? "20px" : "14px")};
   color: #fff;
   background-color: transparent;
   border: none;
@@ -66,6 +63,13 @@ const HeaderLink = styled.button`
     cursor: pointer;
     color: #cd7f4f;
   }
+  :last-child {
+    padding: 0px 0px 0px 10px;
+  }
+  @media ${({ theme }) => theme.tablet} {
+    padding: ${(props) => (props.is_title ? "0" : "0 10px")};
+    font-size: ${(props) => (props.is_title ? "15px" : "12px")};
+  } ;
 `;
 
 export default Hedaer;

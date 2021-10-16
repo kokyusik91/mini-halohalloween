@@ -5,9 +5,7 @@ import {
   hallween02,
   hallween03,
   hallween04,
-  main,
   about,
-  // emoji01,
 } from "../image";
 const About = () => {
   return (
@@ -17,7 +15,7 @@ const About = () => {
           <Grid>
             <Image height="300px" src={about} />
           </Grid>
-          <Text size="26px" margin="30px 0 0 0">
+          <Text is_title margin="30px 0 0 0">
             할로윈소개
           </Text>
           <Grid margin="20px 0 0 0">
