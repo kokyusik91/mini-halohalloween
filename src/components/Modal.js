@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import {
   Grid,
   Label,
@@ -8,23 +8,32 @@ import {
   Upload,
   Button,
   Image,
-} from "../elements/index";
-import moment from "moment";
-import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
+} from '../elements/index';
+import moment from 'moment';
+import { useDispatch, useSelector } from 'react-redux';
+import { actionCreators as postActions } from '../redux/modules/post';
 
 const Modal = (props) => {
   const dispatch = useDispatch();
   let image_url = useSelector((state) => state.image.image_url);
-  useEffect(() => {});
+  // const [uploadImageurl, setUploadImageurl] = useState(image_url);
   // console.log('모달로 들어온 이미지 url', image_url);
   // 인풋창 2개 state 1개로 관리하는 방법
+  // useEffect(() => {
+  //   console.log('useEffect안', uploadImageurl);
+  //   return () => {
+  //     console.log('정리됩니까?');
+  //     setUploadImageurl('');
+  //     console.log('useEffect return문', uploadImageurl);
+  //   };
+  // }, []);
   const modaloff = () => {
     props._setModal(false);
+    // setUploadImageurl(null);
   };
   const [inputs, setInputs] = useState({
-    title: "",
-    content: "",
+    title: '',
+    content: '',
   });
 
   // 비구조화 할당으로 값 추출
@@ -40,14 +49,14 @@ const Modal = (props) => {
     });
   };
   // moment사용하여 포스팅한 날짜정보
-  const postingDate = moment().format("YYYY-MM-DD");
+  const postingDate = moment().format('YYYY-MM-DD');
 
   // console.log('마지막으로 올라갈 데이터', post_data);
   // 미들웨어로 유저정보 보냄 post_data = {} 객체형식
   const submitPost = () => {
     // 제목, 내용 유효성 검토
     if (!inputs.title || !inputs.content) {
-      return alert("빈칸을 입력해 주세요!");
+      return alert('빈칸을 입력해 주세요!');
     }
     const post_data = {
       postingTitle: inputs.title,
@@ -56,9 +65,8 @@ const Modal = (props) => {
       postingImgUrl: image_url,
       postingDel: 1,
     };
+
     dispatch(postActions.addPostFB(post_data));
-    // 질문 : dispatch한번 더 쓰는게 좋은지, 아니면 Modal on/off 전역상태로 리렌더링 하는게 나을지??
-    dispatch(postActions.setPostFB());
     modaloff();
   };
 
@@ -66,37 +74,37 @@ const Modal = (props) => {
   return (
     <>
       <ModalParent>
-        <Grid type="modal">
+        <Grid type='modal'>
           <Cancelbtn onClick={modaloff}>닫기</Cancelbtn>
           글을 써주세요!
-          <Grid margin="20px 0 0 0">
-            <Image src={image_url} />
+          <Grid margin='20px 0 0 0'>
+            {/* <Image src={uploadImageurl} /> */}
           </Grid>
-          <Grid margin="20px 0 0 0">
-            <Label margin="">제목</Label>
+          <Grid margin='20px 0 0 0'>
+            <Label margin=''>제목</Label>
             <Input
-              name="title"
-              type="text"
-              placeholder="제목을 입력해주세요!"
+              name='title'
+              type='text'
+              placeholder='제목을 입력해주세요!'
               _onChange={onChange}
               value={title}
             />
           </Grid>
-          <Grid margin="20px 0 0 0">
-            <Label margin="">게시글</Label>
+          <Grid margin='20px 0 0 0'>
+            <Label margin=''>게시글</Label>
             <Textarea
-              name="content"
-              placeholder="게시글을 작성해주세요!"
+              name='content'
+              placeholder='게시글을 작성해주세요!'
               _onChange={onChange}
               value={content}
             />
           </Grid>
-          <Grid margin="20px 0 0 0" is_flex justify="flex-end">
+          <Grid margin='20px 0 0 0' is_flex justify='flex-end'>
             {/* 이미지 업로드 */}
             <Upload />
           </Grid>
           <Grid>
-            <Button margin="10px 0 0 0" type="blue" _onClick={submitPost}>
+            <Button margin='10px 0 0 0' type='blue' _onClick={submitPost}>
               글올리기
             </Button>
           </Grid>
