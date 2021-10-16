@@ -4,6 +4,7 @@ import styled from "styled-components";
 const Grid = (props) => {
   const {
     is_flex,
+    is_header,
     type,
     flex,
     justify,
@@ -21,6 +22,7 @@ const Grid = (props) => {
 
   const styles = {
     is_flex: is_flex,
+    is_header: is_header,
     flex: flex,
     justify: justify,
     width: width,
@@ -52,6 +54,7 @@ const Grid = (props) => {
 
 Grid.defaultProps = {
   is_flex: false,
+  is_header: false,
   flex: false,
   justify: "flex-start",
   width: "auto",
@@ -99,6 +102,13 @@ const DefaultGrid = styled.div`
   ${(props) => props.border && `border:${props.border}`};
   flex-wrap: wrap;
   position: relative;
+  @media ${({ theme }) => theme.tablet} {
+    width: ${(props) => !props.is_header && `100%`};
+    margin: ${(props) => (!props.is_header ? `0px` : "auto")};
+  }
+  /* @media ${({ theme }) => theme.mobile} {
+    width: 100%;
+  } */
 `;
 
 export default Grid;

@@ -24,6 +24,9 @@ const ContainerWrap = styled.div`
   @media ${({ theme }) => theme.tablet} {
     width: 100%;
     padding: 0px 20px;
-  } ;
+  }
+  @media ${({ theme }) => theme.mobile} {
+    padding: 0px 15px;
+  }
 `;
 export default Container;

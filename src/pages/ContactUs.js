@@ -189,17 +189,16 @@ const fade = keyframes`
 `;
 const TeamGrid = styled.div`
   width: 32%;
-  margin-top: 30px;
+  margin-bottom: 30px;
   padding: 35px 30px;
   background-color: #f1f3f5;
   box-shadow: 3px 3px 3px #dee2e6;
-
   @media ${({ theme }) => theme.tablet} {
     padding: 15px 20px;
   }
   @media ${({ theme }) => theme.mobile} {
     width: 100%;
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
   p,
   a {
