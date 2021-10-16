@@ -55,7 +55,7 @@ const addPostFB = (post_data) => {
     try {
       const res = await apis.create("post/posting", post_data);
       alert("포스팅에 성공하였습니다!");
-      console.log(res);
+      console.log("addPostFB res ==============", res);
     } catch (e) {
       console.log("error :::::: ", e);
     }

@@ -61,7 +61,10 @@ const PostCard = styled.div`
   }
   @media ${({ theme }) => theme.tablet} {
     width: 49%;
-  } ;
+  }
+  @media ${({ theme }) => theme.mobile} {
+    width: 100%;
+  }
 `;
 
 export default Post;

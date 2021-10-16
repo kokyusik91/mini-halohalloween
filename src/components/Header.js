@@ -18,11 +18,9 @@ const Hedaer = (props) => {
   return (
     <Grid width="100%" padding="25px 0" bg="#6e3845">
       <Container>
-        <Grid is_flex>
-          <HeaderLink is_title onClick={() => history.push("/")}>
-            halohalloween
-          </HeaderLink>
-          <Grid is_flex flex margin="0 0 0 20px">
+        <Grid is_flex is_header>
+          <Logo onClick={() => history.push("/")}>halohalloween</Logo>
+          <Grid is_flex is_header flex margin="0 0 0 20px">
             <HeaderLink onClick={() => history.push("/about")}>
               할로윈소개
             </HeaderLink>
@@ -33,7 +31,7 @@ const Hedaer = (props) => {
               Contact us
             </HeaderLink>
           </Grid>
-          <Grid>
+          <Grid is_header>
             {!is_login ? (
               <>
                 <HeaderLink onClick={() => history.push("/login")}>
@@ -67,9 +65,32 @@ const HeaderLink = styled.button`
     padding: 0px 0px 0px 10px;
   }
   @media ${({ theme }) => theme.tablet} {
-    padding: ${(props) => (props.is_title ? "0" : "0 10px")};
-    font-size: ${(props) => (props.is_title ? "15px" : "12px")};
-  } ;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+  @media ${({ theme }) => theme.mobile} {
+    padding: 0 5px;
+  }
+  @media ${({ theme }) => theme.mobileS} {
+    font-size: 10px;
+  }
+`;
+const Logo = styled.button`
+  padding: 0;
+  font-size: 20px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  &:hover {
+    cursor: pointer;
+    color: #cd7f4f;
+  }
+  @media ${({ theme }) => theme.mobile} {
+    font-size: 17px;
+  }
+  @media ${({ theme }) => theme.mobileS} {
+    font-size: 14px;
+  }
 `;
 
 export default Hedaer;
