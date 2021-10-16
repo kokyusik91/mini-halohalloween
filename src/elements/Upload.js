@@ -44,6 +44,7 @@ const Upload = (props) => {
       )}
       <UploadForm
         id='ex_file'
+        accept='.gif, .jpg, .png'
         type={type}
         {...styles}
         onChange={selectFile}
