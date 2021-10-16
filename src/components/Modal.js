@@ -7,7 +7,6 @@ import {
   Textarea,
   Upload,
   Button,
-  Image,
 } from '../elements/index';
 import moment from 'moment';
 import { useDispatch, useSelector } from 'react-redux';
