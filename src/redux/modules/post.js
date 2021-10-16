@@ -41,8 +41,7 @@ const setPostFB = () => {
       const res = await apis.get('post/postlist');
       console.log(res);
       const post_list = res.data.postList;
-
-      // console.log('서버에서 받아온 데이터', post_list);
+      console.log('서버에서 받아온 데이터', post_list);
       dispatch(setPost(post_list));
     } catch (e) {
       console.log('error ? :::::: ', e);

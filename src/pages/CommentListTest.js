@@ -45,7 +45,7 @@ const CommentListTest = (props) => {
               }}
               value={input}
             />
-            <Button width='auto' _onClick={onClick}>
+            <Button padding='0 0 0 10px' width='auto' _onClick={onClick}>
               등록
             </Button>
           </>

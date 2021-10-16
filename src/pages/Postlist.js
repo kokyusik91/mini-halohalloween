@@ -24,15 +24,13 @@ const Postlist = (props) => {
   };
 
   useEffect(() => {
-    if (post_list.length === 0) {
-      dispatch(postActions.setPostFB());
-    }
+    dispatch(postActions.setPostFB());
   }, []);
 
   return (
     <>
       <Container>
-        <Grid is_flex justify='space-between'>
+        <Grid is_flex justify='space-between' margin='15px 0 15px 0'>
           <Text is_title>다들 할로윈 어케 보내시는지?....</Text>
           {exitedToken ? (
             <Button type='blue' width='10%' _onClick={modalOnOff}>

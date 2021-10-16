@@ -27,18 +27,19 @@ const Post = (props) => {
               : props.el.postingImgUrl
           }
         />
-        <Grid padding='8px'>
-          <Text bold>닉네임 : {props.el.postingAuthor}</Text>
+        <Grid padding='8px' is_flex justify='space-between'>
+          <Text size=' 12px' bold>
+            {props.el.postingAuthor}
+          </Text>
+          <Text size=' 12px'>👀 {props.el.postingSeen}</Text>
         </Grid>
         <Grid padding='8px'>
-          <Text>제목 : {props.el.postingTitle}</Text>
+          <Text size='18px'>{props.el.postingTitle}</Text>
         </Grid>
         <Grid padding='8px'>
-          <Text>내용 : {props.el.postingComment}</Text>
+          <Text>{props.el.postingComment}</Text>
         </Grid>
-        <Grid padding='8px'>
-          <Text>조회수 : {props.el.postingSeen}</Text>
-        </Grid>
+        <Grid padding='8px'></Grid>
       </PostCard>
       {modal2 === true ? <Modal2 el={el} _setModal={setModal2} /> : ''}
     </>
@@ -51,10 +52,10 @@ const PostCard = styled.div`
   margin-right: 1%;
   margin-bottom: 10px;
   margin-right: 1%;
-  background-color: #f1f3f5;
+  background-color: #fafafa;
   transition: all ease 1s;
   cursor: pointer;
-  border: 0.3px solid #243443;
+  border: 0.2px solid #dbdbdb;
   &:hover {
     transform: scale(1.05);
   }

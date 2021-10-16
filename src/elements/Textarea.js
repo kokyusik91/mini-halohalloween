@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Textarea = (props) => {
-  const { placeholder, _onChange, margin, name, value, disabled } = props;
+  const { placeholder, _onChange, margin, name, value, disabled, size } = props;
 
   const styles = {
     margin: margin,
+    size: size,
   };
 
   return (
@@ -32,6 +33,7 @@ Textarea.defaultProps = {
 
 const ElTextarea = styled.textarea`
   width: 100%;
+  ${(props) => (props.size ? `font-size: ${props.size};` : '')};
   ${(props) => (props.margin ? `margin: ${props.margin};` : '')};
   padding: 8px;
   border: none;

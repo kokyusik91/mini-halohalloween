@@ -1,28 +1,27 @@
-import React from "react";
-import { ConnectedRouter } from "connected-react-router";
-import { history } from "./redux/configureStore";
-import { Route, Switch } from "react-router-dom";
-import Hedaer from "./components/Header";
-import Footer from "./components/Footer";
-import Main from "./pages/Main";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
-import Postlist from "./pages/Postlist";
-import About from "./pages/About";
-import ContactUs from "./pages/ContactUs";
-// import CommentList from "./pages/CommentList";
-import CommentListTest from "./pages/CommentListTest";
-import NotFound from "./pages/NotFound";
-import Spinner from "./shared/Spinner";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as userActions } from "./redux/modules/user";
-import styled, { ThemeProvider } from "styled-components";
-import theme from "./style/theme";
+import React from 'react';
+import { ConnectedRouter } from 'connected-react-router';
+import { history } from './redux/configureStore';
+import { Route, Switch } from 'react-router-dom';
+import Hedaer from './components/Header';
+import Footer from './components/Footer';
+import Main from './pages/Main';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+import Postlist from './pages/Postlist';
+import About from './pages/About';
+import ContactUs from './pages/ContactUs';
+import CommentListTest from './pages/CommentListTest';
+import NotFound from './pages/NotFound';
+import Spinner from './shared/Spinner';
+import { useSelector, useDispatch } from 'react-redux';
+import { actionCreators as userActions } from './redux/modules/user';
+import { ThemeProvider } from 'styled-components';
+import theme from './style/theme';
 
 function App() {
   const dispatch = useDispatch();
   const is_loading = useSelector((state) => state.user.is_loading);
-  console.log("history = ", history);
+  console.log('history = ', history);
   // ## 이슈 로그인, 회원가입 페이지는 header , footer 컴포넌트가 보여지면 안된다.
   // header, footer가 보여지는 컴포넌트에서 로그인 혹은 회원가입 컴포넌트로 이동후
   // 브라우저 뒤로가기 버튼을 클릭하면 hader, footer가 보여야 하는 컴포넌트임에도
@@ -31,7 +30,7 @@ function App() {
   React.useEffect(() => {
     return history.listen((location) => {
       dispatch(userActions.isloading(true));
-      history.replace("/");
+      history.replace('/');
       // dispatch(userActions.isloading(false));
       setTimeout(() => {
         dispatch(userActions.isloading(false));
@@ -46,24 +45,24 @@ function App() {
   // 만약에 url 뒤에 뭔가가 붙는 주소도 header 분기 처리가 필요할 경우를 대비해서 (없을수도 있지만)
   // 배열의 순서를 무조건 맨 첫번째로 오도록 reverse()로 돌린다.
   // 첫번째 배열을 pathname 변수에 담아서 조건처리를 해준다.
-  const pathname = history.location.pathname.split("/").reverse()[0];
+  const pathname = history.location.pathname.split('/').reverse()[0];
   return (
     <ConnectedRouter history={history}>
       <ThemeProvider theme={theme}>
-        {pathname !== "login" && pathname !== "signup" && <Hedaer />}
+        {pathname !== 'login' && pathname !== 'signup' && <Hedaer />}
         <Switch>
           {is_loading && <Spinner />}
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/" exact component={Main} />
-          <Route path="/postlist" exact component={Postlist} />
-          <Route path="/about" exact component={About} />
-          <Route path="/contactus" exact component={ContactUs} />
+          <Route path='/signup' exact component={Signup} />
+          <Route path='/login' exact component={Login} />
+          <Route path='/' exact component={Main} />
+          <Route path='/postlist' exact component={Postlist} />
+          <Route path='/about' exact component={About} />
+          <Route path='/contactus' exact component={ContactUs} />
           {/* <Route path="/commentlist" component={CommentList} /> */}
-          <Route path="/commentlist" component={CommentListTest} />
+          <Route path='/commentlist' component={CommentListTest} />
           <Route component={NotFound} />
         </Switch>
-        {pathname !== "login" && pathname !== "signup" && <Footer />}
+        {pathname !== 'login' && pathname !== 'signup' && <Footer />}
       </ThemeProvider>
     </ConnectedRouter>
   );

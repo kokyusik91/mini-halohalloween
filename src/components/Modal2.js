@@ -80,8 +80,13 @@ const Modal2 = (props) => {
   };
   // 삭제하기 위해서 postID 서버로 보내기
   const onDelete = () => {
-    dispatch(postActions.deletePostFB(postID));
-    // console.log('삭제되니?');
+    let bool = window.confirm('정말 삭제하실 건가요?');
+    if (bool) {
+      dispatch(postActions.deletePostFB(postID));
+    } else {
+      return;
+    }
+    modaloff();
   };
   return (
     <>
@@ -95,13 +100,14 @@ const Modal2 = (props) => {
               </Button>
             ) : null}
             {userNickname === props.el.postingAuthor ? (
-              <Button margin='0 5px 0 0' _onClick={onDelete}>
+              <Button margin='0 5px 0 0' color='#ff4949' _onClick={onDelete}>
                 삭제
               </Button>
             ) : null}
           </Grid>
           <Grid is_flex justify='flex-end'>
             <Image
+              height='300px'
               src={
                 !props.el.postingImgUrl
                   ? 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2qRSiz3_RF1OMIdMiZvtWrycSyblXRgyl1Q&usqp=CAU'
@@ -109,12 +115,19 @@ const Modal2 = (props) => {
               }
             />
           </Grid>
-          <Grid margin='10px 0 0 0' is_flex justify='space-between'>
+          <Grid
+            margin='10px 0 0 0'
+            padding='10px'
+            is_flex
+            justify='space-between'
+          >
             <Text>{props.el.postingAuthor}</Text>
             <Text>{props.el.postingDate}</Text>
           </Grid>
+          <hr style={{ color: 'blue' }} />
           <Grid margin='10px 0 0 0'>
             <Input
+              size='25px'
               type='text'
               _onChange={editInput}
               value={editTitle}
@@ -124,6 +137,7 @@ const Modal2 = (props) => {
           </Grid>
           <Grid margin='10px 0 0 0'>
             <Textarea
+              size='18px'
               _onChange={editTextarea}
               value={editContent}
               disabled={isEditedcontent}

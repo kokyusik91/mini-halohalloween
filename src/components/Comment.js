@@ -26,13 +26,15 @@ const Comment = (props) => {
   return (
     <Grid is_flex flex justify='space-between' margin='10px 0 0 0'>
       {/* 미다 수정 */}
-      <Text>{replyNickname}</Text>
+      <Text size='12px'>{replyNickname}</Text>
       <Text>{replyComment}</Text>
       {is_user === replyNicKname ? (
         <Button _onClick={deleteClick} color='#ff4949' width='20%'>
           삭제
         </Button>
-      ) : null}
+      ) : (
+        <Button _onClick={deleteClick} color='#ff4949' width='20%'></Button>
+      )}
     </Grid>
   );
 };
